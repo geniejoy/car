@@ -22,6 +22,7 @@
       "@commons/*": ["src/app/commons/*"],
       "@customers/*": ["src/app/customers/*"],
       "@items/*": ["src/app/items/*"],
+      "@factory/*": ["src/app/factory/*"],
       "@sass/*": ["sass/*"],
       "@models/*": ["src/app/models/*"],
       "gna-validators": ["dist/gna-validators"],

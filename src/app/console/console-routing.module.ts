@@ -9,6 +9,8 @@ const routes: Routes = [
     children: [
       { path: 'items', loadChildren: '@items/items.module#ItemsModule' },
       { path: 'customers', loadChildren: '@customers/customers.module#CustomersModule' },
+      // { path: 'factories', loadChildren: '@factory/factory.module#FactoryModule' },
+      { path: 'factories', loadChildren: '@factory/factory.module#FactoryModule' },
       { path: 'system', loadChildren: '@system/system.module#SystemModule' }
     ]
   }

@@ -38,13 +38,15 @@ export class SidenavComponent implements OnInit, OnDestroy, AfterViewInit {
   /* items is summary, just fix display name */
   itemsActive: boolean;
   customersActive: boolean;
+  factoriesActive: boolean;
   @Input() changeSidenav: boolean;
   @Output() firePending: EventEmitter<boolean>;
   searchData: Array<SideNavSearchItem>;
   searchBox: FormControl;
   searchFilterData: Observable<any[]>;
-  items = '零件s';
-  customers = '客戶s';
+  items = '零件';
+  customers = '客戶';
+  factories = '維修記錄';
 
   constructor(private sidenavService: SidenavService, private router: Router, private activatedRoute: ActivatedRoute) {
     this.firePending = new EventEmitter();
@@ -140,6 +142,8 @@ export class SidenavComponent implements OnInit, OnDestroy, AfterViewInit {
           this.itemsActive = true;
         } else if (lastUrl === 'customers') {
           this.customersActive = true;
+        } else if (lastUrl === 'factories') {
+          this.factoriesActive = true;
         } else {
           /* check report data */
           this.menuItems.filter((menuItem: SideNavMenuItem) => !menuItem.category).map((menuItem: SideNavMenuItem) => {

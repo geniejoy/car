@@ -21,15 +21,22 @@
       <mat-nav-list>
         <a mat-list-item (click)="ifSideNavIsCloseThenOpen()" [ngClass]="{'active': itemsActive}" class="dashboard-item"
           routerLink="/items">
-          <mat-icon matListIcon>dashboard</mat-icon>
+          <mat-icon matListIcon>fitness_cente</mat-icon>
           <h3 matLine>{{items}}</h3>
         </a>
       </mat-nav-list>
       <mat-nav-list>
         <a mat-list-item (click)="ifSideNavIsCloseThenOpen()" [ngClass]="{'active': customersActive}" class="dashboard-item"
           routerLink="/customers">
-          <mat-icon matListIcon>assignment</mat-icon>
+          <mat-icon matListIcon>group</mat-icon>
           <h3 matLine>{{customers}}</h3>
+        </a>
+      </mat-nav-list>
+      <mat-nav-list>
+        <a mat-list-item (click)="ifSideNavIsCloseThenOpen()" [ngClass]="{'active': factoriesActive}" class="dashboard-item"
+          routerLink="/factories">
+          <mat-icon matListIcon>departure_board</mat-icon>
+          <h3 matLine>{{factories}}</h3>
         </a>
       </mat-nav-list>
       <mat-accordion [multi]="!getSideNavStatus()">

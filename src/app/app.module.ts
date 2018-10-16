@@ -11,6 +11,7 @@ import { NgModule } from '@angular/core';
 import { CustomersModule } from '@customers/customers.module';
 import { ItemsModule } from '@items/items.module';
 import { CommonsModule } from '@commons/commons.module';
+import { FactoryModule } from '@factory/factory.module';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -35,6 +36,7 @@ const routeOptions: ExtraOptions = {
     BrowserAnimationsModule,
     AuthModule,
     CoreModule,
+    FactoryModule,
     RouterModule.forRoot(routes, routeOptions)
   ],
   providers: [],

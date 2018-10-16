@@ -12,7 +12,7 @@ import { Observable, of as observableOf } from 'rxjs';
 })
 export class CarNumberComponent implements OnInit, AfterViewInit, OnChanges {
   @Input() customer;
-  @Output() carChange = new EventEmitter();
+  @Output() carNoChange = new EventEmitter();
   cars: carTableSchema[] = [];
   formGroup: FormGroup;
   filteredOptions: Observable<carTableSchema[]>;
@@ -38,7 +38,7 @@ export class CarNumberComponent implements OnInit, AfterViewInit, OnChanges {
           : this.cars.slice()
       );
 
-      this.carChange.emit(value);
+      this.carNoChange.emit(value);
     });
   }
 
