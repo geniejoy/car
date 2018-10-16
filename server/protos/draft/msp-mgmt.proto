@@ -1,0 +1,30 @@
+
+syntax = "proto3";
+package genie.mspmgmt;
+
+import "msp_server.proto";
+import "msp_customer_portal.proto";
+import "google/protobuf/empty.proto";
+
+// The MSP servers serivce
+service MspServer {
+  rpc RegisterMspServer(MspServerInfo) returns (MspServerInfo) {}
+  rpc GetMspServersList(google.protobuf.Empty) returns (MspServersList) {}
+}
+
+// The portal service
+service CustomerPortal {
+  rpc CreateMspCustomerPortal (MspCustomerPortalConfig) returns (MspCustomerPortalConfig) {}
+  rpc UpdateMspCustomerPortal (MspCustomerPortalConfig) returns (MspCustomerPortalConfig) {}
+  rpc DeleteMspCustomerPortal (MspCustomerPortalConfig) returns (MspCustomerPortalConfig) {}
+  rpc GetMspCustomerPortal (MspCustomerPortalLoc) returns (MspCustomerPortalConfig) {}
+  rpc GetMspCustomerPortalList(MspCustomerPortalLoc) returns (MspCustomerPortalList) {}
+  rpc CreateMspCustomerPortalAdmin (MspCustomerPortalUser) returns (MspCustomerPortalUser) {}
+  rpc ValidateMspCustomerPortalUserRegistrationToken (MspCustomerPortalUserRegistrationToken) returns (MspCustomerPortalUser) {}
+  rpc ApproveMspCustomerPortalUserRegistrationToken (MspCustomerPortalUserRegistrationToken) returns (MspCustomerPortalUser) {}
+  rpc CreateMspCustomerPortalUser (MspCustomerPortalUser) returns (MspCustomerPortalUser) {}
+  rpc UpdateMspCustomerPortalUser (MspCustomerPortalUser) returns (MspCustomerPortalUser) {}
+  rpc DeleteMspCustomerPortalUser (MspCustomerPortalUser) returns (MspCustomerPortalUser) {}
+  rpc GetMspCustomerPortalUserList(MspCustomerPortalUserLoc) returns (MspCustomerPortalUserList) {}
+  rpc GetMspCustomerPortalUser(MspCustomerPortalUserLoc) returns (MspCustomerPortalUser) {}
+}

@@ -1,0 +1,46 @@
+# import * from "atm-base.gql"
+# import ReportRequest, AtmReport from "atm-report.gql"
+# import AtdRequest, AtdEvent from "atd-event.gql"
+# import ProductInfo, Counter from "sample.gql"
+# import EventListRequestArgs from "atd/event-list.gql"
+# import EventTraffic1Min from "atd/event-traffic1min.gql"
+# import MspCustomerInput, MspCustomerLocInput, MspCustomerUserLocInput, MspCustomer, MspCustomerUser, MspCustomerRegisterInput, MspCustomerRegisterOutput from "msp-customer.gql"
+# import MspServerInput, MspServerInfo from "msp-server.gql"
+# import DispatchConfigRequest, DispatchConfigResponse from "atm-api.gql"
+
+# top level queries
+type Query {
+  hello: String!
+  productInfo: ProductInfo!
+  atdEvents(atdRequest: AtdRequest): [AtdEventBlock]
+  atmReport(reportRequest: ReportRequest): AtmReport
+  atdEventList(args: EventListRequestArgs): [EventDetail]
+  atdEventTraffic1Min(
+    eventId: Int
+    routerCoverage: Int
+    recordStartTime: String
+    recordEndTime: String
+  ): EventTraffic1Min
+  mspServersList: [MspServerInfo]
+  mspCustomer(customerLoc: MspCustomerLocInput): MspCustomer
+  mspCustomersList(customerLoc: MspCustomerLocInput): [MspCustomer]
+  mspCustomerUser(userLoc: MspCustomerUserLocInput): MspCustomerUser
+  mspCustomerUserList(userLoc: MspCustomerUserLocInput): [MspCustomerUser]
+}
+
+type Mutation {
+  registerMspServer(newMspServer: MspServerInput): MspServerInfo
+  createMspCustomer(mspCustomerRegisterInput: MspCustomerRegisterInput): MspCustomerRegisterOutput
+  updateMspCustomer(mspCustomerRegisterInput: MspCustomerRegisterInput): MspCustomerRegisterOutput
+  deleteMspCustomer(mspCustomerInput: MspCustomerInput): MspCustomer
+  dispatchMspConfig(dispatchConfigRequest: DispatchConfigRequest): DispatchConfigResponse
+}
+
+# top level subscriptions
+type Subscription {
+  counter: Counter!
+  atmReportAdded(reportFilter: ReportFilter): AtmReportAdded
+  atdEventListAdded(args: EventListRequestArgs): [EventDetail]
+  atdEventDetailAdded(eventId: Int): EventDetail
+  atdEventTraffic1MinAdded(eventId: Int, routerCoverage: Int): EventTraffic1Min
+}

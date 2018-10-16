@@ -1,0 +1,53 @@
+syntax = "proto3";
+package genie.msp.portal.config;
+
+service FilterConfiguration {
+    rpc GetFilterList (FilterAddressList) returns (Filters) {}
+    rpc GetFilter (FilterAddress) returns (Filter) {}
+    rpc CreateFilter (Filter) returns (Filter) {}
+    rpc UpdateFilter (Filter) returns (Filter) {}
+    rpc DeleteFilter (Filter) returns (Filter) {}
+}
+
+message FilterAddressList {
+  int32 customerId = 1;
+}
+
+message FilterAddress {
+    int32 customerId = 1;
+    int32 filterId = 2;
+}
+
+message Filters {
+    repeated Filter filters = 1;
+}
+
+message ProtocolPort {
+    int32 protocol = 1;
+    int32 port = 2;
+}
+
+message FilterExpression {
+    Access access = 1;
+    enum Access {
+        permit = 0;
+        deny = 1;
+    }
+    string ipAddressSrc = 3;
+    string ipAddressDst = 4;
+    int32 protocolIdentifier = 5;
+    ProtocolPort  ipProtocolPortSrc = 6;
+    ProtocolPort  ipProtocolPortDst = 7;
+    int32 asNumberSrc = 8;
+    int32 asNumberDst = 9;
+    int32 bgpAdjacentAsNumberSrc = 10;
+    int32 bgpAdjacentAsNumberDst = 11;
+}
+
+message Filter {
+    int32 customerId = 1;
+    int32 id = 2;
+    string name = 3;
+    repeated FilterExpression expressions = 4;
+    string remarks = 5;
+}

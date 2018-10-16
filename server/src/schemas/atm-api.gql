@@ -1,0 +1,8 @@
+input DispatchConfigRequest {
+  description: String
+}
+
+type DispatchConfigResponse {
+  status: String
+  result: String
+}

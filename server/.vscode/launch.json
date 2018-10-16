@@ -1,0 +1,55 @@
+{
+    // Use IntelliSense to learn about possible Node.js debug attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [        
+        {
+            "type": "node",
+            "request": "attach",
+            "name": "Attach",
+            "port": 9229
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Debug",
+            "program": "${workspaceRoot}/dist/console-server.js",
+            "cwd": "${workspaceRoot}/dist",
+            "smartStep": true,
+            "outFiles": [
+                "../dist/**/*.js"
+            ],
+            "preLaunchTask": "npm: build",
+            "protocol": "inspector"
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Jest Current File",
+            "program": "${workspaceRoot}/node_modules/jest/bin/jest",
+            "args": ["${relativeFile}", "--config=${workspaceRoot}/jest.full.config.json"],
+            "console": "integratedTerminal",
+            "internalConsoleOptions": "neverOpen"
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Jest UT",
+            "program": "${workspaceRoot}/node_modules/jest/bin/jest",
+            "args": ["--runInBand", "--config=${workspaceRoot}/jest.ut.config.json"],
+            "console": "integratedTerminal",
+            "internalConsoleOptions": "neverOpen"
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Jest All",
+            "program": "${workspaceRoot}/node_modules/jest/bin/jest",
+            "args": ["--runInBand", "--config=${workspaceRoot}/jest.full.config.json"],
+            "console": "integratedTerminal",
+            "internalConsoleOptions": "neverOpen"
+          }
+    ]
+}
+

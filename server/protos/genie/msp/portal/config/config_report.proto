@@ -1,0 +1,64 @@
+syntax = "proto3";
+package genie.msp.portal.config;
+
+service ReportConfiguration {
+    rpc GetScopeNameList (MspCustomerAddress) returns (MspScopeNameList) {}
+    rpc GetFieldNameList (MspCustomerAddress) returns (MspFieldNameList) {}
+    rpc GetReportList (ReportAddress) returns (ReportConfigList) {}
+    rpc GetReport (ReportAddress) returns (ReportConfig) {}
+    rpc CreateReport (ReportConfig) returns (ReportConfig) {}
+    rpc DeleteReport (ReportConfig) returns (ReportConfig) {}
+    rpc UpdateReport (ReportConfig) returns (ReportConfig) {}
+}
+
+message MspCustomerAddress {
+    int32 customerId = 1;
+    int32 serverId = 2;
+}
+
+message MspReportScope {
+    // customer, subnetwork or filter
+    string scopeType = 1;
+    int32 scopeId = 2;
+    // optional
+    string scopeName = 3;
+}
+
+message MspScopeNameList {
+    MspCustomerAddress  customer = 1;
+    repeated MspReportScope scopeList = 2;
+}
+
+message MspFieldNameList {
+    // with direction case: ipProtocolPort_dst, ipProtocolPort_src
+    // without direction case: ipVersion
+    repeated string fieldName = 1;
+}
+
+message ReportAddress {
+    // customer portal primary key
+    int32 customerId = 1;
+    // optional
+    int32 reportId = 2;
+}
+
+message ReportConfigList {
+    repeated ReportConfig configList = 1;
+}
+
+message ReportConfig {
+    ReportAddress id = 1;
+    string name = 2;
+    // Topn or Matrix
+    string reportType = 3;
+    MspReportScope scope = 4;
+    //  bps, pps
+    repeated string accountingUnits = 5;
+    //  ipAddress_src, ipAddress_dst ... 
+    // Topn reprot only acception max 4 keys
+    // traffic matrix report must have 2 keys
+    repeated string aggregationKey = 6;
+    // 0, 25, 50, 100, 250, 500.  0 is only for traffic matrix report
+    int32 outputSize = 7;
+}
+

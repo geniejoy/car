@@ -1,0 +1,26 @@
+// genie networks 
+// 
+syntax = "proto3";
+package genie.configer;
+
+import "configer-base.proto";
+// rpc GetAnomalyInfos (InfoLoc) returns (AnomalyInfos) {}
+
+// similar to MetaLocs, but is used in general config info query
+message InfoLocList {
+  repeated int32 info_index_list = 1;
+}
+
+message AnomalyInfos {
+  repeated AnomalyInfo anomaly_info_list = 1;
+}
+
+message AnomalyInfo {
+  int32 anomaly_index = 1;
+  string anomaly_name = 2;
+  int32 record_type_mask = 3;
+  bool enable_matching = 4;
+  bool enable_accounting = 5;
+  NetworkSide candidate_side = 6;
+  string remarks = 7;
+}

@@ -1,0 +1,65 @@
+@import 'variable';
+$icon-size: 2em;
+$today-bg-color: #03a9f4;
+$today-font-color: #fff;
+$title-font-color: rgba(0, 0, 0, 0.54);
+$title-font-size: 75%;
+::ng-deep {
+  .gna-date-picker {
+    position: relative;
+    .label {
+      position: absolute;
+      left: 0;
+      top: 0;
+      transform: translate(6px, -7px);
+      color: $title-font-color;
+      font-size: $title-font-size;
+      font-weight: bold;
+    }
+    .mat-form-field {
+      min-width: 120px;
+      width: 16vmin;
+      .mat-form-field-flex {
+        flex-direction: row-reverse;
+        .mat-form-field-infix {
+          margin-left: map-get($margin, m-8);
+        }
+      }
+      .mat-form-field-suffix {
+        .mat-icon-button {
+          width: $icon-size;
+          height: $icon-size;
+          .mat-datepicker-toggle-default-icon {
+            width: #{$icon-size - 0.5em};
+            height: #{$icon-size - 0.5em};
+          }
+        }
+      }
+    }
+  }
+  .cdk-overlay-container {
+    .mat-datepicker-content {
+      .mat-calendar-header {
+        .gna-today-btn {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          &:hover {
+            &:before {
+              color: $today-font-color;
+              background: #03a9f4;
+            }
+          }
+          &:before {
+            content: attr(name);
+            padding: map-get($padding, p-8) map-get($padding, p-16);
+            background: transparent;
+            border-radius: 32px;
+            transition: all 0.4s;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  }
+}

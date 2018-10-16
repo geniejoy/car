@@ -1,0 +1,10 @@
+<form [formGroup]="formGroup">
+  <mat-form-field>
+    <input type="text" placeholder="車號" matInput formControlName="car" [matAutocomplete]="auto">
+    <mat-autocomplete #auto="matAutocomplete">
+      <mat-option *ngFor="let car of filteredOptions | async" [value]="car">
+        {{car.cr_no}}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+</form>

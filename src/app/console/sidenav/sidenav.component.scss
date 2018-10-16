@@ -1,0 +1,122 @@
+@import '../../../sass/utils';
+$side-nav-background-color: #fafafa;
+$side-nav-box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.35);
+$side-nav-width: 255px;
+$general-padding: 16px;
+$general-icon-size: 20px;
+$general-font-size: 14px;
+$general-font-color: rgba(0, 0, 0, 0.54);
+@mixin sidenav-close-style() {
+  min-width: 0;
+  width: 59px;
+}
+
+.portal-sidnav-menu {
+  overflow-x: hidden;
+  overflow-y: scroll;
+  h3 {
+    // Dashboard
+    font-size: $general-font-size;
+    white-space: nowrap;
+  } // Expansion Panel
+  .mat-expansion-panel {
+    box-shadow: none;
+    .mat-expansion-panel-header {
+      padding: 0 $general-padding;
+      .mat-expansion-panel-header-title {
+        margin: 0;
+        align-items: center;
+        h3 {
+          // title
+          margin: 0;
+          padding: 0 $general-padding;
+        }
+        h4 {
+          // sub-title
+          font-size: $general-font-size;
+          margin: 0;
+          padding: 0 $general-padding;
+        }
+        .mat-icon {
+          @include portal-ui-icon-sizing($general-icon-size);
+        }
+      }
+    } // expect dashboard item, other item has padding
+    .mat-nav-list {
+      border: 0;
+      .mat-list-item {
+        .mat-line {
+          @include portal-ui-expansion-padding-left($general-icon-size, $general-padding);
+        }
+      }
+    }
+  } // Menu List.
+  .mat-nav-list {
+    padding: 0; // Left menu icon
+    .mat-list-icon {
+      @include portal-ui-icon-sizing($general-icon-size);
+    } // End detail icon
+    .mat-icon.portal-sidnav-menu__end_detail {
+      @include portal-ui-icon-sizing($general-icon-size);
+    }
+  } // Stop home menu item from auto focusing when sidenav opens in over mode
+  .mat-list-item-focus {
+    background: transparent;
+  }
+}
+
+/* Layout Setting */
+
+section {
+  .portal-sidnav {
+    height: 100%;
+    margin: 0px;
+    min-height: 100%;
+    min-width: $side-nav-width;
+    width: $side-nav-width;
+    max-width: $side-nav-width;
+    flex-direction: column;
+    box-sizing: border-box;
+    display: flex;
+    background-color: $side-nav-background-color;
+    box-shadow: $side-nav-box-shadow;
+    transition: min-width 0.5s, width 0.5s;
+    /* sidenav close style */
+    &.portal-sidenav-close {
+      @include sidenav-close-style();
+    }
+  }
+}
+
+/* search style */
+
+:host ::ng-deep .portal-sidnav {
+  .search-form {
+    display: flex;
+    align-items: center;
+    padding: 0 $general-padding;
+    color: $general-font-color;
+    height: 60px;
+    min-height: 60px;
+    mat-icon {
+      @include portal-ui-icon-sizing($general-icon-size);
+      cursor: pointer;
+    }
+    mat-form-field {
+      overflow: hidden;
+      width: 100%;
+      padding-left: $general-padding;
+      font-size: 12px;
+      font-weight: 600;
+      .mat-input-wrapper {
+        padding: 0;
+      }
+      .mat-input-infix {
+        border: 0;
+      }
+      .mat-input-underline {
+        display: none;
+      }
+    }
+  }
+}

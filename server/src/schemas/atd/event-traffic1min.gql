@@ -1,0 +1,19 @@
+# import * from "event-base.gql"
+
+type EventTraffic1Min {
+  eventId: Int
+  threshold: Int
+  counterIndex: Int
+  routerTrafficData: [EventRouterTrafficData]
+}
+
+type EventRouterTrafficData {
+  routerId: Int
+  routerName: String
+  trafficData: [EventTrafficData]
+}
+
+type EventTrafficData {
+  recTime: String
+  traffic: Int
+}

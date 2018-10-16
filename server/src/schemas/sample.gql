@@ -1,0 +1,14 @@
+# sample product info
+type ProductInfo {
+  # semantic version M.m.p
+  prodVersion: String!
+  # short product name
+  prodName: String!
+}
+
+
+type Counter {
+  count: Int!
+  countStr: String
+}
+

@@ -1,0 +1,91 @@
+syntax = "proto3";
+package genie.msp.portal.manage;
+
+service MspCustomerService {
+  rpc CreateMspCustomer (MspCustomer) returns (MspCustomer) {}
+  rpc UpdateMspCustomer (MspCustomer) returns (MspCustomer) {}
+  rpc DeleteMspCustomer (MspCustomer) returns (MspCustomer) {}
+  rpc GetMspCustomer (MspCustomerLoc) returns (MspCustomer) {}
+  rpc GetMspCustomerList(MspCustomerLoc) returns (MspCustomerList) {}
+  rpc CreateMspCustomerAdmin (MspCustomerUser) returns (MspCustomerUser) {}
+  rpc ValidateMspCustomerUserRegistrationToken (MspCustomerUserRegistrationToken) returns (MspCustomerUser) {}
+  rpc ApproveMspCustomerUserRegistrationToken (MspCustomerUserRegistrationToken) returns (MspCustomerUser) {}
+  rpc CreateMspCustomerUser (MspCustomerUser) returns (MspCustomerUser) {}
+  rpc UpdateMspCustomerUser (MspCustomerUser) returns (MspCustomerUser) {}
+  rpc DeleteMspCustomerUser (MspCustomerUser) returns (MspCustomerUser) {}
+  rpc GetMspCustomerUserList(MspCustomerUserLoc) returns (MspCustomerUserList) {}
+  rpc GetMspCustomerUser(MspCustomerUserLoc) returns (MspCustomerUser) {}
+  rpc CreateAtmCustomer(MspCustomer) returns (MspCustomer) {}
+  rpc UpdateAtmCustomer(MspCustomer) returns (MspCustomer) {}
+  rpc DeleteAtmCustomer(MspCustomer) returns (MspCustomer) {}
+}
+
+message MspCustomer {
+  int32 serverId = 1;
+  int32 id = 2;
+  string name = 3;
+  string description = 4;
+  AppliedResource appliedResource = 5;
+  NetworkScope networkScope = 6;
+}
+
+message MspCustomerList {
+  repeated MspCustomer customers = 1;
+}
+
+message MspCustomerLoc {
+  int32 serverId = 1;
+  string customerName = 2;
+}
+
+message MspCustomerUserLoc {
+  int32 serverId = 1;
+  int32 customerId = 2;
+  string userName = 3;
+  string role = 4;
+}
+
+message MspCustomerUserRegistrationToken {
+  string token = 1;
+  string password = 2;
+}
+
+message MspCustomerUser {
+  int32 serverId = 1;
+  int32 customerId = 2;
+  int32 id = 3;
+  string userName = 4;
+  string password = 5;
+  string firstName = 6;
+  string lastName = 7;
+  string email = 8;
+  int32 status = 9;
+  string activationToken = 10;
+  string activationExpires = 11;
+  int32 role = 12;
+}
+
+message MspCustomerUserList {
+  repeated MspCustomerUser customerUsers = 1;
+}
+
+message AppliedResource {
+  int32 numInstances = 1;
+  int32 numUsers = 2;
+  MitigationService mitigation = 3;
+}
+
+message MitigationService {
+  bool enabled = 1;
+  int32 numIpPrefixes = 2;
+}
+
+message NetworkScope {
+  repeated string ipAddressList = 1;
+  repeated string ipPrefixList = 2;
+  repeated int32 asNumberList = 3;
+  repeated string bgpInterAsPathList = 4;
+  repeated string bgpCommunityList = 5;
+  repeated int64 mplsRTList = 6;
+  repeated int64 mplsRDList = 7;
+}

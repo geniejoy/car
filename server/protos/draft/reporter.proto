@@ -1,0 +1,29 @@
+
+syntax = "proto3";
+package genie.reporter;
+
+// import services by modules
+// import any base protobuf definitions
+import "event-list.proto";
+import "event-topn.proto";
+import "event-traffic1min.proto";
+import "report-topn.proto";
+import "report-breakdown.proto";
+import "report-matrix.proto";
+
+// The realtime report serivce
+service RealtimeReport {
+  rpc QueryTopnReport(TopnReportQueryParam) returns (TopnReportQueryResult) {}
+  rpc QueryTopnTableReport(TopnTableReportQueryParam) returns (TopnTableReportQueryResult) {}
+  rpc QueryMatrixReport(MatrixReportQueryParam) returns (MatrixReportResult) {}
+  rpc QueryBreakdownReport(BreakdownReportQueryParam) returns (BreakdownReportResult) {}
+}
+
+// The atd report service
+service AtdReport {
+  rpc QueryAtdEventListTotalCount(EventListTotalCountRequestArgs) returns (EventListTotalCount) {}
+  rpc QueryAtdEventList(EventListRequestArgs) returns (EventList) {}
+  rpc QueryAtdEventTraffic1Min(EventTraffic1MinRequestArgs) returns (EventTraffic1MinData) {}
+  rpc QueryAtdEventTopNList(EventTopNLoc) returns (EventTopNDataList) {}
+  rpc QueryAtdEventRouterTrafficRank(EventRouterTrafficRankRequestArgs) returns (EventRouterTrafficRankDataList) {}
+}

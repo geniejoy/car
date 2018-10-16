@@ -1,0 +1,70 @@
+# import * from "atm-base.gql"
+
+# todo
+# import * from "subnet-config.gql"
+ # response model for subnetwork config
+type SubNetworkConfig {
+    name: String!
+    id: ID!
+    chain_parent_name: String
+    enabled: Boolean
+    defined_by: {
+        ip_address: Array<String>
+    }
+    topn_report: Array<String>
+    boundary_cut?: any
+    anommaly_detection?: any
+    report?: String
+    remarks?: String
+}
+
+
+ # response model for the group/subnetwork
+type SubNetworkGroupConfig {
+    group_name: String
+    group_id: String
+    members: Array<String>
+}
+
+enum CounterEnum {
+    BPS = 'bps'
+    PPS = 'pps'
+    FPS = 'fps'
+    ACTIVE_IP_INSIDE = 'active_ip_inside'
+    TCP_SYN_RATIO = 'tcp_syn_ratio'
+    TCP_BPS = 'tcp_bps'
+    TCP_PPS = 'tcp_pps'
+}
+/**
+ * topn key
+ */
+type TopnKey {
+    type_name: String
+    side_id?: String
+}
+/**
+ * response model for the api/config/export/topn/subnetwork
+ */
+type SubNetworkTopnConfig {
+    index: String
+    name: String
+    key: Array<TopnKey>
+    counter: Array<String>
+    topn_number: String
+    drill_down: String
+    pivot: String
+}
+
+
+/**
+ * config result common base format
+ */
+type GenericConfigResult<T> {
+    response: {
+        status: String
+        result: {
+            output_file: String
+            data: Array<T>
+        }
+    }
+}

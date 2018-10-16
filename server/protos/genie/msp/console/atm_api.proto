@@ -1,0 +1,11 @@
+syntax = "proto3";
+package genie.msp.console;
+
+message DispatchConfigRequest {
+  string description = 1;
+}
+
+message DispatchConfigResponse {
+  string status = 1;
+  string result = 2;
+}

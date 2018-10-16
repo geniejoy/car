@@ -1,0 +1,168 @@
+syntax = "proto3";
+package genie.msp.portal.report;
+
+service RealtimeReport { 
+    rpc QuerySummaryTable(SummaryTableRequest) returns (SummaryTableResponse) {}
+    rpc QuerySummaryPoints(SummaryPointsRequest) returns (SummaryPointsResponse) {}
+    rpc QueryTopnTable(TopnTableRequest) returns (TopnTableResponse) {}
+    rpc QueryTopnPoints(TopnPointsRequest) returns (TopnPointsResponse) {}
+}
+
+// for table use
+message TrafficInfo {
+    double trafficIn = 1; 
+    double trafficOut = 2;
+    double trafficSum = 3;
+}
+
+message TrafficTime {
+    string trafficInTime = 1; 
+    string trafficOutTime = 2;
+    string trafficSumTime = 3;
+}
+
+message Key {
+    repeated string fieldList = 1;
+}
+
+// for point use
+message LineTraffic {
+    int32 counterIndex = 1;
+    // array follow points_num
+    repeated double inTrafficPointList = 2;
+    repeated double outTrafficPointList = 3;
+}
+
+//---------------Sumary Table------------------
+message SummaryTableRequest {
+    string startTime = 1;
+    string startTimeUntil = 2;
+    string granularity = 3;
+    int32 customerId = 4;
+    int32 objectIndex = 5;
+    repeated int32 instanceIndexList = 6;
+    repeated int32 counterIndexList = 7;
+    repeated string statisticList = 8;
+    int32 percentile = 9;
+}
+
+message SummaryTableResponse {
+    repeated SummaryTableStatisticSet statSetList = 3;
+}
+
+message SummaryTableStatisticSet {
+    string statistic = 1;
+    repeated SummaryTableDataEntry dataEntryList = 2;
+}
+
+message SummaryTableDataEntry {
+    int32 instanceIndex = 1;
+    repeated TrafficInfo trafficList = 2; // array follow counterIndexList
+    repeated TrafficTime trafficTime = 3; // array follow counterIndexList
+}
+
+//---------------Summary Point-----------------
+message SummaryPointsRequest {
+    string startTime = 1;
+    string startTimeUntil = 2;
+    string granularity = 3;
+    int32 customerId = 4;
+    int32 objectIndex = 5;
+    repeated int32 instanceIndexList = 6;
+    repeated int32 counterIndexList = 7;
+}
+
+message SummaryPointsResponse {
+    string startTimePoint = 1;
+    string startTimeUntilPoint = 2;
+    int32 pointsNum = 3;
+    repeated InstanceLineTraffic instanceLineTraffic = 4;
+}
+
+message InstanceLineTraffic {
+    int32 instanceIndex = 1;
+    repeated LineTraffic lineTrafficList = 2;
+}
+
+//---------------- Topn Table ----------------------
+message TopnTableRequest {
+    string startTime = 1;
+    string startTimeUntil = 2;
+    string granularity = 3;
+    int32 customerId = 4;
+    int32 objectIndex = 5;
+    int32 instanceIndex = 6;
+    int32 topnIndex = 7;
+    int32 depth = 8;
+    // below indicates observing which counters
+    repeated int32 counterIndexList = 9; 
+    repeated string statisticList = 10; 
+    int32 percentile = 11;
+}
+
+message TopnTableResponse {
+    int32 topnIndex = 1;
+    // topn assemble by multiple fields
+    repeated ReportKeyField keyFieldList = 2;
+    repeated TopnTableStatisticSet statSetList = 3;
+}
+
+message ReportKeyField {
+    int32 fieldIndex = 1;
+    int32 side = 2;
+}
+
+message TopnTableStatisticSet {
+    string statistic = 1;
+    repeated TopnTableDataEntry dataEntryList = 2;
+    TopnTableSummary summaryInfo = 3;
+}
+
+// store a key and its traffic
+message TopnTableDataEntry {
+    // original keyfields
+    Key key = 1;
+    // namemapped keyfields
+    Key nameMappedKey = 2;
+
+    // array follow counterIndexList
+    repeated TrafficInfo trafficList = 3;
+}
+
+message TopnTableSummary {
+    // array follow counterIndexList
+    repeated TrafficInfo otherTrafficList = 1;
+    repeated TrafficInfo totalTrafficList = 2;
+}
+
+//----------------- Topn Points -----------------------
+message TopnPointsRequest {
+    string startTime = 1;
+    string startTimeUntil = 2;
+    string granularity = 3;
+    int32 customerId = 4;
+    int32 objectIndex = 5;
+    int32 instanceIndex = 6;
+    int32 topnIndex = 7;
+    int32 depth = 8;
+    repeated int32 counterIndexList = 9;
+    repeated Key keyList = 10;
+    bool enableTotalLine = 11;
+    int32 defaultTopnKeyNum = 12;
+}
+
+message TopnPointsResponse {
+    string startTimePoint = 1;
+    string startTimeUntilPoint = 2;
+    int32 pointsNum = 3;
+    // array follow keyList
+    repeated KeyLineTraffic keyLineTrafficList = 4;
+    // array follow counterIndexList
+    repeated LineTraffic totalLineTrafficList = 5;
+}
+
+message KeyLineTraffic {
+    Key key = 1;
+    // array follow counterIndexList
+    repeated LineTraffic lineTrafficList = 2;
+}

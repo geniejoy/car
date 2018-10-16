@@ -1,0 +1,78 @@
+# import * from "atm-base.gql"
+
+# request parameter for subnet traffic compare report_request
+input AtdRequest
+{
+    # value: 'compare'
+    reportType: String
+    eventId: String
+    # 5 min 1 hour 1 day
+    granularity: Granularity
+    counterIndex: CounterIndex
+    reportDatetime: DateTimeRange
+}
+type EventDataPoint {
+    # name of the rsrc object
+    rsrcName: String
+    # list of value associated with the rsrc object
+    value: [Float]
+}
+type AtdTrafficCharacteristic {
+    # src/dest ip/port protocol tcp-flag
+    name: String
+    # rsrc-name bps pps
+    dataField: [String]
+    data: [EventDataPoint]
+}
+
+enum AtdEventStatus {
+    ONGOING
+    RECOVERED
+}
+
+enum SeverityColor {
+    YELLOW
+    ORANGE
+    RED
+}
+enum WatermarkCondidtion {
+    OVER
+    UNDER
+}
+type AtdSeverity {
+    type: SeverityColor
+    watermark: WatermarkCondidtion
+    thresholdValue: Float
+    detectedValue: Float
+    maxValue: Float
+}
+enum AttackType {
+    DDOS
+}
+type AtdAttack {
+    type: AttackType
+    # e.g. TCP SYN FLOODING
+    name: String
+    # counter label, .e.g TCP Sync bps
+    counter: String
+}
+
+type AtdEvent {
+    # 'AtdEvent-' + id = ID
+    id: Int!
+    # ongoing or recovered
+    status: AtdEventStatus!
+    dateTime: DateTimeDuration!
+    severity: AtdSeverity
+    attack: AtdAttack
+    # e.g. To non-home, outgoing
+    direction: String
+    resource: AtmResource
+}
+
+type AtdEventBlock {
+    event: AtdEvent
+    trafficCharacteristics: [AtdTrafficCharacteristic]
+    networkElements: [String]
+}
+

@@ -1,0 +1,5 @@
+syntax = "proto3";
+package genie.msp.console;
+
+import "msp_server.proto";
+import "../portal/manage/msp_customer.proto";

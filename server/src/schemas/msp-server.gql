@@ -1,0 +1,28 @@
+type SnmpLinkInfo {
+  id: String
+  name: String
+  bandwidth: Int
+}
+
+type SnmpWalkInfo {
+  snmpId: String
+  modelNumber: String
+  adminStatus: Int
+  operStatus: Int
+  linkInfos: [SnmpLinkInfo]
+}
+
+input MspServerInput {
+  id: Int
+  name: String
+  ipAddr: String
+  remarks: String
+}
+
+type MspServerInfo {
+  id: Int
+  name: String
+  ipAddr: String
+  info: SnmpWalkInfo
+  remarks: String
+}

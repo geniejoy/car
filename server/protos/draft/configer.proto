@@ -1,0 +1,35 @@
+syntax = "proto3";
+package genie.configer;
+
+import "meta-model.proto";
+import "anomaly.proto";
+import "name-mapping.proto";
+
+/* 
+    convention to support variable number of indexes/locators
+    - empty array: query all object
+    - array with one index/locator: singular query
+    - array with multiple indexes/locators: batch query
+*/
+
+// The meta model serivce
+service MetaModelService {
+  rpc GetObjects(MetaLocList) returns (MetaObjectInfos) {}
+  rpc GetInstanceInfos(InstanceLocList) returns (MetaInstanceInfos) {}
+  rpc GetMetaTopnInfos(MetaLocList) returns (MetaTopnInfos) {}
+  rpc GetMetaCounterInfos(MetaLocList) returns (MetaCounterInfos) {}
+  rpc GetInstanceTopnInfos(InstanceLoc) returns (MetaTopnInfos) {}
+}
+
+// The Anomaly service
+service AnomalyService {
+  rpc GetAnomalyInfos (InfoLocList) returns (AnomalyInfos) {}
+}
+
+// The Name Mapping service
+service NameMappingService {
+  rpc GetNames(NameMappingLocList) returns (NameMappings) {}
+  rpc GetInstancesNames(InstanceLocList) returns (NameMappings) {}
+  rpc GetInstanceTopnNames(InstanceLoc) returns (NameMappings) {}
+  rpc GetTopnNamesForUsage(UsageLoc) returns (NameMappings) {}
+}

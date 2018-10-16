@@ -1,0 +1,10 @@
+<form [formGroup]="formGroup">
+  <mat-form-field>
+    <input type="text" placeholder="客戶" matInput formControlName="customer" [matAutocomplete]="auto" (input)="input()">
+    <mat-autocomplete #auto="matAutocomplete">
+      <mat-option *ngFor="let customer of filteredOptions | async" [value]="customer">
+        {{customer.cs_name}}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+</form>

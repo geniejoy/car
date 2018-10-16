@@ -1,0 +1,10 @@
+syntax = "proto3";
+package genie.msp.common;
+
+import "google/protobuf/struct.proto";
+
+enum SortOrder {
+    ASC = 0;
+    DESC = 1;
+}
+

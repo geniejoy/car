@@ -1,0 +1,70 @@
+// genie networks 
+// 
+syntax = "proto3";
+
+message MspCustomerPortalConfig {
+  string mspServerId = 1;
+  string portalId = 2;
+  string portalName = 3;
+  string description = 4;
+  AppliedResource appliedResource = 5;
+  NetworkScope networkScope = 6;
+}
+
+message MspCustomerPortalList {
+  repeated MspCustomerPortalConfig customerPortals = 1;
+}
+
+message MspCustomerPortalLoc {
+  string mspServerId = 1;
+  string portalName = 2;
+}
+
+message MspCustomerPortalUserLoc {
+  string mspServerId = 1;
+  string mspCustomerPortalId = 2;
+  string username = 3;
+}
+
+message MspCustomerPortalUserRegistrationToken {
+  string token = 1;
+  string password = 2;
+}
+
+message MspCustomerPortalUser {
+  string mspServerId = 1;
+  string mspCustomerPortalId = 2;
+  string userId = 3;
+  string username = 4;
+  string password = 5;
+  string firstname = 6;
+  string lastname = 7;
+  string email = 8;
+  int32 status = 9;
+  string activationToken = 10;
+  string activationExpires = 11;
+  int32 role = 12;
+}
+
+message MspCustomerPortalUserList {
+  repeated MspCustomerPortalUser customerPortalUsers = 1;
+}
+
+message AppliedResource {
+  int32 numInstances = 1;
+  int32 numUsers = 2;
+  MitigationService mitigation = 3;
+}
+
+message MitigationService {
+  bool enabled = 1;
+  int32 numIpPrefixes = 2;
+}
+
+message NetworkScope {
+  string ipAddresses = 1;
+  string asn = 2;
+  string asPath = 3;
+  string bgpCommunity = 4;
+  string mplsVpn = 5;
+}

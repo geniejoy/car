@@ -1,0 +1,14 @@
+
+syntax = "proto3";
+package genie.reporter;
+
+// import services by modules
+// import any base protobuf definitions
+import "event-traffic1min.proto";
+import "event-list.proto";
+// The atd report service
+service AtdReport {
+  rpc QueryAtdEventListTotalCount(EventListTotalCountRequestArgs) returns (EventListTotalCount) {}
+  rpc QueryAtdEventList(EventListRequestArgs) returns (EventList) {}
+  rpc QueryAtdEventTraffic1Min(EventTraffic1MinRequestArgs) returns (EventTraffic1MinData) {}
+}

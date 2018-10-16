@@ -1,0 +1,54 @@
+// genie networks 
+// 
+syntax = "proto3";
+package genie.configer;
+
+import "meta-model.proto";
+
+
+// rpc GetAnomalyInfos (InfoLoc) returns (AnomalyInfos) {}
+
+enum NameMappingView {
+  NULL_VIEW = 0;
+  DEVICE_VIEW = 1;
+  INTERFACE_VIEW = 2;
+  NEIGHBOR_VIEW = 4;
+  SUBNETWORK_VIEW = 6;
+  APPLICATION_VIEW = 11;
+  SERVICE_VIEW = 12;
+  BLACK_LIST_VIEW = 17;
+  FACTOR_VIEW = 18;
+  FILTER_VIEW = 20;
+  ANOMALY_TYPE_VIEW = 101;
+  ASN_VIEW = 102;
+  CUSTOM_VIEW_START = 2000;
+  FIELD_VIEW = 2001;
+  KEY_VIEW = 2002;
+  TOPN_VIEW = 2003;
+}
+
+message NameMappingLocList {
+  NameMappingView name_type = 1;
+  repeated string id_list = 2;
+}
+
+message NameMappings {
+  repeated NameMapping name_mapping_list = 1;
+}
+
+message NameMapping {
+  string id = 1;
+  string name = 2;
+  string remark = 3;
+}
+
+enum UsageType {
+  ALL_ENTRY = 0;
+  MATRIX_REPORT = 1;
+  AS_PATH = 2;
+}
+
+message UsageLoc {
+  InstanceLoc instanceLoc = 1;
+  UsageType usage = 2;
+}

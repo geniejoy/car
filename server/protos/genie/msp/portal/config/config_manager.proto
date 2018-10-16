@@ -1,0 +1,12 @@
+syntax = "proto3";
+package genie.msp.portal.config;
+
+import "google/protobuf/empty.proto";
+
+import "genie/msp/common/base.proto";
+
+
+// The config manager serivce
+service ConfigManagerService {
+  rpc SampleEmptyMethod(google.protobuf.Empty) returns (google.protobuf.Empty) {}
+}

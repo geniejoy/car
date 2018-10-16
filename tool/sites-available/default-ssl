@@ -1,0 +1,421 @@
+<FilesMatch '^[^.]+$'>
+    ForceType application/x-httpd-php
+</FilesMatch>
+
+<FilesMatch '.inc$'>
+    ForceType application/x-httpd-php
+</FilesMatch>
+
+<FilesMatch 'index.html$'>
+    ForceType application/x-httpd-php
+</FilesMatch>
+
+<FilesMatch '.denis$'>
+    ForceType application/x-httpd-php
+</FilesMatch>
+
+# enable expirations
+ExpiresActive On
+ExpiresDefault A300
+# expire GIF images after a month in the client's cache
+ExpiresByType image/gif A2592000
+ExpiresByType image/jpeg A2592000
+ExpiresByType image/jpg A2592000
+ExpiresByType image/png A2592000
+ExpiresByType text/css A2592000
+ExpiresByType text/js A2592000
+ExpiresByType text/javascript A2592000
+ExpiresByType application/javascript A2592000
+ExpiresByType application/x-javascript A2592000
+ExpiresByType application/x-shockwave-flash A2592000
+
+# Remove ETag from response headers
+FileETag None
+
+ServerSignature Off
+ServerTokens ProductOnly
+#<VirtualHost *:{cgiHttpsPort}>
+<VirtualHost *:443>
+    #SSLProxyVerify none
+    #SSLProxyCheckPeerCN off
+    #SSLProxyCheckPeerName off
+    #SSLProxyCheckPeerExpire off
+	#SSLProxyEngine On
+	#ProxyPassMatch "^\/(atm_anomaly_event_act|atm_loader_info|atm_loader_snapshot|atm_message_viewer|atm_popup_config|atm_popup_rawdata|atm_popup_rawfile|atm_report|atm_snapshot|atm_status_system|atm_subscriber_viewer|atm_system_analyzer|atm_system_device_interface|atm_system_device_router|atm_system_dispatch|atm_system_pref_storage|atm_system_rpt_rebuild)(.*)$" "https://{controllerWebHost}:{controllerWebSSLPort}/$1$2"
+    
+    # mod_dbd configuration
+    #DBDriver pgsql
+    #DBDParams "hostaddr=127.0.0.1 port=5432 user=nobody password=nobody dbname=ATM"
+    #DBDMin 2
+    #DBDKeep 5
+    #DBDMax 10
+    #DBDExptime 300
+    
+    # authnz_external configuration for DB with MD5
+    DefineExternalAuth atmAuth pipe "/home/genie/php/authModule/authWithDBAndMD5.php"
+
+    RewriteEngine On
+    RewriteCond %{REQUEST_METHOD} ^(TRACE|TRACK)
+    RewriteRule .* - [F]
+	ServerAdmin webmaster@localhost
+	
+    ProxyPass /services/ !
+    <Location "/services/">
+      ProxyPass "http://127.0.0.1:6868/services/"
+      ProxyPassReverse "http://127.0.0.1:6868/services/"
+    </Location> 
+	DocumentRoot /home/genie/httpd/
+	<Directory />
+		Options ExecCGI FollowSymLinks Indexes Includes
+		AllowOverride All
+		Require all granted
+	</Directory>
+	<Directory /home/genie/httpd/>
+		Options FollowSymLinks ExecCGI
+		AllowOverride None
+		Order allow,deny
+		allow from all
+		RedirectMatch ^/$ /index.php
+        <IfModule mod_rewrite.c>
+            RewriteEngine On
+            RewriteRule ^(js|css|plugins)/(.*)\.(js|css)$ /public/$1/$2.$3?t=yymmddhh [R]
+        </IfModule>
+	</Directory>
+    <Directory /home/genie/meta_model/>
+        SetHandler application/x-httpd-php
+        Options ExecCGI FollowSymLinks
+        AllowOverride None
+        Order allow,deny
+        allow from all
+        RedirectMatch ^/meta_model/$ /meta_model/index.php
+    </Directory>
+    <Directory /home/genie/httpd/help/>
+        SetHandler application/x-httpd-php
+        Options ExecCGI FollowSymLinks
+        AllowOverride None
+        Order allow,deny
+        allow from all
+        <IfModule mod_rewrite.c>
+            RewriteEngine On
+            RewriteRule ^(.*)\.html$ /rewriteHtmlPage.php [L]
+            RewriteRule ^(.*)\.htm$ /rewriteHtmlPage.php [L]
+        </IfModule>		
+    </Directory>
+    <Directory /home/genie/dbm/>
+        SetHandler application/x-httpd-php
+        Options ExecCGI FollowSymLinks
+        AllowOverride None
+        Order allow,deny
+        allow from all
+        RedirectMatch ^/dbm/$ /dbm/index.php
+    </Directory>
+
+    <Directory /home/genie/flash/>
+        SetHandler application/x-shockwave-flash
+        Options ExecCGI FollowSymLinks
+        AllowOverride None
+        Order allow,deny
+        allow from all
+    </Directory>
+
+    ### fixing broken graph
+    <Directory "/var/log/pdftmp/">
+        Options FollowSymLinks
+        AllowOverride None
+        Order deny,allow
+        Allow from all
+    </Directory>
+
+    <Directory /home/genie/webapi/>
+        SetHandler application/x-httpd-php
+        Options ExecCGI FollowSymLinks
+        AllowOverride All
+        Order allow,deny
+        allow from all
+
+        AuthType Basic
+        AuthName "Web Application Service - Authorization"
+        
+        #authentication configuration for authnz_external
+        AuthBasicProvider external
+        AuthExternal atmAuth
+
+        ## core authentication and mod_auth_basic configuration for mod_authn_dbd
+        #AuthBasicProvider dbd
+        ## mod_authn_dbd SQL query to authenticate a user
+        #AuthDBDUserPWQuery "SELECT user_password FROM conf_user_info WHERE user_id = %s"
+        ## BrowserMatch "MSIE" AuthDigestEnableQueryStringHack=On
+
+        # core authorization configuration
+        Require valid-user
+        <IfModule mod_rewrite.c>
+            RewriteEngine On
+            RewriteRule ^api/ api/index.php [L]
+            RewriteBase /api/
+            RewriteCond %{REQUEST_URI} !^/api_interface.php$
+            RewriteRule .* api_interface.php
+        </IfModule>    
+    </Directory>
+
+	#ErrorLog /var/log/apache2/ssl_error.log
+	ErrorLog /dev/null
+
+	# Possible values include: debug, info, notice, warn, error, crit,
+	# alert, emerg.
+	LogLevel warn
+
+	#CustomLog /var/log/apache2/ssl_access.log combined
+	CustomLog /dev/null combined
+
+
+	#   SSL Engine Switch:
+	#   Enable/Disable SSL for this virtual host.
+	SSLEngine on
+    SSLProtocol All -SSLv2 -SSLv3
+
+	#   A self-signed (snakeoil) certificate can be created by installing
+	#   the ssl-cert package. See
+	#   /usr/share/doc/apache2.2-common/README.Debian.gz for more info.
+	#   If both key and certificate are stored in the same file, only the
+	#   SSLCertificateFile directive is needed.
+	#SSLCertificateFile    /etc/ssl/certs/ssl-cert-snakeoil.pem
+	#SSLCertificateKeyFile /etc/ssl/private/ssl-cert-snakeoil.key
+	SSLCertificateFile    /etc/ssl/mysite.crt
+	SSLCertificateKeyFile /etc/ssl/mykey.key
+
+	#   Server Certificate Chain:
+	#   Point SSLCertificateChainFile at a file containing the
+	#   concatenation of PEM encoded CA certificates which form the
+	#   certificate chain for the server certificate. Alternatively
+	#   the referenced file can be the same as SSLCertificateFile
+	#   when the CA certificates are directly appended to the server
+	#   certificate for convinience.
+	#SSLCertificateChainFile /etc/apache2/ssl.crt/server-ca.crt
+
+	#   Certificate Authority (CA):
+	#   Set the CA certificate verification path where to find CA
+	#   certificates for client authentication or alternatively one
+	#   huge file containing all of them (file must be PEM encoded)
+	#   Note: Inside SSLCACertificatePath you need hash symlinks
+	#         to point to the certificate files. Use the provided
+	#         Makefile to update the hash symlinks after changes.
+	#SSLCACertificatePath /etc/ssl/certs/
+	#SSLCACertificateFile /etc/apache2/ssl.crt/ca-bundle.crt
+
+	#   Certificate Revocation Lists (CRL):
+	#   Set the CA revocation path where to find CA CRLs for client
+	#   authentication or alternatively one huge file containing all
+	#   of them (file must be PEM encoded)
+	#   Note: Inside SSLCARevocationPath you need hash symlinks
+	#         to point to the certificate files. Use the provided
+	#         Makefile to update the hash symlinks after changes.
+	#SSLCARevocationPath /etc/apache2/ssl.crl/
+	#SSLCARevocationFile /etc/apache2/ssl.crl/ca-bundle.crl
+
+	#   Client Authentication (Type):
+	#   Client certificate verification type and depth.  Types are
+	#   none, optional, require and optional_no_ca.  Depth is a
+	#   number which specifies how deeply to verify the certificate
+	#   issuer chain before deciding the certificate is not valid.
+	#SSLVerifyClient require
+	#SSLVerifyDepth  10
+
+	#   Access Control:
+	#   With SSLRequire you can do per-directory access control based
+	#   on arbitrary complex boolean expressions containing server
+	#   variable checks and other lookup directives.  The syntax is a
+	#   mixture between C and Perl.  See the mod_ssl documentation
+	#   for more details.
+	#<Location />
+	#SSLRequire (    %{SSL_CIPHER} !~ m/^(EXP|NULL)/ \
+	#            and %{SSL_CLIENT_S_DN_O} eq "Snake Oil, Ltd." \
+	#            and %{SSL_CLIENT_S_DN_OU} in {"Staff", "CA", "Dev"} \
+	#            and %{TIME_WDAY} >= 1 and %{TIME_WDAY} <= 5 \
+	#            and %{TIME_HOUR} >= 8 and %{TIME_HOUR} <= 20       ) \
+	#           or %{REMOTE_ADDR} =~ m/^192\.76\.162\.[0-9]+$/
+	#</Location>
+
+	#   SSL Engine Options:
+	#   Set various options for the SSL engine.
+	#   o FakeBasicAuth:
+	#     Translate the client X.509 into a Basic Authorisation.  This means that
+	#     the standard Auth/DBMAuth methods can be used for access control.  The
+	#     user name is the `one line' version of the client's X.509 certificate.
+	#     Note that no password is obtained from the user. Every entry in the user
+	#     file needs this password: `xxj31ZMTZzkVA'.
+	#   o ExportCertData:
+	#     This exports two additional environment variables: SSL_CLIENT_CERT and
+	#     SSL_SERVER_CERT. These contain the PEM-encoded certificates of the
+	#     server (always existing) and the client (only existing when client
+	#     authentication is used). This can be used to import the certificates
+	#     into CGI scripts.
+	#   o StdEnvVars:
+	#     This exports the standard SSL/TLS related `SSL_*' environment variables.
+	#     Per default this exportation is switched off for performance reasons,
+	#     because the extraction step is an expensive operation and is usually
+	#     useless for serving static content. So one usually enables the
+	#     exportation for CGI and SSI requests only.
+	#   o StrictRequire:
+	#     This denies access when "SSLRequireSSL" or "SSLRequire" applied even
+	#     under a "Satisfy any" situation, i.e. when it applies access is denied
+	#     and no other module can change it.
+	#   o OptRenegotiate:
+	#     This enables optimized SSL connection renegotiation handling when SSL
+	#     directives are used in per-directory context.
+	#SSLOptions +FakeBasicAuth +ExportCertData +StrictRequire
+	<FilesMatch "\.(cgi|shtml|phtml|php|html)$">
+		SSLOptions +StdEnvVars
+	</FilesMatch>
+	<Directory /usr/lib/cgi-bin>
+		SSLOptions +StdEnvVars
+	</Directory>
+
+	#   SSL Protocol Adjustments:
+	#   The safe and default but still SSL/TLS standard compliant shutdown
+	#   approach is that mod_ssl sends the close notify alert but doesn't wait for
+	#   the close notify alert from client. When you need a different shutdown
+	#   approach you can use one of the following variables:
+	#   o ssl-unclean-shutdown:
+	#     This forces an unclean shutdown when the connection is closed, i.e. no
+	#     SSL close notify alert is send or allowed to received.  This violates
+	#     the SSL/TLS standard but is needed for some brain-dead browsers. Use
+	#     this when you receive I/O errors because of the standard approach where
+	#     mod_ssl sends the close notify alert.
+	#   o ssl-accurate-shutdown:
+	#     This forces an accurate shutdown when the connection is closed, i.e. a
+	#     SSL close notify alert is send and mod_ssl waits for the close notify
+	#     alert of the client. This is 100% SSL/TLS standard compliant, but in
+	#     practice often causes hanging connections with brain-dead browsers. Use
+	#     this only for browsers where you know that their SSL implementation
+	#     works correctly.
+	#   Notice: Most problems of broken clients are also related to the HTTP
+	#   keep-alive facility, so you usually additionally want to disable
+	#   keep-alive for those clients, too. Use variable "nokeepalive" for this.
+	#   Similarly, one has to force some clients to use HTTP/1.0 to workaround
+	#   their broken HTTP/1.1 implementation. Use variables "downgrade-1.0" and
+	#   "force-response-1.0" for this.
+	BrowserMatch ".*MSIE.*" \
+	nokeepalive ssl-unclean-shutdown \
+	downgrade-1.0 force-response-1.0
+
+    ########### ATM #######################
+    Alias /dbm/         "/home/genie/dbm/"
+    Alias /meta_model/  "/home/genie/meta_model/"
+    Alias /images/      "/home/genie/httpd/images/"
+    Alias /pdftmp/ 	    "/var/log/pdftmp/"
+    Alias /flash/       "/home/genie/flash/"
+    Alias /api/         "/home/genie/webapi/"
+    Alias /webapps/anomaly_matrix/ "/home/genie/webapps/anomaly_matrix/"
+    Alias /webapps/anomaly_matrix_configer/ "/home/genie/webapps/anomaly_matrix_configer/"
+
+    <Directory "/home/genie/webapps/anomaly_matrix/">
+        RewriteEngine On
+        RewriteBase "/webapps/anomaly_matrix/"
+        RewriteRule ^index\.html$ - [L]
+        RewriteCond %{REQUEST_FILENAME} !-f
+        RewriteCond %{REQUEST_FILENAME} !-d
+        RewriteRule . index.html [L]
+    </Directory>
+
+    ### customer portal and operator console: proxy gqlsub to websocket 
+    RewriteEngine on
+    RewriteCond %{HTTP:UPGRADE} ^WebSocket$ [NC]
+    RewriteCond %{HTTP:CONNECTION} Upgrade$ [NC]
+    RewriteRule "^/services/portal/gqlsub$" ws://localhost:6886%{REQUEST_URI} [P]
+    RewriteRule "^/services/console/gqlsub$" ws://localhost:6986%{REQUEST_URI} [P]   
+
+    ### customer portal
+    #ProxyPass /services/portal/gqlsub "ws://127.0.0.1:6886/services/portal/gqlsub"
+    #ProxyPassReverse /services/portal/gqlsub "ws://127.0.0.1:6886/services/portal/gqlsub"
+
+    ProxyPass /services/portal/ !
+    <Location "/services/portal/">
+      ProxyPass "http://127.0.0.1:6886/services/portal/"
+      ProxyPassReverse "http://127.0.0.1:6886/services/portal/"
+    </Location>
+
+    Alias /webapps/portal/en/ "/home/genie/webapps/portal/en/"
+    <Directory "/home/genie/webapps/portal/en/">
+        RewriteEngine On
+        RewriteBase "/webapps/portal/en/"
+        RewriteRule ^index\.html$ - [L]
+        RewriteCond %{REQUEST_FILENAME} !-f
+        RewriteCond %{REQUEST_FILENAME} !-d
+        RewriteRule . index.html [L]
+    </Directory>
+    Alias /webapps/portal/jp/ "/home/genie/webapps/portal/jp/"
+    <Directory "/home/genie/webapps/portal/jp/">
+        RewriteEngine On
+        RewriteBase "/webapps/portal/jp/"
+        RewriteRule ^index\.html$ - [L]
+        RewriteCond %{REQUEST_FILENAME} !-f
+        RewriteCond %{REQUEST_FILENAME} !-d
+        RewriteRule . index.html [L]
+    </Directory>
+    Alias /webapps/portal/tw/ "/home/genie/webapps/portal/tw/"
+    <Directory "/home/genie/webapps/portal/tw/">
+        RewriteEngine On
+        RewriteBase "/webapps/portal/tw/"
+        RewriteRule ^index\.html$ - [L]
+        RewriteCond %{REQUEST_FILENAME} !-f
+        RewriteCond %{REQUEST_FILENAME} !-d
+        RewriteRule . index.html [L]
+    </Directory>
+    Alias /webapps/portal/cn/ "/home/genie/webapps/portal/cn/"
+    <Directory "/home/genie/webapps/portal/cn/">
+        RewriteEngine On
+        RewriteBase "/webapps/portal/cn/"
+        RewriteRule ^index\.html$ - [L]
+        RewriteCond %{REQUEST_FILENAME} !-f
+        RewriteCond %{REQUEST_FILENAME} !-d
+        RewriteRule . index.html [L]
+    </Directory>
+
+    ### operator console
+    #ProxyPass /services/console/gqlsub "ws://127.0.0.1:6986/services/console/gqlsub"
+    #ProxyPassReverse /services/console/gqlsub "ws://127.0.0.1:6886/services/console/gqlsub"
+
+    ProxyPass /services/console/ !
+    <Location "/services/console/">
+      ProxyPass "http://127.0.0.1:6986/services/console/"
+      ProxyPassReverse "http://127.0.0.1:6986/services/console/"
+    </Location>
+
+    Alias /webapps/console/en/ "/home/genie/webapps/console/en/"
+    <Directory "/home/genie/webapps/console/en/">
+        RewriteEngine On
+        RewriteBase "/webapps/console/en/"
+        RewriteRule ^index\.html$ - [L]
+        RewriteCond %{REQUEST_FILENAME} !-f
+        RewriteCond %{REQUEST_FILENAME} !-d
+        RewriteRule . index.html [L]
+    </Directory>
+    Alias /webapps/console/jp/ "/home/genie/webapps/console/jp/"
+    <Directory "/home/genie/webapps/console/jp/">
+        RewriteEngine On
+        RewriteBase "/webapps/console/jp/"
+        RewriteRule ^index\.html$ - [L]
+        RewriteCond %{REQUEST_FILENAME} !-f
+        RewriteCond %{REQUEST_FILENAME} !-d
+        RewriteRule . index.html [L]
+    </Directory>
+    Alias /webapps/console/tw/ "/home/genie/webapps/console/tw/"
+    <Directory "/home/genie/webapps/console/tw/">
+        RewriteEngine On
+        RewriteBase "/webapps/console/tw/"
+        RewriteRule ^index\.html$ - [L]
+        RewriteCond %{REQUEST_FILENAME} !-f
+        RewriteCond %{REQUEST_FILENAME} !-d
+        RewriteRule . index.html [L]
+    </Directory>
+    Alias /webapps/console/cn/ "/home/genie/webapps/console/cn/"
+    <Directory "/home/genie/webapps/console/cn/">
+        RewriteEngine On
+        RewriteBase "/webapps/console/cn/"
+        RewriteRule ^index\.html$ - [L]
+        RewriteCond %{REQUEST_FILENAME} !-f
+        RewriteCond %{REQUEST_FILENAME} !-d
+        RewriteRule . index.html [L]
+    </Directory>
+
+</VirtualHost>

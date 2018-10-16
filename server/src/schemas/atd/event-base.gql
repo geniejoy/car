@@ -1,0 +1,57 @@
+type EventTriggeredInfo {
+  # used to query atdEventTraffic1Min
+  routerCoverage: Int
+  routerName: String
+  boundaryName: String
+  time: String
+  traffic: Int
+}
+
+type EventSeverityRedInfo {
+  routerCoverage: Int
+  routerName: String
+  boundaryName: String
+  time: String
+  traffic: Int
+}
+
+type EventPeakInfo {
+  routerCoverage: Int
+  time: String
+  traffic: Int
+}
+
+type EventAverageTraffic {
+  routerCoverage: Int
+  traffic: Int
+}
+
+input EventScope {
+  objectIndex: Int
+  instanceIndex: [Int]
+}
+
+input EventDurationCompare {
+  # The constraint of time duration in second of the events.
+  lessThan: Int
+  equalTo: Int
+  greaterThan: Int
+}
+
+input EventTrafficCompare {
+  lessThan: Int
+  equalTo: Int
+  greaterThan: Int
+}
+
+enum EventSortBy {
+  # asc
+  ASC
+  # desc
+  DESC
+}
+
+input EventFieldSort {
+  fieldName: String
+  sort: EventSortBy
+}

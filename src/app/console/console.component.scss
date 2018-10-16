@@ -1,0 +1,11 @@
+$mat-header-height: 64px;
+section {
+  display: flex;
+  height: calc(100% - #{$mat-header-height});
+  max-height: calc(100% - #{$mat-header-height});
+  .content-container {
+    overflow-y: scroll;
+    padding: 1rem;
+    flex: 1;
+  }
+}

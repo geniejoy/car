@@ -1,0 +1,12 @@
+syntax = "proto3";
+package genie.msp.portal.report;
+
+import "google/protobuf/empty.proto";
+
+import "genie/msp/common/base.proto";
+
+
+// The atd event serivce
+service AtdEventService {
+  rpc SampleEmptyMethod(google.protobuf.Empty) returns (google.protobuf.Empty) {}
+}

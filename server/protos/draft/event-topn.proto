@@ -1,0 +1,69 @@
+syntax = "proto3";
+
+import "event-base.proto";
+
+message EventTopNLoc {
+  int32 eventId = 1;
+  int32 counterIndex = 2;
+  int32 anomalyIndex = 3;
+  int32 routerCoverage = 4;
+  string statistic = 5;
+  string recordTime = 6;
+  string recordTimeStart = 7;
+  string recordTimeEnd = 8;
+}
+
+message EventTopNDataList {
+  repeated EventTopNData eventTopNDataList = 1;
+}
+
+message EventTopNData {
+  int32 topNIndex = 1;
+  repeated int32 counterIndex = 2;
+  repeated EventKeyField keyField = 3;
+  repeated EventTopN eventTopN = 4;
+}
+
+message EventTopN {
+  repeated string originalKeys = 1;
+  repeated string keys = 2;
+  repeated EventTopNTraffic trafficList = 3;
+}
+
+message EventTopNTraffic {
+  string label = 1;
+  double value = 2;
+}
+
+message EventRouterTrafficRankRequestArgs {
+  int32 eventId = 1;
+  int32 routerCoverage = 2;
+  string statistic = 3;
+  string recordTime = 4;
+  string recordTimeStart = 5;
+  string recordTimeEnd = 6;
+}
+
+message EventRouterTrafficRankDataList {
+  repeated EventRouterTrafficRankData eventRouterTrafficRankDataList = 1;
+}
+
+message EventRouterTrafficRankData {
+  int32 routerId = 1;
+  string routerName = 2;
+  repeated EventCounterTraffic counterTraffic = 3;
+}
+
+message EventCounterTraffic {
+  int32 counterIndex = 1;
+  double traffic = 2;
+  repeated EventCounterTrafficInterface interface = 3;
+}
+
+message EventCounterTrafficInterface {
+  string interfaceInputName = 1;
+  int32 interfaceInputId = 2;
+  string interfaceOutputName = 3;
+  int32 interfaceOutputId = 4;
+  double traffic = 5;
+}

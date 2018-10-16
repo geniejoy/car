@@ -1,0 +1,58 @@
+
+# human readable date time String e.g. '2017-12-20 15:00:00+08'
+scalar StrDateTime
+# javascript Date.getTime() serialization
+scalar JsDateTime
+
+# request need to specify the granularity of the report desired
+enum Granularity {
+    # 5 min
+    FIVE_MINS
+    # 1 hour
+    ONE_HOUR
+    # 1 day
+    ONE_DAY
+}
+
+# request need to specify the report traffic unit in bps or pps
+enum CounterIndex {
+    # 1
+    BPS
+    # 2
+    PPS
+}
+
+# request need to specify the period/range of data coverage
+enum PeriodRange {
+    # periods defined by start and the fixed duriation
+    DAILY
+    WEEKLY
+    MONTHLY
+    YEARLY
+    QUARTERLY
+    # customized range specified by start/end
+    RANGE_CUSTOM
+}
+
+# basic time range
+input DateTimeRange {
+    definedBy: PeriodRange
+    beginTime: StrDateTime
+    endTime: StrDateTime
+}
+
+# basic time duration
+type DateTimeDuration {
+    startTime: StrDateTime
+    endTime: StrDateTime
+    duration: Int
+}
+
+type AtmResource {
+    # home scope, sub-network
+    type: String!
+    # non-home, subnetwork name
+    name: String!
+    # optional ip for the resource
+    ip: String
+}

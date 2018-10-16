@@ -1,0 +1,41 @@
+# import * from "event-base.gql"
+
+input EventListRequestArgs {
+  startTime: String
+  startTimeUntil: String
+  severity: Int
+  scope: [EventScope]
+  anomalyIndex: Int
+  direction: Int
+  counterIndex: [Int]
+  status: Int
+  durationCompare: EventDurationCompare
+  trafficCompare: EventTrafficCompare
+  ip: String
+  eventIds: [Int]
+  sortBy: EventFieldSort
+  outputLimit: Int
+  outputOffset: Int
+}
+
+type EventDetail {
+  eventId: Int
+  startTime: String
+  endTime: String
+  durationSecond: Int
+  status: Int
+  severity: Int
+  anomalyIndex: Int
+  direction: Int
+  counterIndex: Int
+  threshold: Int
+  objectIndex: Int
+  instanceIndex: Int
+  ip: String
+  ipVersion: Int
+  triggeredInfo: EventTriggeredInfo
+  severityRedInfo: EventSeverityRedInfo
+  peakInfo: [EventPeakInfo]
+  peakTraffic: Int
+  averageTraffic: [EventAverageTraffic]
+}

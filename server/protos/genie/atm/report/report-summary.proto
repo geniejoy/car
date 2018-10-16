@@ -1,0 +1,61 @@
+syntax = "proto3";
+
+import "report-base.proto";
+import "google/protobuf/struct.proto";
+
+message SummaryReportQueryParam {
+    int32 objectIndex = 1;
+    repeated int32 instanceIndexList = 2;
+    repeated int32 counterIndexList = 3;
+    string startTime = 4;
+    string startTimeUntil = 5;
+    string granularity = 6;
+    repeated string statisticList = 7;
+    ReportSortBy sortBy = 8;
+    int32 percentile = 9;
+}
+
+message SummaryReportResult {
+    repeated SummaryReportStatSet statSet = 1;
+}
+
+message SummaryReportStatSet {
+    string statistic = 1;
+    repeated SummaryReportStatSetData instanceSet = 2;
+}
+
+message SummaryReportStatSetData {
+    int32 instanceIndex = 1;
+    string instanceName = 2;
+    repeated double trafficIn = 3;
+    repeated double trafficOut = 4;
+    repeated double trafficSum = 5;
+}
+
+message FilterSummaryReportQueryParam {
+    repeated int32 filterIndexList = 1;
+    repeated int32 counterIndexList = 2;
+    string startTime = 3;
+    string startTimeUntil = 4;
+    string granularity = 5;
+    repeated string statisticList = 6;
+    ReportSortBy sortBy = 7;
+    int32 percentile = 8;
+}
+
+message FilterSummaryReportResult {
+    repeated FilterSummaryReportStatSet statSet = 1;
+}
+
+message FilterSummaryReportStatSet {
+    string statistic = 1;
+    repeated FilterSummaryReportStatSetData filterSet = 2;
+}
+
+message FilterSummaryReportStatSetData {
+    int32 filterIndex = 1;
+    string filterName = 2;
+    repeated double forward = 3;
+    repeated double backward = 4;
+    repeated double sum = 5;
+}

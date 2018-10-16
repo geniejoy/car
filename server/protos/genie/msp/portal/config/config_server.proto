@@ -1,0 +1,28 @@
+syntax = "proto3";
+package genie.msp.portal.config;
+
+import "config_customer.proto";
+
+service ServerConfiguration {
+    rpc CreateMspServer (MspServerBasicConfig) returns (UpdateStatus) {}
+    rpc DeleteMspServer (MspServerBasicConfig) returns (UpdateStatus) {}
+    rpc GetMspServer (MspServerBasicConfig) returns (MspServerPackageConfig) {}
+}
+
+message MspServerBasicConfig {
+    int32 serverId = 1;
+    string serverIp = 2;
+}
+
+message MspServerPackageConfig {
+    MspServerBasicConfig   srvBasic = 1;
+    repeated MspCustomerConfig customerList = 2;
+}
+
+message UpdateStatus {
+    Status status = 1;
+    enum Status{
+        updated_failed = 0;
+        updated_success = 1;
+    }
+}

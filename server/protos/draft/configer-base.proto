@@ -1,0 +1,16 @@
+syntax = "proto3";
+package genie.configer;
+
+enum NetworkSide {
+  NETWORK_LOCAL = 0;
+  NETWORK_REMOTE = 1;
+}
+enum CounterType {
+  COUNTER_NUMBERIC = 0;
+  COUNTER_ACTIVE = 1;
+}
+enum TreapType {
+  TREAP_DELTA = 0;
+  TREAP_CURRENT = 1;
+  TREAP_AVERAGE = 2;
+}

@@ -1,0 +1,113 @@
+// genie networks 
+// 
+syntax = "proto3";
+package genie.configer;
+
+import "configer-base.proto";
+
+/* 
+  index type used in parameter for object query methods
+  this is designed to support variable number of indexes
+  - empty array: query all object
+  - array with one index: singular query
+  - array with multiple indexes: batch query
+*/
+message MetaLocList {
+  repeated int32 meta_index_list = 1;
+}
+
+message InstanceLoc {
+  int32 object_index = 1;
+  int32 instance_index = 2;
+}
+/* 
+  index type used in parameter for meta instance query methods
+  this is designed to support variable number of instances
+  - object index must be specified
+  - instance indexes could be
+    - empty array: query all instance in this object type
+    - array with one index: singular instance query
+    - array with multiple indexes: batch instances query
+*/
+message InstanceLocList {
+  int32 object_index = 1;
+  repeated int32 instance_index_list = 2;
+}
+
+message MetaObjectInfos {
+  repeated MetaObjectInfo meta_object_info = 1;
+}
+
+message MetaInstanceInfos {
+  int32 object_index = 1;
+  repeated MetaInstanceInfo meta_instance_info_list = 2;
+}
+message MetaTopnInfos {
+  repeated MetaTopnInfo meta_topn_info = 1;
+}
+message MetaCounterInfos {
+  repeated MetaCounterInfo meta_counter_info_list = 1;
+}
+enum LearningOption {
+  LEARNING_DISABLED = 0;
+  LEARNING_INSTANCE = 1;
+  LEARNING_KEY = 2;
+}
+enum MatchOption {
+  MATCH_MULTIPLE = 0;
+  MATCH_PRIORITY = 1;
+  MATCH_LONGEST = 2;
+}
+message MetaObjectInfo {
+  int32 object_index = 1;
+  string object_name = 2; // need i18n
+  int32 parent_object_index = 3;
+  bool is_endpoint = 4;
+  LearningOption learning_option = 5;
+  MatchOption match_option = 6;
+  bool support_chaining =  7;
+  bool enable_anomaly = 8;
+  int32 record_type_mask = 9;
+}
+
+message MetaInstanceInfo {
+  int32 instance_index = 1;
+  string instance_name = 2;
+  int32 parent_instance_index = 3;
+  bool enable_key_learning = 4;
+  bool enable_child_learning = 5;
+  bool enable_accouting = 6;
+  bool enable_anomaly =  7;
+}
+
+message MetaField {
+  int32 field_index = 1;
+  NetworkSide field_side = 2;
+}
+message MetaBreakdown {
+  int32 field_index = 1;
+  int32 count = 2;
+  int32 correlate = 3;
+}
+
+message MetaTopnInfo {
+  int32 topn_index = 1;
+  string topn_name = 2;
+  int32 record_type_mask = 3;
+  bool enable_drilldown = 4;
+  repeated MetaField fields = 5;
+  repeated int32 counter_indexes = 6;
+  bool enable_pivot =  7;
+  bool for_anomaly_report = 8;
+  int32 treap_size = 9;
+  int32 export_treap_size = 10;
+  MetaBreakdown breakdown_info = 11;
+}
+
+message MetaCounterInfo {
+  int32 counter_index = 1;
+  string  counter_name = 2;
+  CounterType counter_type = 3;
+  int32 origin_ie_index = 4;
+  TreapType treap_type = 5; 
+}

@@ -1,0 +1,39 @@
+syntax = "proto3";
+package genie.msp.console;
+
+import "google/protobuf/empty.proto";
+import "../common/base.proto";
+import "atm_api.proto";
+
+service MspServerService {
+  rpc RegisterMspServer(MspServerInfo) returns (MspServerInfo) {}
+  rpc DeregisterMspServer(MspServerInfo) returns (MspServerInfo) {}  
+  rpc GetMspServersList(google.protobuf.Empty) returns (MspServersList) {}
+  rpc DispatchMspConfig(DispatchConfigRequest) returns (DispatchConfigResponse) {}  
+}
+
+message MspServerInfo {
+  int32 id = 1;
+  string name = 2;
+  string ipAddr = 3;
+  SnmpWalkInfo info = 4;
+  string remarks = 5;
+}
+
+message MspServersList {
+    repeated MspServerInfo mspServers = 1;
+}
+
+message SnmpWalkInfo {
+    string snmpId = 1;
+    string modelNumber = 2;
+    int32 adminStatus = 3;
+    int32 operStatus = 4;
+    repeated SnmpLinkInfo links = 5;
+}
+
+message SnmpLinkInfo {
+    string id = 1;
+    string name = 2;
+    int32 bandwidth = 3;
+}

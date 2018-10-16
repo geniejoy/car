@@ -1,0 +1,65 @@
+
+# import * from "atm-base.gql"
+
+# request parameter for subnet traffic compare report_request
+input ReportRequest
+{
+    # value: 'compare'
+    reportType: String
+    resourceGroupId: String
+    # 5 min 1 hour 1 day
+    granularity: Granularity
+    counterIndex: CounterIndex
+    reportDatetime: DateTimeRange
+}
+
+type ReportDataCategories {
+    # list of lable e.g. [Sub-Network]
+    datasetLabel: [String]
+    # Sum From Sub-Network To Sub-Network
+    dataValue: [String]
+}
+type ReportDataPoint {
+    # optional field of the time stamp for the value. 
+    time: StrDateTime
+    # data values
+    value: [Float]!
+}
+
+type ReportData {
+    # e.g. [ 'SN101and201' ]
+    label: [String]
+    data: [ReportDataPoint]
+}
+
+# subnet traffic compare report
+type AtmReport {
+    report: String
+    datetimeStart: StrDateTime
+    datetimeEnd: StrDateTime
+    # String representation of resource pointed by resourceGroupId e.g. All Sub-Network
+    subNetworkGroup: String
+    # String representation of counter idx e.g. bps
+    counter: String
+    # String representation of DateTimeRange PeriodRange
+    period: String
+    # String representation of Granularity
+    granularity: String
+    categories: ReportDataCategories
+    dataset: [ReportData]
+}
+
+input ReportFilter
+{
+    # value: 'compare'
+    reportType: String
+    resourceGroupId: String
+    counterIndex: CounterIndex
+}
+type AtmReportAdded {
+    report: String
+    datetimeAdded: StrDateTime
+    resourceGroup: String
+    categories: ReportDataCategories
+    addedDataset: [ReportData]
+}

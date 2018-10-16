@@ -1,0 +1,97 @@
+syntax = "proto3";
+
+import "report-base.proto";
+
+// restful api
+message TopnReportQueryParam {
+  string resourceType = 1;
+  string reportType = 2;
+  int32 resourceGroupId = 3;
+  int32 resourceId = 4;
+  string granularity = 5;
+  int32 topnIndex = 6;
+  int32 counterIndex = 7;
+  ReportDateTimeRange reportDatetime = 8;
+}
+
+message TopnReportQueryResult {
+  string report = 1;
+  string datetimeStart = 2;
+  string datetimeEnd = 3;
+  string period = 4;
+  string counter = 5;
+  string granularity = 6;
+  Categories categories = 7;
+  message Categories {
+      repeated string datasetLabel = 1;
+      repeated string dataValue = 2;
+  }
+  repeated ReportDataSetPoint dataset = 8;
+}
+
+message TopnTableReportQueryParam {
+    string startTime = 1;
+    string startTimeUntil = 2;
+    int32 objectIndex = 3;
+    int32 instanceIndex = 4;
+    int32 topNIndex = 5;
+    repeated int32 counterIndex = 6;
+    string granularity = 7;
+    int32 depth = 8;
+    repeated string statisticList = 9;
+    repeated string trafficTypeList = 10;
+    ReportSortBy sortBy = 11;
+    int32 percentile = 12;
+}
+
+message TopnTableReportQueryResult {
+    int32 topNIndex = 1;
+    repeated int32 counterIndex = 2;
+    repeated ReportKeyField keyField = 3;
+    repeated TopnTableReportDataSet dataSet = 4;
+}
+
+message TopnTableReportDataSet {
+    string statistic = 1;
+    repeated TopnTableReportDataSetData data = 2;
+}
+
+message TopnTableReportDataSetData {
+    string keyId = 1;
+    repeated string key = 2;
+    repeated int32 trafficIn = 3;
+    repeated int32 trafficOut = 4;
+    repeated int32 trafficSum = 5;
+}
+
+message FilterTopnReportQueryParam {
+    string startTime = 1;
+    string startTimeUntil = 2;
+    int32 filterIndex = 3;
+    int32 topNIndex = 4;
+    repeated int32 counterIndexList = 5;
+    string granularity = 6;
+    int32 depth = 7;
+    repeated string statisticList = 8;
+    ReportSortBy sortBy = 9;
+    int32 percentile = 10;
+}
+
+message FilterTopnReportQueryResult {
+    repeated ReportKeyField keyField = 1;
+    repeated FilterTopnReportStatSet statSet = 2;
+}
+
+message FilterTopnReportStatSet {
+    string statistic = 1;
+    repeated FilterTopnReportStatTopnSet topnSet = 2;
+}
+
+message FilterTopnReportStatTopnSet {
+    string keyId = 1;
+    repeated string key = 2;
+    repeated string originalKey = 3;
+    repeated double forward = 4;
+    repeated double backward = 5;
+    repeated double sum = 6;
+}

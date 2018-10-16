@@ -1,0 +1,9 @@
+<header>
+  <app-header></app-header>
+</header>
+<section>
+  <app-sidenav [changeSidenav]="changeSidenav" (firePending)="pendingSideNav()"></app-sidenav>
+  <div class="content-container">
+    <router-outlet></router-outlet>
+  </div>
+</section>

@@ -1,0 +1,47 @@
+// ATM Report genie networks 
+syntax = "proto3";
+
+import "google/protobuf/struct.proto";
+
+// python cgi
+message ReportSortBy {
+    string statistic = 1;
+    string trafficType = 2;
+}
+
+message ReportKeyField {
+    int32 fieldIndex = 1;
+    int32 side = 2;
+}
+
+message ReportDataSet {
+    string statistic = 1;
+    string trafficType = 2;
+    repeated ReportData data = 3;
+    message ReportData {
+        repeated string row = 1;
+    }
+}
+
+message ReportTotalTraffic {
+    string statistic = 1;
+    string trafficType = 2;
+    string value = 3;
+}
+
+// result api
+message ReportDateTimeRange {
+    string definedBy = 1;
+    string startTime = 2;
+    string endTime = 3;
+}
+
+message ReportDataSetPoint {
+    repeated string label = 1;
+    repeated ReportDataSetDataPoint data = 2;
+}
+
+message ReportDataSetDataPoint {
+    string time = 1;
+    repeated string value = 2;
+}

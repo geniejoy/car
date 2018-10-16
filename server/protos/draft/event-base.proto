@@ -1,0 +1,60 @@
+syntax = "proto3";
+
+message EventTriggeredInfo {
+  int32 routerCoverage = 1;
+  string routerName = 2;
+  string boundaryName = 3;
+  string time = 4;
+  int32 traffic = 5;
+}
+
+message EventSeverityRedInfo {
+  int32 routerCoverage = 1;
+  string routerName = 2;
+  string boundaryName = 3;
+  string time = 4;
+  int32 traffic = 5;
+}
+
+message EventPeakInfo {
+  int32 routerCoverage = 1;
+  string time = 2;
+  int32 traffic = 3;
+}
+
+message EventAverageTraffic {
+  int32 routerCoverage = 1;
+  int32 traffic = 2;
+}
+
+message EventScope {
+  int32 objectIndex = 1;
+  repeated int32 instanceIndex = 2;
+}
+
+message EventDurationCompare {
+  int32 lessThan = 1;
+  int32 equalTo = 2;
+  int32 greaterThan = 3;
+}
+
+message EventTrafficCompare {
+  int32 lessThan = 1;
+  int32 equalTo = 2;
+  int32 greaterThan = 3;
+}
+
+enum EventSortBy {
+  ASC = 0;
+  DESC = 1;
+}
+
+message EventFieldSort {
+  string fieldName = 1;
+  EventSortBy sort = 2;
+}
+
+message EventKeyField {
+  int32 fieldIndex = 1;
+  int32 side = 2;
+}

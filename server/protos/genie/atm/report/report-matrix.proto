@@ -1,0 +1,65 @@
+
+syntax = "proto3";
+
+import "report-base.proto";
+import "google/protobuf/struct.proto";
+
+message MatrixReportQueryParam {
+    string startTime = 1;
+    string startTimeUntil = 2;
+    int32 objectIndex = 3;
+    int32 instanceIndex = 4;
+    int32 topNIndex = 5;
+    int32 counterIndex = 6;
+    string granularity = 7;
+    int32 depth = 8;
+    repeated string statisticList = 9;
+    repeated string trafficTypeList = 10;
+    repeated FieldCondition fieldCondition = 11;
+    message FieldCondition {
+        repeated google.protobuf.Value condition = 1;
+    }
+    ReportSortBy sortBy = 12;
+    int32 percentile = 13;
+    int32 exportRowSize = 14;
+    int32 exportColumnSize = 15;
+    int32 exportRowOffset = 16;
+    int32 exportRowLimit = 17;
+    int32 exportColumnOffset = 18;    
+    int32 exportColumnLimit = 19;
+}
+
+message MatrixReportResult {
+    repeated string originalRowData = 1;
+    repeated string rowData = 2;
+    repeated ColumnData originalColumnData = 3;
+    repeated ColumnData columnData = 4;
+    message ColumnData {
+        repeated string column = 1;
+    }
+    repeated ReportKeyField keyField = 5;
+    repeated ReportDataSet dataSet = 6;
+    repeated ReportTotalTraffic totalTraffic = 7;
+}
+
+message AnomalyMatrixReportQueryParam {
+    string startTime = 1;
+    string startTimeUntil = 2;
+    int32 counterIndex = 3;
+    string sourceGroup = 4;  
+    string victimGroup = 5;
+}
+
+message AnomalyMatrixReportResult {
+    int32 rowBatchNum = 1;
+    int32 rowTotalNum = 2;
+    int32 startRow = 3;
+    repeated string rowIndexList = 4;
+    repeated string rowNameList = 5;
+    repeated string columnIndexList = 6;
+    repeated string columnNameList = 7;
+    repeated trafficData traffic = 8;
+    message trafficData {
+        repeated double row = 1;
+    }
+}

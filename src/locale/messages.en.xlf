@@ -1,0 +1,454 @@
+<?xml version='1.0' encoding='utf-8'?>
+<xliff
+  xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="en" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="login" datatype="html" approved="yes">
+        <source>Login</source>
+        <target state="translated">Login</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/auth/login/login.component.ts</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+        <note priority="1" from="description">login label</note>
+      </trans-unit>
+      <trans-unit id="loginId" datatype="html" approved="yes">
+        <source>loginId</source>
+        <target state="translated">User account</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/auth/login/login.component.ts</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
+        <note priority="1" from="description">login account</note>
+      </trans-unit>
+      <trans-unit id="loginIdEmpty" datatype="html" approved="yes">
+        <source>loginIdEmpty</source>
+        <target state="translated">The user account is required!</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/auth/login/login.component.ts</context>
+          <context context-type="linenumber">16</context>
+        </context-group>
+        <note priority="1" from="description">login account is required</note>
+      </trans-unit>
+      <trans-unit id="loginPassword" datatype="html" approved="yes">
+        <source>loginPassword</source>
+        <target state="translated">Password</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/auth/login/login.component.ts</context>
+          <context context-type="linenumber">19</context>
+        </context-group>
+        <note priority="1" from="description">password</note>
+      </trans-unit>
+      <trans-unit id="loginPasswordEmpty" datatype="html" approved="yes">
+        <source>loginPasswordEmpty</source>
+        <target state="translated">The passwor is required!</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/auth/login/login.component.ts</context>
+          <context context-type="linenumber">21</context>
+        </context-group>
+        <note priority="1" from="description">password is required</note>
+      </trans-unit>
+      <trans-unit id="submit" datatype="html" approved="yes">
+        <source>Login</source>
+        <target state="translated">Login</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/auth/login/login.component.ts</context>
+          <context context-type="linenumber">24</context>
+        </context-group>
+        <note priority="1" from="description">submit</note>
+      </trans-unit>
+      <trans-unit id="logout" datatype="html">
+        <source>Logout</source>
+        <target state="translated">Logout</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/console/console.component.ts</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
+        <note priority="1" from="description">logout</note>
+      </trans-unit>
+      <trans-unit id="MspCustomerProfile" datatype="html" approved="yes">
+        <source>Defining basic profile of the MSP Customer</source>
+        <target state="translated">Defining basic profile of the MSP Customer</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/portals/create-portals/create-portals.component.ts</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+        <note priority="1" from="description">Defining basic profile of the MSP Customer</note>
+      </trans-unit>
+      <trans-unit id="assignMspAppliance" datatype="html" approved="yes">
+        <source>Assigning the GenieMSP appliance</source>
+        <target state="translated">Assigning the GenieMSP appliance</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/portals/create-portals/create-portals.component.ts</context>
+          <context context-type="linenumber">16</context>
+        </context-group>
+        <note priority="1" from="description">Assigning the GenieMSP appliance</note>
+      </trans-unit>
+      <trans-unit id="MspCustomerScope" datatype="html" approved="yes">
+        <source>Defining network scope of the MSP Customer</source>
+        <target state="translated">Defining network scope of the MSP Customer</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/portals/create-portals/create-portals.component.ts</context>
+          <context context-type="linenumber">28</context>
+        </context-group>
+        <note priority="1" from="description">Defining network scope of the MSP Customer</note>
+      </trans-unit>
+      <trans-unit id="IpAddress" datatype="html" approved="yes">
+        <source>IP Address</source>
+        <target state="translated">IP Address</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/portals/create-portals/create-portals.component.ts</context>
+          <context context-type="linenumber">32</context>
+        </context-group>
+        <note priority="1" from="description">IP Address</note>
+      </trans-unit>
+      <trans-unit id="AsNumber" datatype="html" approved="yes">
+        <source>AS Number</source>
+        <target state="translated">AS Number</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/portals/create-portals/create-portals.component.ts</context>
+          <context context-type="linenumber">40</context>
+        </context-group>
+        <note priority="1" from="description">AS Number</note>
+      </trans-unit>
+      <trans-unit id="ASPathRegularExpression" datatype="html" approved="yes">
+        <source>AS Path Regular Expression</source>
+        <target state="translated">AS Path Regular Expression</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/portals/create-portals/create-portals.component.ts</context>
+          <context context-type="linenumber">48</context>
+        </context-group>
+        <note priority="1" from="description">AS Path Regular Expression</note>
+      </trans-unit>
+      <trans-unit id="BgpCommunityString" datatype="html" approved="yes">
+        <source>BGP Community String</source>
+        <target state="translated">BGP Community String</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/portals/create-portals/create-portals.component.ts</context>
+          <context context-type="linenumber">56</context>
+        </context-group>
+        <note priority="1" from="description">BGP Community String</note>
+      </trans-unit>
+      <trans-unit id="MplsVpn" datatype="html" approved="yes">
+        <source>VPN</source>
+        <target state="translated">VPN</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/portals/create-portals/create-portals.component.ts</context>
+          <context context-type="linenumber">64</context>
+        </context-group>
+        <note priority="1" from="description">MPLS VPN</note>
+      </trans-unit>
+      <trans-unit id="done" datatype="html" approved="yes">
+        <source>Done</source>
+        <target state="translated">Done</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/portals/create-portals/create-portals.component.ts</context>
+          <context context-type="linenumber">78</context>
+        </context-group>
+        <note priority="1" from="description">done</note>
+      </trans-unit>
+      <trans-unit id="reset" datatype="html" approved="yes">
+        <source>Reset</source>
+        <target state="translated">Reset</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/portals/create-portals/create-portals.component.ts</context>
+          <context context-type="linenumber">82</context>
+        </context-group>
+        <note priority="1" from="description">reset</note>
+      </trans-unit>
+      <trans-unit id="ServerName" datatype="html" approved="yes">
+        <source>Server Name</source>
+        <target state="translated">Server Name</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/portals/create-portals/server-loading/server-loading.component.ts</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+        <note priority="1" from="description">Server Name</note>
+      </trans-unit>
+      <trans-unit id="IP" datatype="html" approved="yes">
+        <source>IP</source>
+        <target state="translated">IP</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/portals/create-portals/server-loading/server-loading.component.ts</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
+        <note priority="1" from="description">IP</note>
+      </trans-unit>
+      <trans-unit id="Recommend" datatype="html" approved="yes">
+        <source>Recommend!!</source>
+        <target state="translated">Recommend!!</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/portals/create-portals/server-loading/server-loading.component.ts</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
+        <note priority="1" from="description">recommend</note>
+      </trans-unit>
+      <trans-unit id="CustomerID" datatype="html" approved="yes">
+        <source>Customer ID</source>
+        <target state="translated">Customer ID</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/portals/create-portals/customer-info/customer-info.component.ts</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+        <note priority="1" from="description">Customer ID</note>
+      </trans-unit>
+      <trans-unit id="InputSample" datatype="html" approved="yes">
+        <source>Input sample</source>
+        <target state="translated">Input sample</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/portals/create-portals/customer-scope/tooltip/tooltip.component.ts</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+        <note priority="1" from="description">Input sample</note>
+      </trans-unit>
+      <trans-unit id="serverLoading" datatype="html" approved="yes">
+        <source>loading</source>
+        <target state="translated">loading</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/portals/create-portals/server-loading/server-loading.component.ts</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
+        <note priority="1" from="description">Server loading</note>
+      </trans-unit>
+      <trans-unit id="selectedServer" datatype="html" approved="yes">
+        <source>selected server</source>
+        <target state="translated">selected server</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/portals/create-portals/create-portals.component.ts</context>
+          <context context-type="linenumber">21</context>
+        </context-group>
+        <note priority="1" from="description">selected server</note>
+      </trans-unit>
+      <trans-unit id="CustomerInfo" datatype="html" approved="yes">
+        <source>Customer Info</source>
+        <target state="translated">Customer Info</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/portals/create-portals/customer-info/customer-info.component.ts</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+        <note priority="1" from="description">Customer Info</note>
+      </trans-unit>
+      <trans-unit id="expectedUrl" datatype="html" approved="yes">
+        <source>as displayed in URL</source>
+        <target state="translated">as displayed in URL</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/portals/create-portals/customer-info/customer-info.component.ts</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+        <note priority="1" from="description">as displayed in URL</note>
+      </trans-unit>
+      <trans-unit id="description" datatype="html" approved="yes">
+        <source>description</source>
+        <target state="translated">description</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/portals/create-portals/customer-info/customer-info.component.ts</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
+        <note priority="1" from="description">description</note>
+      </trans-unit>
+      <trans-unit id="nextStep" datatype="html" approved="yes">
+        <source>Next</source>
+        <target state="translated">Next</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/portals/create-portals/create-portals.component.ts</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/portals/create-portals/create-portals.component.ts</context>
+          <context context-type="linenumber">26</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/portals/create-portals/create-portals.component.ts</context>
+          <context context-type="linenumber">76</context>
+        </context-group>
+        <note priority="1" from="description">next Step</note>
+      </trans-unit>
+      <trans-unit id="backStep" datatype="html" approved="yes">
+        <source>Back</source>
+        <target state="translated">Back</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/portals/create-portals/create-portals.component.ts</context>
+          <context context-type="linenumber">25</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/portals/create-portals/create-portals.component.ts</context>
+          <context context-type="linenumber">75</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/portals/create-portals/create-portals.component.ts</context>
+          <context context-type="linenumber">84</context>
+        </context-group>
+        <note priority="1" from="description">back Step</note>
+      </trans-unit>
+      <trans-unit id="confirmActivateMspCustomer" datatype="html" approved="yes">
+        <source>Confirm and activate the MSP Customer Portal</source>
+        <target state="translated">Confirm and activate the MSP Customer Portal</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/portals/create-portals/create-portals.component.ts</context>
+          <context context-type="linenumber">82</context>
+        </context-group>
+        <note priority="1" from="description">Confirm and activate the MSP Customer Portal</note>
+      </trans-unit>
+      <trans-unit id="DefineByIpPrefixOrIpRange" datatype="html" approved="yes">
+        <source>Define by IP prefix or IP range</source>
+        <target state="translated">Define by IP prefix or IP range</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/portals/create-portals/customer-scope/ip-address-input/ip-address-input.component.ts</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+        <note priority="1" from="description">Define by IP prefix or IP range</note>
+      </trans-unit>
+      <trans-unit id="DefineByAsNumber" datatype="html" approved="yes">
+        <source>Define by AS Number</source>
+        <target state="translated">Define by AS Number</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/portals/create-portals/customer-scope/asn-input/asn-input.component.ts</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+        <note priority="1" from="description">Define by AS Number</note>
+      </trans-unit>
+      <trans-unit id="DefineByASPathRegularExpression" datatype="html" approved="yes">
+        <source>Define by AS Path Regular Expression</source>
+        <target state="translated">Define by AS Path Regular Expression</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/portals/create-portals/customer-scope/as-path-input/as-path-input.component.ts</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+        <note priority="1" from="description">Define by AS Path Regular Expression</note>
+      </trans-unit>
+      <trans-unit id="DefineByBGPCommunityString" datatype="html" approved="yes">
+        <source>Define by BGP Community String</source>
+        <target state="translated">Define by BGP Community String</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/portals/create-portals/customer-scope/bgp-cs-input/bgp-cs-input.component.ts</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+        <note priority="1" from="description">Define by BGP Community String</note>
+      </trans-unit>
+      <trans-unit id="ResourcesCapacity" datatype="html" approved="yes">
+        <source>Capacity of Applied Resources</source>
+        <target state="translated">Capacity of Applied Resources</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/portals/create-portals/create-portals.component.ts</context>
+          <context context-type="linenumber">22</context>
+        </context-group>
+        <note priority="1" from="description">Capacity of Applied Resources</note>
+      </trans-unit>
+      <trans-unit id="maxOfNetworkInstances" datatype="html" approved="yes">
+        <source>Maximum number of network instances</source>
+        <target state="translated">Maximum number of network instances</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/portals/create-portals/capacity/capacity.component.ts</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+        <note priority="1" from="description">Maximum number of network instances</note>
+      </trans-unit>
+      <trans-unit id="maxOfNetworkInstancesIncluded" datatype="html" approved="yes">
+        <source>including MSP-subnets or MSP-filters</source>
+        <target state="translated">including MSP-subnets or MSP-filters</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/portals/create-portals/capacity/capacity.component.ts</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
+        <note priority="1" from="description">including MSP-subnets or MSP-filters</note>
+      </trans-unit>
+      <trans-unit id="maxOfMspUsers" datatype="html" approved="yes">
+        <source>Maximum number of user accounts</source>
+        <target state="translated">Maximum number of user accounts</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/portals/create-portals/capacity/capacity.component.ts</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
+        <note priority="1" from="description">Maximum number of user accounts</note>
+      </trans-unit>
+      <trans-unit id="enableMspMtgService" datatype="html" approved="yes">
+        <source>Enable mitigation service</source>
+        <target state="translated">Enable mitigation service</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/portals/create-portals/capacity/capacity.component.ts</context>
+          <context context-type="linenumber">25</context>
+        </context-group>
+        <note priority="1" from="description">Enable mitigation service</note>
+      </trans-unit>
+      <trans-unit id="maxOfProtectedIP" datatype="html" approved="yes">
+        <source>Maximum number of protected IP addresses</source>
+        <target state="translated">Maximum number of protected IP addresses</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/portals/create-portals/capacity/capacity.component.ts</context>
+          <context context-type="linenumber">31</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="noLimit" datatype="html" approved="yes">
+        <source>no limitation</source>
+        <target state="translated">no limitation</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/portals/create-portals/capacity/capacity.component.ts</context>
+          <context context-type="linenumber">35</context>
+        </context-group>
+        <note priority="1" from="description">no limitation</note>
+      </trans-unit>
+      <trans-unit id="SearchPlaceholder" datatype="html">
+        <source>Search reports and help</source>
+        <target state="translated">Search reports and help</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/console/sidenav/sidenav.component.ts</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+        <note priority="1" from="description">Search reports and help</note>
+      </trans-unit>
+      <trans-unit id="002c5410dbd49e064c7a47ac9e6d547c956324cd" datatype="html">
+        <source>{VAR_SELECT, select, Customers {Customers} Customer {Customer} Lab {Lab} System {System} }</source>
+        <target state="translated">{VAR_SELECT, select, Customers {Customers} Customer {Customer} Lab {Lab} System {System}}</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/console/sidenav/sidenav-translate/sidenav-translate.component.ts</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="59d4ae795b5eb16c6df0ff9d715ce9cc1d431e9f" datatype="html">
+        <source>{VAR_SELECT, select, Customer {Customer} Create {Create} Manage {Manage} User {User} Configure {Configure} Lab {Lab} }</source>
+        <target state="translated">{VAR_SELECT, select, Customer {Customer} Create {Create} Manage {Manage} User {User} Configure {Configure} Lab {Lab} }</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/console/sidenav/sidenav-translate/sidenav-translate.component.ts</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="summary" datatype="html">
+        <source>
+          <x id="INTERPOLATION" equiv-text="{{i18nDashboard}}"/>
+        </source>
+        <target state="translated">Summary</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/console/sidenav/sidenav-translate/sidenav-translate.component.ts</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+        <note priority="1" from="description">left menu: summary</note>
+      </trans-unit>
+      <trans-unit id="leftMenuReport" datatype="html">
+        <source>
+          <x id="ICU" equiv-text="{menuItem.name, select, Customers {...} Customer {...} Lab {...} System {...}}"/>
+        </source>
+        <target>
+          <x id="ICU" equiv-text="{menuItem.name, select, Customers {...} Customer {...} Lab {...} System {...}}"/>
+        </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/console/sidenav/sidenav-translate/sidenav-translate.component.ts</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+        <note priority="1" from="description">left menu: report</note>
+      </trans-unit>
+      <trans-unit id="leftMenuReportSub" datatype="html">
+        <source>
+          <x id="ICU" equiv-text="{subMenuItem.name, select, Customer {...} Create {...} Manage {...} User {...} Configure {...} Lab {...}}"/>
+        </source>
+        <target>
+          <x id="ICU" equiv-text="{subMenuItem.name, select, Customer {...} Create {...} Manage {...} User {...} Configure {...} Lab {...}}"/>
+        </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/console/sidenav/sidenav-translate/sidenav-translate.component.ts</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+        <note priority="1" from="description">left menu: report sub</note>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

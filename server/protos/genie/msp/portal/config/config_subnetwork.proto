@@ -1,0 +1,47 @@
+syntax = "proto3";
+package genie.msp.portal.config;
+
+service SubNetworkConfiguration {
+    rpc GetSubNetworkList (SubNetworkAddressList) returns (SubNetworks) {}
+    rpc GetSubNetwork (SubNetworkAddress) returns (SubNetwork) {}
+    rpc CreateSubNetwork (SubNetwork) returns (SubNetwork) {}
+    rpc UpdateSubNetwork (SubNetwork) returns (SubNetwork) {}
+    rpc DeleteSubNetwork (SubNetwork) returns (SubNetwork) {}
+}
+
+message SubNetworkAddressList {
+    int32  customerId = 1;
+}
+
+message SubNetworkAddress {
+    int32 customerId = 1;
+    int32 subnetworkId = 2;
+}
+
+message SubNetworks {
+    repeated SubNetwork subnetworks = 1;
+}
+
+message TrafficAnomalyThreshold {
+    int64 value = 1;
+    string counter = 2;
+}
+
+message TrafficAnomaly {
+    int32 enabled = 1;
+    TrafficAnomalyThreshold incoming = 2;
+    TrafficAnomalyThreshold outgoing = 3;
+}
+
+message KeyRule {
+    repeated string ipAddress = 1;
+}
+
+message SubNetwork {
+    int32 customerId = 1;
+    int32 id = 2;
+    string name = 3;
+    KeyRule rule = 4;
+    TrafficAnomaly trafficAnomaly = 5;
+    string remarks = 6;
+}

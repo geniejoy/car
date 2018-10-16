@@ -1,0 +1,141 @@
+# define the schema of msp-customer
+input MspCustomerUserLoc {
+  serverId: Int!
+  customerId: Int!
+  userName: String
+  role: Int
+}
+
+input MspCustomerUserInput {
+  serverId: Int!
+  customerId: Int!
+  id: Int
+  userName: String!
+  password: String!
+  firstName: String
+  lastName: String
+  email: String!
+  status: Int
+  activationToken: String
+  activationExpires: String
+  role: Int
+}
+
+type MspCustomerUser {
+  serverId: Int!
+  customerId: Int!
+  id: Int
+  userName: String!
+  password: String!
+  firstName: String
+  lastName: String
+  email: String!
+  status: Int
+  activationToken: String
+  activationExpires: String
+  role: Int
+}
+
+input MspCustomerUserRegistrationToken {
+  token: String!
+  password: String
+}
+
+input MspCustomerLoc {
+  serverId: Int
+  customerName: String
+}
+
+input MspCustomerInput {
+  serverId: Int!
+  id: Int
+  name: String!
+  description: String
+  appliedResource: AppliedResourceInput
+  networkScope: NetworkScopeInput
+}
+
+type MspCustomer {
+  serverId: Int!
+  id: Int
+  name: String!
+  description: String
+  appliedResource: AppliedResource
+  networkScope: NetworkScope
+}
+
+type AppliedResource {
+  numInstances: Int
+  numUsers: Int
+  mitigation: MitigationService
+}
+
+type MitigationService {
+  enabled: Boolean
+  numIpPrefixes: Int
+}
+
+type NetworkScope {
+  ipAddressList: [String]
+  ipPrefixList: [String]
+  asNumberList: [String]
+  bgpInterAsPathList: [String]
+  bgpCommunityList: [String]
+  mplsRTList: [String]
+  mplsRDList: [String]
+}
+
+# request parameter for MSP Customer Creation
+input AppliedResourceInput {
+  numInstances: Int
+  numUsers: Int
+  mitigation: MitigationServiceInput
+}
+
+input MitigationServiceInput {
+  enabled: Boolean
+  numIpPrefixes: Int
+}
+
+input NetworkScopeInput {
+  ipAddressList: [String]
+  ipPrefixList: [String]
+  asNumberList: [String]
+  bgpInterAsPathList: [String]
+  bgpCommunityList: [String]
+  mplsRTList: [String]
+  mplsRDList: [String]
+}
+
+input MspCustomerAdminInput {
+  serverId: Int!
+  customerId: Int!
+  id: Int
+  userName: String!
+  firstName: String
+  lastName: String
+  email: String!
+  role: Int
+}
+
+input MspCustomerRegisterInput {
+  config: MspCustomerInput
+  admin: MspCustomerAdminInput
+}
+
+type MspCustomerRegisterOutput {
+  config: MspCustomer
+  admin: MspCustomerUser
+}
+
+input MspCustomerLocInput {
+  serverId: Int
+  customerName: String
+}
+
+input MspCustomerUserLocInput {
+  serverId: Int
+  customerId: Int
+  userName: String
+  role: Int
+}

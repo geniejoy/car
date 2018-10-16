@@ -1,0 +1,389 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "car": {
+      "root": "",
+      "sourceRoot": "src",
+      "projectType": "application",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist",
+            "index": "src/index.html",
+            "main": "src/main.ts",
+            "tsConfig": "src/tsconfig.app.json",
+            "polyfills": "src/polyfills.ts",
+            "assets": ["src/assets", "src/favicon.ico", "src/images"],
+            "styles": [
+              "src/styles.scss",
+              "node_modules/material-design-icons/iconfont/material-icons.css",
+              "node_modules/npm-font-open-sans/open-sans.css"
+            ],
+            "stylePreprocessorOptions": {
+              "includePaths": ["sass", "src/sass/"]
+            },
+            "scripts": ["node_modules/highlight.js/lib/highlight.js"]
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ]
+            },
+            "production-en": {
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
+              "outputPath": "dist/en/",
+              "i18nFile": "src/locale/messages.en.xlf",
+              "i18nFormat": "xlf",
+              "i18nLocale": "en-US",
+              "i18nMissingTranslation": "error",
+              "baseHref": "/webapps/console/en/"
+            },
+            "production-tw": {
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
+              "outputPath": "dist/tw/",
+              "i18nFile": "src/locale/messages.zh.Hant.xlf",
+              "i18nFormat": "xlf",
+              "i18nLocale": "zh-Hant",
+              "i18nMissingTranslation": "error",
+              "baseHref": "/webapps/console/tw/"
+            },
+            "production-jp": {
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
+              "outputPath": "dist/jp/",
+              "i18nFile": "src/locale/messages.jp.xlf",
+              "i18nFormat": "xlf",
+              "i18nLocale": "ja_JP",
+              "i18nMissingTranslation": "error",
+              "baseHref": "/webapps/console/jp/"
+            },
+            "production-cn": {
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
+              "outputPath": "dist/cn/",
+              "i18nFile": "src/locale/messages.zh.Hans.xlf",
+              "i18nFormat": "xlf",
+              "i18nLocale": "zh-Hans",
+              "i18nMissingTranslation": "error",
+              "baseHref": "/webapps/console/cn/"
+            },
+            "en": {
+              "aot": true,
+              "i18nFile": "src/locale/messages.en.xlf",
+              "i18nFormat": "xlf",
+              "i18nLocale": "en-US",
+              "i18nMissingTranslation": "error"
+            },
+            "tw": {
+              "aot": true,
+              "i18nFile": "src/locale/messages.zh.Hant.xlf",
+              "i18nFormat": "xlf",
+              "i18nLocale": "zh-Hant",
+              "i18nMissingTranslation": "error"
+            },
+            "jp": {
+              "aot": true,
+              "i18nFile": "src/locale/messages.jp.xlf",
+              "i18nFormat": "xlf",
+              "i18nLocale": "ja_JP",
+              "i18nMissingTranslation": "error"
+            },
+            "cn": {
+              "aot": true,
+              "i18nFile": "src/locale/messages.zh.Hans.xlf",
+              "i18nFormat": "xlf",
+              "i18nLocale": "zh-Hans",
+              "i18nMissingTranslation": "error"
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "car:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "car:build:production"
+            },
+            "en": {
+              "browserTarget": "car:build:en"
+            },
+            "tw": {
+              "browserTarget": "car:build:tw"
+            },
+            "jp": {
+              "browserTarget": "car:build:jp"
+            },
+            "cn": {
+              "browserTarget": "car:build:cn"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "car:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "src/test.ts",
+            "karmaConfig": "./karma.conf.js",
+            "polyfills": "src/polyfills.ts",
+            "tsConfig": "src/tsconfig.spec.json",
+            "scripts": ["node_modules/highlight.js/lib/highlight.js"],
+            "styles": ["src/styles.scss"],
+            "assets": ["src/assets", "src/favicon.ico", "src/images"]
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": ["src/tsconfig.app.json", "src/tsconfig.spec.json"],
+            "exclude": ["**/node_modules/**"]
+          }
+        }
+      }
+    },
+    "car-e2e": {
+      "root": "",
+      "sourceRoot": "e2e",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "./protractor.conf.js",
+            "devServerTarget": "car:serve"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": ["e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**"]
+          }
+        }
+      }
+    },
+    "gna-validators": {
+      "root": "projects/gna-validators",
+      "sourceRoot": "projects/gna-validators/src",
+      "projectType": "library",
+      "prefix": "gna",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/gna-validators/tsconfig.lib.json",
+            "project": "projects/gna-validators/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "project": "projects/gna-validators/ng-package.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/gna-validators/src/test.ts",
+            "tsConfig": "projects/gna-validators/tsconfig.spec.json",
+            "karmaConfig": "projects/gna-validators/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": ["projects/gna-validators/tsconfig.lib.json", "projects/gna-validators/tsconfig.spec.json"],
+            "exclude": ["**/node_modules/**"]
+          }
+        }
+      }
+    },
+    "form-lab": {
+      "root": "projects/form-lab/",
+      "sourceRoot": "projects/form-lab/src",
+      "projectType": "application",
+      "prefix": "gna",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/form-lab",
+            "index": "projects/form-lab/src/index.html",
+            "main": "projects/form-lab/src/main.ts",
+            "polyfills": "projects/form-lab/src/polyfills.ts",
+            "tsConfig": "projects/form-lab/tsconfig.app.json",
+            "assets": ["projects/form-lab/src/favicon.ico", "projects/form-lab/src/assets"],
+            "styles": ["projects/form-lab/src/styles.css"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/form-lab/src/environments/environment.ts",
+                  "with": "projects/form-lab/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "form-lab:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "form-lab:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "form-lab:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/form-lab/src/test.ts",
+            "polyfills": "projects/form-lab/src/polyfills.ts",
+            "tsConfig": "projects/form-lab/tsconfig.spec.json",
+            "karmaConfig": "projects/form-lab/karma.conf.js",
+            "styles": ["projects/form-lab/src/styles.css"],
+            "scripts": [],
+            "assets": ["projects/form-lab/src/favicon.ico", "projects/form-lab/src/assets"]
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": ["projects/form-lab/tsconfig.app.json", "projects/form-lab/tsconfig.spec.json"],
+            "exclude": ["**/node_modules/**"]
+          }
+        }
+      }
+    },
+    "form-lab-e2e": {
+      "root": "projects/form-lab-e2e/",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/form-lab-e2e/protractor.conf.js",
+            "devServerTarget": "form-lab:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "form-lab:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": "projects/form-lab-e2e/tsconfig.e2e.json",
+            "exclude": ["**/node_modules/**"]
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "car",
+  "schematics": {
+    "@schematics/angular:component": {
+      "prefix": "app",
+      "styleext": "scss"
+    },
+    "@schematics/angular:directive": {
+      "prefix": "app"
+    }
+  }
+}

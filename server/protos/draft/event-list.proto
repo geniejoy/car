@@ -1,0 +1,69 @@
+syntax = "proto3";
+
+import "event-base.proto";
+
+message EventListTotalCountRequestArgs {
+    string startTime = 1;
+    string startTimeUntil = 2;
+    int32 severity = 3;
+    repeated EventScope scope = 4;
+    int32 anomalyIndex = 5;
+    int32 direction = 6;
+    repeated int32 counterIndex = 7;
+    int32 status = 8;
+    EventDurationCompare durationCompare = 9;
+    EventTrafficCompare trafficCompare = 10;
+    string ip = 11;
+}
+
+message EventListTotalCount {
+    int32 totalCount = 1;
+}
+
+message EventListRequestArgs {
+    string startTime = 1;
+    string startTimeUntil = 2;
+    int32 severity = 3;
+    repeated EventScope scope = 4;
+    int32 anomalyIndex = 5;
+    int32 direction = 6;
+    repeated int32 counterIndex = 7;
+    int32 status = 8;
+    EventDurationCompare durationCompare = 9;
+    EventTrafficCompare trafficCompare = 10;
+    string ip = 11;
+    repeated int32 eventIds = 12;
+    EventFieldSort sortBy = 13;
+    int32 outputLimit = 14;
+    int32 outputOffset = 15;
+}
+
+message EventDetail {
+    int32 eventId = 1;
+    string startTime = 2;
+    string endTime = 3;
+    int32 durationSecond = 4;
+    int32 status = 5;
+    int32 severity = 6;
+    int32 anomalyIndex = 7;
+    int32 direction = 8;
+    int32 counterIndex = 9;
+    int32 threshold = 10;
+    int32 objectIndex = 11;
+    int32 instanceIndex = 12;
+    string ip = 13;
+    int32 ipVersion = 14;
+    EventTriggeredInfo triggeredInfo = 15;
+    EventSeverityRedInfo severityRedInfo = 16;
+    repeated EventPeakInfo peakInfo = 17;
+    int32 peakTraffic = 18;
+    repeated EventAverageTraffic averageTraffic = 19;
+    repeated int32 resourceObjectIndexs = 20;
+    repeated int32 resourceInstanceIndexs = 21;
+    repeated int32 anomalyTypeID = 22;
+    repeated int32 anomalyTypeCounter = 23;
+}
+
+message EventList {
+    repeated EventDetail events = 1;
+}

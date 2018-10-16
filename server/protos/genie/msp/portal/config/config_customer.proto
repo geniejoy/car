@@ -1,0 +1,33 @@
+syntax = "proto3";
+package genie.msp.portal.config;
+
+service CustomerConfiguration {
+    rpc GetMspCustomer (MspCustomerConfig) returns (MspCustomerConfig) {}
+    rpc CreateMspCustomer (MspCustomerConfig) returns (UpdateStatus) {}
+    rpc UpdateMspCustomer (MspCustomerConfig) returns (UpdateStatus) {}
+    rpc DeleteMspCustomer (MspCustomerConfig) returns (UpdateStatus) {}
+}
+
+message MspCustomerConfig {
+    int32 customerId = 1;
+    int32 serverId = 2;
+    Scope scopeList = 3;
+}
+
+message Scope {
+    repeated string         ipAddressList      = 1;
+    repeated string         ipPrefixList       = 2;
+    repeated int32          asNumberList       = 3;
+    repeated string         bgpInterAsPathList = 4;
+    repeated string         bgpCommunityList   = 5;
+    repeated int64          mplsRTList         = 6;
+    repeated int64          mplsRDList         = 7;
+}
+
+message UpdateStatus {
+    Status status = 1;
+    enum Status{
+        updatedFailed = 0;
+        updatedSuccess = 1;
+    }
+}

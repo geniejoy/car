@@ -1,0 +1,32 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "outDir": "./dist/out-tsc",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "target": "es5",
+    "typeRoots": ["node_modules/@types"],
+    "baseUrl": "./",
+    "paths": {
+      "@auth/*": ["src/app/auth/*"],
+      "@console/*": ["src/app/console/*"],
+      "@shared/*": ["src/app/shared/*"],
+      "@lab/*": ["src/app/lab/*"],
+      "@core/*": ["src/app/core/*"],
+      "@portals/*": ["src/app/portals/*"],
+      "@summary/*": ["src/app/summary/*"],
+      "@system/*": ["src/app/system/*"],
+      "@commons/*": ["src/app/commons/*"],
+      "@customers/*": ["src/app/customers/*"],
+      "@items/*": ["src/app/items/*"],
+      "@sass/*": ["sass/*"],
+      "@models/*": ["src/app/models/*"],
+      "gna-validators": ["dist/gna-validators"],
+      "gna-validators/*": ["dist/gna-validators/*"]
+    },
+    "lib": ["es2017", "esnext", "dom"]
+  }
+}

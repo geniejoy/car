@@ -1,0 +1,9 @@
+<div class="gna-date-picker">
+  <div class="label" i18n="Pick-up Start Time or Pick-up End Time@@pickUpTime">{label, select, Pick-up Start Time
+    {Pick-up Start Time} Pick-up End Time {Pick-up End Time}}</div>
+  <mat-form-field>
+    <input [formControl]="date" matInput [matDatepicker]="picker" (dateChange)="onDateChange()">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker (opened)="onDatePickOpened()" #picker [disabled]="disabled"></mat-datepicker>
+  </mat-form-field>
+</div>

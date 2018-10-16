@@ -1,0 +1,60 @@
+syntax = "proto3";
+
+import "event-base.proto";
+
+message EventTraffic1MinRequestArgs {
+  repeated int32 eventIds = 1;
+  int32 routerCoverage = 2;
+  string recordTimeStart = 3;
+  string recordTimeEnd = 4;
+  repeated int32 counterIndex = 5;
+}
+
+message EventTraffic1MinData {
+  repeated EventTraffic1Min traffic1MinData = 1;
+}
+
+message EventTraffic1Min {
+  int32 eventId = 1;
+  double threshold = 2;
+  int32 counterIndex = 3;
+  double triggeredValue = 4;
+  string triggeredTime = 5;
+  repeated EventRouterTrafficData routerTrafficData = 6;
+}
+
+message EventRouterTrafficData {
+  int32 routerId = 1;
+  string routerName = 2;
+  repeated EventTrafficData trafficData = 3;
+}
+
+message EventTrafficData {
+  string recTime = 1;
+  double traffic = 2;
+}
+
+message EventFingerprintTraffic1MinRequestArgs {
+  repeated int32 eventIds = 1;
+  repeated int32 counterIndex = 2;
+  int32 anomalyIndexes = 3;
+  string recordTimeStart = 4;
+  string recordTimeEnd = 5;
+}
+
+message EventFingerprintTraffic1MinData {
+  repeated EventFingerprintTraffic1Min fingerprintTraffic1MinData = 1;
+}
+
+message EventFingerprintTraffic1Min {
+  int32 eventId = 1;
+  double threshold = 2;
+  int32 counterIndex = 3;
+  repeated EventFingerprintTrafficData fingerprintTrafficData = 6;
+}
+
+message EventFingerprintTrafficData {
+  int32 fingerprintType = 1;
+  string fingerprintName = 2;
+  repeated EventTrafficData trafficData = 3;
+}
