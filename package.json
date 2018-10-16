@@ -5,8 +5,8 @@
   "scripts": {
     "ng": "ng",
     "start": "npm run start:stage",
-    "start:local": "ng serve --aot --proxy-config config/proxy.local.conf.js --port 8200",
-    "start:stage": "ng serve --aot --proxy-config config/proxy.stage.conf.js --port 8200",
+    "start:local": "ng serve --aot --proxy-config config/proxy.local.conf.js --port 8081",
+    "start:stage": "ng serve --aot --proxy-config config/proxy.stage.conf.js --port 8081",
     "build": "npm run build",
     "test": "ng test",
     "lint": "ng lint",
