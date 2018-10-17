@@ -7,7 +7,7 @@
     "start": "npm run start:stage",
     "start:local": "ng serve --aot --proxy-config config/proxy.local.conf.js --port 8081",
     "start:stage": "ng serve --aot --proxy-config config/proxy.stage.conf.js --port 8081",
-    "build": "npm run build",
+    "build": "ng build --base-href=/JSCar/",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
@@ -48,6 +48,7 @@
     "npm-font-open-sans": "^1.1.0",
     "rxjs": "^6.2.1",
     "subscriptions-transport-ws": "^0.9.7",
+    "ts-md5": "^1.2.4",
     "web-animations-js": "^2.3.1",
     "zone.js": "^0.8.26"
   },
