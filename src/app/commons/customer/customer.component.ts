@@ -1,9 +1,9 @@
-import { Component, OnInit, Output, AfterViewInit, EventEmitter } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { CarService } from '../../car.service';
-import { FormBuilder, FormGroup } from '@angular/forms';
 import { CustomerTableSchema } from '@models/car-server-table-schema.model';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { map, startWith } from 'rxjs/operators';
-import { Observable, of as observableOf, observable } from 'rxjs';
+import { Observable, observable, of as observableOf } from 'rxjs';
 
 @Component({
   selector: 'app-commons-customer',
@@ -54,6 +54,10 @@ export class CustomerComponent implements OnInit, AfterViewInit {
     if (leng && leng <= 2) {
       this.getCustomer(this.formGroup.controls['customer'].value);
     }
+  }
+
+  displayWith(customer) {
+    return customer ? customer.cs_name : '';
   }
 
   private _filter(value: string): CustomerTableSchema[] {

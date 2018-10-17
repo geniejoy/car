@@ -1,12 +1,11 @@
-import { Component, OnInit, Input, Output, AfterViewInit, EventEmitter, OnChanges } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
 import { CarService } from '../../car.service';
-import { FormBuilder, FormGroup } from '@angular/forms';
 import { carTableSchema } from '@models/car-server-table-schema.model';
-import { map, startWith } from 'rxjs/operators';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { Observable, of as observableOf } from 'rxjs';
 
 @Component({
-  selector: 'common-car-number',
+  selector: 'app-common-car-number',
   templateUrl: './car-number.component.html',
   styleUrls: ['./car-number.component.scss']
 })

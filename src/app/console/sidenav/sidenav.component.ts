@@ -88,6 +88,9 @@ export class SidenavComponent implements OnInit, OnDestroy, AfterViewInit {
 
   /* reset menu item and sub item color */
   resetFocusColor() {
+    if (!this.menuItems) {
+      return;
+    }
     this.menuItems.filter((menuItem: SideNavMenuItem) => !menuItem.category).map((menuItem: SideNavMenuItem) => {
       menuItem.active = false;
       menuItem.routes.map(subMenuItem => {
@@ -113,17 +116,18 @@ export class SidenavComponent implements OnInit, OnDestroy, AfterViewInit {
   */
 
   initMenuItemData() {
-    this.menuItems = [
-      {
-        name: 'System',
-        category: true
-      },
-      {
-        name: 'System',
-        icon: 'build',
-        routes: [{ name: 'Configure', route: '/system' }]
-      }
-    ];
+    this.menuItems = [];
+    // this.menuItems = [
+    //   {
+    //     name: 'System',
+    //     category: true
+    //   },
+    //   {
+    //     name: 'System',
+    //     icon: 'build',
+    //     routes: [{ name: 'Configure', route: '/system' }]
+    //   }
+    // ];
     /* add index */
     this.menuItems = this.menuItems.map((menuItem, index) => ({ ...menuItem, index: index }));
   }
@@ -202,11 +206,15 @@ export class SidenavComponent implements OnInit, OnDestroy, AfterViewInit {
   initSearchData() {
     const refactorData = [];
     refactorData.push({ name: this.items });
-    this.menuItems.filter(menuItem => !menuItem.category).map(menuItem => {
-      menuItem.routes.map(subMenuItem => {
-        refactorData.push({ name: menuItem.name, sub: subMenuItem.name });
+    refactorData.push({ name: this.customers });
+    refactorData.push({ name: this.factories });
+    if (this.menuItems) {
+      this.menuItems.filter(menuItem => !menuItem.category).map(menuItem => {
+        menuItem.routes.map(subMenuItem => {
+          refactorData.push({ name: menuItem.name, sub: subMenuItem.name });
+        });
       });
-    });
+    }
     this.searchData = refactorData;
   }
 

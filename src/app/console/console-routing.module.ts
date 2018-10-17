@@ -1,6 +1,6 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
 import { ConsoleComponent } from '@console/console.component';
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
@@ -9,9 +9,7 @@ const routes: Routes = [
     children: [
       { path: 'items', loadChildren: '@items/items.module#ItemsModule' },
       { path: 'customers', loadChildren: '@customers/customers.module#CustomersModule' },
-      // { path: 'factories', loadChildren: '@factory/factory.module#FactoryModule' },
-      { path: 'factories', loadChildren: '@factory/factory.module#FactoryModule' },
-      { path: 'system', loadChildren: '@system/system.module#SystemModule' }
+      { path: 'factories', loadChildren: '@factories/factories.module#FactoriesModule' }
     ]
   }
 ];

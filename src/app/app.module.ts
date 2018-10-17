@@ -1,17 +1,16 @@
-import { ExtraOptions, RouterModule, Routes } from '@angular/router';
-
 import { AppComponent } from './app.component';
 import { AuthGuardService } from '@auth/login-services/auth-guard.service';
 import { AuthModule } from '@auth/auth.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
+import { CommonsModule } from '@commons/commons.module';
 import { CoreModule } from '@core/core.module';
+import { CustomersModule } from '@customers/customers.module';
+import { ExtraOptions, RouterModule, Routes } from '@angular/router';
+import { FactoriesModule } from '@factories/factories.module';
+import { ItemsModule } from '@items/items.module';
 import { LoginComponent } from '@auth/login/login.component';
 import { NgModule } from '@angular/core';
-import { CustomersModule } from '@customers/customers.module';
-import { ItemsModule } from '@items/items.module';
-import { CommonsModule } from '@commons/commons.module';
-import { FactoryModule } from '@factory/factory.module';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -36,7 +35,7 @@ const routeOptions: ExtraOptions = {
     BrowserAnimationsModule,
     AuthModule,
     CoreModule,
-    FactoryModule,
+    FactoriesModule,
     RouterModule.forRoot(routes, routeOptions)
   ],
   providers: [],

@@ -4,8 +4,7 @@
     <form class="search-form" (click)="ifSideNavIsCloseThenOpen()">
       <mat-icon>search</mat-icon>
       <mat-form-field floatLabel="never">
-        <input matInput type="text" placeholder="Search reports and help" i18n-placeholder="Search reports and help@@SearchPlaceholder"
-          [matAutocomplete]="auto" [formControl]="searchBox" #search>
+        <input matInput type="text" placeholder="Search reports and help" i18n-placeholder="Search reports and help@@SearchPlaceholder" [matAutocomplete]="auto" [formControl]="searchBox" #search>
         <mat-autocomplete #auto="matAutocomplete" style="width: auto;">
           <mat-option *ngFor="let filterData of searchFilterData | async" (onSelectionChange)="goSelectItemRoute($event, filterData, search)">
             <span [innerHTML]="highLightWord(filterData.name)"></span>
@@ -19,29 +18,25 @@
     </form>
     <div class="portal-sidnav-menu portal-hide-scrollbars" fxFlex="nogrow noshrink">
       <mat-nav-list>
-        <a mat-list-item (click)="ifSideNavIsCloseThenOpen()" [ngClass]="{'active': itemsActive}" class="dashboard-item"
-          routerLink="/items">
-          <mat-icon matListIcon>fitness_cente</mat-icon>
+        <a mat-list-item (click)="ifSideNavIsCloseThenOpen()" [ngClass]="{'active': itemsActive}" class="dashboard-item" routerLink="/items">
+          <mat-icon matListIcon>gavel</mat-icon>
           <h3 matLine>{{items}}</h3>
         </a>
       </mat-nav-list>
       <mat-nav-list>
-        <a mat-list-item (click)="ifSideNavIsCloseThenOpen()" [ngClass]="{'active': customersActive}" class="dashboard-item"
-          routerLink="/customers">
+        <a mat-list-item (click)="ifSideNavIsCloseThenOpen()" [ngClass]="{'active': customersActive}" class="dashboard-item" routerLink="/customers">
           <mat-icon matListIcon>group</mat-icon>
           <h3 matLine>{{customers}}</h3>
         </a>
       </mat-nav-list>
       <mat-nav-list>
-        <a mat-list-item (click)="ifSideNavIsCloseThenOpen()" [ngClass]="{'active': factoriesActive}" class="dashboard-item"
-          routerLink="/factories">
-          <mat-icon matListIcon>departure_board</mat-icon>
+        <a mat-list-item (click)="ifSideNavIsCloseThenOpen()" [ngClass]="{'active': factoriesActive}" class="dashboard-item" routerLink="/factories">
+          <mat-icon matListIcon>build</mat-icon>
           <h3 matLine>{{factories}}</h3>
         </a>
       </mat-nav-list>
       <mat-accordion [multi]="!getSideNavStatus()">
-        <mat-expansion-panel *ngFor="let menuItem of menuItems;let i = index" [disabled]="menuItem.category"
-          [hideToggle]="true" (opened)="ifSideNavIsCloseThenOpen(true)" [ngClass]="{'active': !!menuItem.active}">
+        <mat-expansion-panel *ngFor="let menuItem of menuItems;let i = index" [disabled]="menuItem.category" [hideToggle]="true" (opened)="ifSideNavIsCloseThenOpen(true)" [ngClass]="{'active': !!menuItem.active}">
           <mat-expansion-panel-header [ngClass]="{'menu-category':menuItem.category, 'menu-category-hide': true}">
             <mat-panel-title>
               <mat-icon>{{menuItem.icon}}</mat-icon>
@@ -49,8 +44,7 @@
             </mat-panel-title>
           </mat-expansion-panel-header>
           <mat-nav-list>
-            <a mat-list-item *ngFor="let subMenuItem of menuItem.routes" [ngClass]="{'active': !!subMenuItem.active}"
-              [routerLink]="subMenuItem.route">
+            <a mat-list-item *ngFor="let subMenuItem of menuItem.routes" [ngClass]="{'active': !!subMenuItem.active}" [routerLink]="subMenuItem.route">
               <h3 matLine>{{subMenuItem.name}}</h3>
             </a>
           </mat-nav-list>
