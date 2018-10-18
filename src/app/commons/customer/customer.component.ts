@@ -1,7 +1,7 @@
-import { AfterViewInit, Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, OnInit, Output, Input} from '@angular/core';
 import { CarService } from '../../car.service';
 import { CustomerTableSchema } from '@models/car-server-table-schema.model';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { map, startWith } from 'rxjs/operators';
 import { Observable, observable, of as observableOf } from 'rxjs';
 
@@ -11,6 +11,7 @@ import { Observable, observable, of as observableOf } from 'rxjs';
   styleUrls: ['./customer.component.scss']
 })
 export class CustomerComponent implements OnInit, AfterViewInit {
+  @Input() customer;
   @Output() customerChange = new EventEmitter();
   customers: CustomerTableSchema[] = [];
   formGroup: FormGroup;
@@ -19,18 +20,16 @@ export class CustomerComponent implements OnInit, AfterViewInit {
   constructor(private fb: FormBuilder, private carService: CarService) {}
 
   ngOnInit() {
-    this.formGroup = this.fb.group({ customer: this.customers });
-    // this.getCustomer();
+    this.formGroup = this.fb.group({
+      customer: new FormControl(this.customers)
+    });
   }
 
   ngAfterViewInit() {
     this.formGroup.controls['customer'].valueChanges.subscribe(value => {
-      this.filteredOptions = observableOf(
-        value ? this.customers.filter(customer => customer.cs_name.indexOf(value) >= 0) : null
-      );
-
-      this.customerChange.emit(value);
-      console.log('emit customer ', value.cs_auto_no);
+      this.filteredOptions = observableOf(value ? this.customers.filter(customer => customer.cs_name.indexOf(value) >= 0) : null);
+      this.customer = value.cs_auto_no;
+      this.customerChange.emit(this.customer);
     });
   }
 
@@ -50,10 +49,12 @@ export class CustomerComponent implements OnInit, AfterViewInit {
   }
 
   input() {
+    // clear emit data
+    this.customerChange.emit(null);
     const leng = this.formGroup.controls['customer'].value.length;
-    if (leng && leng <= 2) {
-      this.getCustomer(this.formGroup.controls['customer'].value);
-    }
+    // if (leng && leng <= 2) {
+    this.getCustomer(this.formGroup.controls['customer'].value);
+    // }
   }
 
   displayWith(customer) {

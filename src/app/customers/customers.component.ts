@@ -14,9 +14,9 @@ export class CustomersComponent implements OnInit, OnChanges {
   ngOnInit() {}
 
   ngOnChanges(changes) {
-    console.log('cc changes:', changes);
+    console.log('cst changes:', changes);
     if (changes['customer'] && this.customer) {
-      this.customerChange.emit(this.customer);
+      // this.customerChange.emit(this.customer);
     }
   }
 }

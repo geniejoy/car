@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, of as observableOf } from 'rxjs';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Headers, RequestOptions } from '@angular/http';
-import { CustomerTableSchema, carTableSchema } from '@models/car-server-table-schema.model';
+import { CustomerTableSchema, CarTableSchema } from '@models/car-server-table-schema.model';
 
 @Injectable({
   providedIn: 'root'
@@ -19,8 +19,8 @@ export class CarService {
   }
 
   getCustomers(customerName?: string) {
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    let options = new RequestOptions({
+    const headers = new Headers({ 'Content-Type': 'application/json' });
+    const options = new RequestOptions({
       headers: headers,
       params: {
         table: 'customer',
@@ -49,8 +49,12 @@ export class CarService {
       });
   }
 
-  getCars() {
-    this.http.get('/car/getJson.php?table=car').subscribe((datas: Array<carTableSchema>) => {
+  getCars(params) {
+    const body = new HttpParams()
+      .set('table', 'car')
+      .set('customerNo', params.customerNo)
+      .set('carNo', params.carNo);
+    this.http.post('/car/getJson.php', body).subscribe((datas: Array<CarTableSchema>) => {
       // console.log('service car:', datas);
       const carInfos = [];
 

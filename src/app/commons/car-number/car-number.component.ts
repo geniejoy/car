@@ -1,8 +1,9 @@
 import { AfterViewInit, Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
 import { CarService } from '../../car.service';
-import { carTableSchema } from '@models/car-server-table-schema.model';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { Observable, of as observableOf } from 'rxjs';
+import { CarTableSchema } from '@models/car-server-table-schema.model';
+import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
+import { map, startWith } from 'rxjs/operators';
+import { Observable, observable, of as observableOf } from 'rxjs';
 
 @Component({
   selector: 'app-common-car-number',
@@ -11,21 +12,23 @@ import { Observable, of as observableOf } from 'rxjs';
 })
 export class CarNumberComponent implements OnInit, AfterViewInit, OnChanges {
   @Input() customer;
+  @Input() carNo;
+  @Output() customerChange = new EventEmitter();
   @Output() carNoChange = new EventEmitter();
-  cars: carTableSchema[] = [];
+  cars: CarTableSchema[] = [];
   formGroup: FormGroup;
-  filteredOptions: Observable<carTableSchema[]>;
+  filteredOptions: Observable<CarTableSchema[]>;
 
   constructor(private fb: FormBuilder, private carService: CarService) {}
 
   ngOnInit() {
-    this.formGroup = this.fb.group({ car: '' });
+    this.formGroup = this.fb.group({ car: new FormControl(this.carNo) });
   }
 
   ngOnChanges(changes) {
-    console.log('changes:', changes);
+    console.log('car changes:', changes);
     if (changes['customer'] && this.customer) {
-      this.getCar();
+      this.getCar(this.carNo);
     }
   }
 
@@ -36,26 +39,37 @@ export class CarNumberComponent implements OnInit, AfterViewInit, OnChanges {
           ? this.cars.filter(car => car.cr_no.indexOf(value) >= 0 && car.cr_cs_no === this.customer)
           : this.cars.slice()
       );
-
-      this.carNoChange.emit(value);
+      this.carNo = value.cr_auto_no;
+      this.carNoChange.emit(this.carNo);
     });
   }
 
-  getCar() {
+  getCar(carNo) {
     this.cars = [];
-    this.carService.carChange.subscribe((data: Array<carTableSchema>) => {
+    this.carService.getCars({ customerNo: this.customer, carNo: carNo ? carNo : '' });
+    this.carService.carChange.subscribe((data: Array<CarTableSchema>) => {
       console.log('car:', data);
       this.cars = data;
       // init data
-      // this.filteredOptions = this.carService.carChange.pipe(
-      //   startWith<string | carTableSchema>(''),
-      //   map(value => (typeof value === 'string' ? value : value.cr_no)),
-      //   map(name => (name ? this._filter(name) : this.cars.slice()))
-      // );
+      this.filteredOptions = this.carService.customerChange.pipe(
+        startWith<string | CarTableSchema>(''),
+        map(value => (typeof value === 'string' ? value : value.cr_no)),
+        map(name => (name ? this._filter(name) : this.cars.slice()))
+      );
     });
   }
 
-  private _filter(value: string): carTableSchema[] {
+  input() {
+    // clear emit data
+    this.carNoChange.emit(null);
+    this.getCar(this.formGroup.controls['car'].value);
+  }
+
+  displayWith(car) {
+    return car ? car.cr_no : '';
+  }
+
+  private _filter(value: string): CarTableSchema[] {
     const filterValue = value.toLowerCase();
 
     return this.cars.filter(car => car.cr_no.toLowerCase().indexOf(filterValue) === 0);

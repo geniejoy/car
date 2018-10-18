@@ -1,0 +1,13 @@
+<p>condition:: {{customer}} carNo::{{carNo}}, test::{{test}}
+</p>
+<div fxLayout="row wrap" fxLayoutAlign="start space-around">
+  <div class="factory-options">
+    <app-commons-customer [(customer)]="customer" ></app-commons-customer>
+  </div>
+  <div class="factory-options">
+    <app-common-car-number [(customer)]="customer" [(carNo)]="carNo"></app-common-car-number>
+  </div> 
+  <div class="factory-options">
+    <app-date-picker></app-date-picker>
+  </div>
+</div>

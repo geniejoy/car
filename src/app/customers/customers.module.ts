@@ -8,4 +8,5 @@ import { CustomersRoutingModule } from './customers-routing.module';
   imports: [SharedModule, CommonsModule, CustomersRoutingModule],
   declarations: [CustomersComponent]
 })
-export class CustomersModule {}
+export class CustomersModule {
+}

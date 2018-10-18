@@ -38,7 +38,7 @@ export interface CustomerTableSchema {
   letter?: string;
 }
 
-export interface carTableSchema {
+export interface CarTableSchema {
   cr_auto_no: string;
   cr_no: string;
   cr_cs: string;

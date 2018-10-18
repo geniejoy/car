@@ -17,7 +17,7 @@ export class FactoriesComponent implements OnInit, OnChanges {
   ngOnChanges(changes) {
     console.log('cc changes:', changes);
     if (changes['customer'] && this.customer) {
-      this.customerChange.emit(this.customer);
+      // this.customerChange.emit(this.customer);
     }
   }
 }
