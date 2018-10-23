@@ -11,6 +11,7 @@ import { FactoriesModule } from '@factories/factories.module';
 import { ItemsModule } from '@items/items.module';
 import { LoginComponent } from '@auth/login/login.component';
 import { NgModule } from '@angular/core';
+import { SharedModule } from '@shared/shared.module';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -35,6 +36,7 @@ const routeOptions: ExtraOptions = {
     BrowserAnimationsModule,
     AuthModule,
     CoreModule,
+    SharedModule,
     FactoriesModule,
     RouterModule.forRoot(routes, routeOptions)
   ],
