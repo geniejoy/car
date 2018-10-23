@@ -9,7 +9,8 @@ export class FactoriesComponent implements OnInit, OnChanges {
   @Input() customer;
   @Output() customerChange;
   @Input() carNo;
-  @Input() Options;
+  @Input() sDate;
+  @Input() eDate;
 
   constructor() {}
 

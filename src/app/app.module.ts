@@ -30,7 +30,6 @@ const routeOptions: ExtraOptions = {
   declarations: [AppComponent],
   imports: [
     BrowserModule,
-    CommonsModule,
     CustomersModule,
     ItemsModule,
     BrowserAnimationsModule,
@@ -38,6 +37,8 @@ const routeOptions: ExtraOptions = {
     CoreModule,
     SharedModule,
     FactoriesModule,
+    SharedModule,
+    CommonsModule,
     RouterModule.forRoot(routes, routeOptions)
   ],
   providers: [],

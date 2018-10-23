@@ -22,7 +22,7 @@ export class DatePickerComponent implements OnInit, OnChanges {
   @Input() value: string; // format is YYYY-MM-DD;
   @Input() disabled: boolean;
   @Input() label: string;
-  @Output() optionsChange: EventEmitter<string>;
+  @Output() dateChange: EventEmitter<string>;
   @ViewChild('picker') picker: MatDatepicker<any>;
   date: FormControl;
 
@@ -42,7 +42,7 @@ export class DatePickerComponent implements OnInit, OnChanges {
 
   onDateChange() {
     const emitData = this.formatDate(this.date.value);
-    this.optionsChange.emit(emitData);
+    this.dateChange.emit(emitData);
   }
 
   onDatePickOpened() {
@@ -65,7 +65,7 @@ export class DatePickerComponent implements OnInit, OnChanges {
     this.picker.close();
     this.date.setValue(new Date());
     const emitData = this.formatDate(this.date.value);
-    this.optionsChange.emit(emitData);
+    this.dateChange.emit(emitData);
   }
 
   private formatDate(date: Date) {
@@ -74,7 +74,7 @@ export class DatePickerComponent implements OnInit, OnChanges {
   }
 
   private initialize() {
-    this.optionsChange = new EventEmitter();
+    this.dateChange = new EventEmitter();
   }
 
   private initDate() {

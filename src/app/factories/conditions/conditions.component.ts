@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, OnChanges } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-factories-conditions',
@@ -8,10 +8,11 @@ import { Component, OnInit, Input, Output, OnChanges } from '@angular/core';
 export class ConditionsComponent implements OnInit, OnChanges {
   @Input() customer;
   @Input() carNo;
-  @Input() options;
+  @Input() sDate;
+  @Input() eDate;
   @Output() customerChange;
   @Output() carNoChange;
-  @Output() optionsChange;
+  @Output() dateChange;
 
   constructor() {}
 
@@ -21,10 +22,8 @@ export class ConditionsComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes) {
     console.log('conditions:', changes);
-    this.customerChange.emit(this.customer);
-    this.carNoChange.emit(this.carNo);
-    this.optionsChange.emit(this.options);
-    // if (changes['customer']) {
-    // }
+    if (changes['customer']) {
+      // this.customerChange.emit(this.customer);
+    }
   }
 }
