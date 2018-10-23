@@ -12,7 +12,8 @@ export class ConditionsComponent implements OnInit, OnChanges {
   @Input() eDate;
   @Output() customerChange;
   @Output() carNoChange;
-  @Output() dateChange;
+  @Output() sDateChange;
+  @Output() eDateChange;
 
   constructor() {}
 
