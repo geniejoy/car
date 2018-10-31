@@ -36,7 +36,7 @@ export class CarService {
         const customerInfos = [];
 
         datas.forEach((data, index) => {
-          console.log('data:', data.cs_name.substr(0, 2));
+          // console.log('data:', data.cs_name.substr(0, 2));
           const customerData = data;
           customerData.letter = data.cs_no.substr(0, 1);
           customerInfos.push(customerData);

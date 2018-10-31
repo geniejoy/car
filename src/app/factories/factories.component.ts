@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, OnInit, Output } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-factories',
@@ -7,10 +7,10 @@ import { Component, Input, OnChanges, OnInit, Output } from '@angular/core';
 })
 export class FactoriesComponent implements OnInit, OnChanges {
   @Input() customer;
-  @Output() customerChange;
   @Input() carNo;
   @Input() sDate;
   @Input() eDate;
+  @Output() customerChange = new EventEmitter();
 
   constructor() {}
 

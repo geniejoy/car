@@ -1,16 +1,15 @@
-import { Component, Input, OnChanges, OnInit, Output } from '@angular/core';
-
+import { Component, Input, OnChanges, OnInit, Output, EventEmitter } from '@angular/core';
 @Component({
   selector: 'app-factories-conditions',
   templateUrl: './conditions.component.html',
   styleUrls: ['./conditions.component.scss']
 })
 export class ConditionsComponent implements OnInit, OnChanges {
-  @Input() customer;
-  @Input() carNo;
-  @Input() sDate;
-  @Input() eDate;
-  @Output() customerChange;
+  @Input() customer = 0;
+  @Input() carNo = 0;
+  @Input() sDate = '';
+  @Input() eDate = '';
+  @Output() customerChange = new EventEmitter();
   @Output() carNoChange;
   @Output() sDateChange;
   @Output() eDateChange;
