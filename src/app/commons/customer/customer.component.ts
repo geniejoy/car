@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, EventEmitter, OnInit, Output, Input} from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, OnInit, Output, Input } from '@angular/core';
 import { CarService } from '../../car.service';
 import { CustomerTableSchema } from '@models/car-server-table-schema.model';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
@@ -11,7 +11,7 @@ import { Observable, observable, of as observableOf } from 'rxjs';
   styleUrls: ['./customer.component.scss']
 })
 export class CustomerComponent implements OnInit, AfterViewInit {
-  @Input() customer;
+  @Input() customer = 0;
   @Output() customerChange = new EventEmitter();
   customers: CustomerTableSchema[] = [];
   formGroup: FormGroup;
@@ -27,9 +27,14 @@ export class CustomerComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     this.formGroup.controls['customer'].valueChanges.subscribe(value => {
-      this.filteredOptions = observableOf(value ? this.customers.filter(customer => customer.cs_name.indexOf(value) >= 0) : null);
+      this.filteredOptions = observableOf(
+        value ? this.customers.filter(customer => customer.cs_name.indexOf(value) >= 0) : null
+      );
       this.customer = value.cs_auto_no;
-      this.customerChange.emit(this.customer);
+      if (value.cs_auto_no) {
+        console.log('value.cs_auto_no:', value.cs_auto_no);
+        this.customerChange.emit(value.cs_auto_no);
+      }
     });
   }
 

@@ -6,11 +6,14 @@ import { Component, Input, OnChanges, OnInit, Output, EventEmitter } from '@angu
   styleUrls: ['./factories.component.scss']
 })
 export class FactoriesComponent implements OnInit, OnChanges {
-  @Input() customer;
-  @Input() carNo;
-  @Input() sDate;
-  @Input() eDate;
+  @Input() customer = 0;
+  @Input() carNo = 0;
+  @Input() sDate = '';
+  @Input() eDate = '';
   @Output() customerChange = new EventEmitter();
+  @Output() carNoChange = new EventEmitter();
+  @Output() sDateChange = new EventEmitter();
+  @Output() eDateChange = new EventEmitter();
 
   constructor() {}
 
