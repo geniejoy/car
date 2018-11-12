@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-
 import { AuthenticationService } from '@auth/login-services/authentication.service';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -47,6 +46,7 @@ export class LoginComponent implements OnInit {
         this.router.navigate([this.returnUrl]);
       })
       .catch(error => {
+        console.error('error:', error);
         this.message = error.statusText;
       });
   }
