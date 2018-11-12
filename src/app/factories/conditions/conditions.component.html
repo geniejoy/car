@@ -1,8 +1,8 @@
-<p>condition:: {{customer}} carNo::{{carNo}} date::{{sDate}} eDate::{{eDate}} value:{{value}}
+<p>condition:: {{customer}} carNo::{{carNo}} date::{{sDate}} eDate::{{eDate}} 
 </p>
 <div fxLayout="row wrap" fxLayoutAlign="start space-around">
   <div class="factory-options">
-    <app-commons-customer [(customer)]="customer" ></app-commons-customer>
+    <app-commons-customer [(customerId)]="customer" ></app-commons-customer>
   </div>
   <div class="factory-options">
     <app-common-car-number [(customer)]="customer" [(carNo)]="carNo"></app-common-car-number>

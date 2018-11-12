@@ -71,7 +71,9 @@ export class DatePickerComponent implements OnInit, OnChanges {
 
   private formatDate(date: Date) {
     const regExp = new RegExp('/', 'g');
-    return date.toLocaleDateString('zh').replace(regExp, '-');
+    return date
+      .toLocaleDateString('zh', { year: 'numeric', month: '2-digit', day: '2-digit' })
+      .replace(regExp, '-');
   }
 
   private initialize() {

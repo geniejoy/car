@@ -1,0 +1,16 @@
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+::ng-deep {
+  .gna-console {
+    .expand-detail {
+      min-height: 0;
+      border: 0;
+      &.show {
+        border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+      }
+    }
+  }
+}

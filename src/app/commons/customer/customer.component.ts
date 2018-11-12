@@ -11,8 +11,8 @@ import { Observable, observable, of as observableOf } from 'rxjs';
   styleUrls: ['./customer.component.scss']
 })
 export class CustomerComponent implements OnInit, AfterViewInit {
-  @Input() customer = 0;
-  @Output() customerChange = new EventEmitter();
+  @Input() customerId = 0;
+  @Output() customerIdChange = new EventEmitter();
   customers: CustomerTableSchema[] = [];
   formGroup: FormGroup;
   filteredOptions: Observable<CustomerTableSchema[]>;
@@ -30,17 +30,17 @@ export class CustomerComponent implements OnInit, AfterViewInit {
       this.filteredOptions = observableOf(
         value ? this.customers.filter(customer => customer.cs_name.indexOf(value) >= 0) : null
       );
-      this.customer = value.cs_auto_no;
+      this.customerId = value.cs_auto_no;
       if (value.cs_auto_no) {
         console.log('value.cs_auto_no:', value.cs_auto_no);
-        this.customerChange.emit(value.cs_auto_no);
+        this.customerIdChange.emit(value.cs_auto_no);
       }
     });
   }
 
   getCustomer(customerName) {
     this.customers = [];
-    this.carService.getCustomers(customerName);
+    this.carService.getCustomers({customerName: customerName});
     this.carService.customerChange.subscribe((data: Array<CustomerTableSchema>) => {
       // console.log('customer:', data);
       this.customers = data;
@@ -55,7 +55,7 @@ export class CustomerComponent implements OnInit, AfterViewInit {
 
   input() {
     // clear emit data
-    this.customerChange.emit(null);
+    this.customerIdChange.emit(null);
     const leng = this.formGroup.controls['customer'].value.length;
     // if (leng && leng <= 2) {
     this.getCustomer(this.formGroup.controls['customer'].value);

@@ -1,0 +1,36 @@
+fieldset {
+  border: 1px solid #03a9f4;
+  border-radius: 4px;
+  display: block;
+  padding: 0.35em 0.625em 0.75em;
+  margin: 0 2px;
+}
+
+legend {
+  font-weight: bold;
+}
+
+fieldset > legend:first-of-type {
+  border: none;
+  margin-bottom: auto;
+  width: inherit;
+  padding: inherit;
+  /* color: blue; */
+}
+
+.block {
+  margin: 0px;
+  width: 1000px;
+  padding: 0px;
+  border: 1;
+  table {
+    padding: 0px;
+    border: 0px;
+  }
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 4px;
+}
