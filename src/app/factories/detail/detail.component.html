@@ -1,75 +1,83 @@
 <p>detail works! detailInfo::{{ detailInfo | json }}</p>
-<div class='factory-header'>
-<div class="grid">
-  <div>
-    <mat-list role="list">
-      <mat-list-item role="listitem"
-        ><span class="inputlabel">單號:</span
-        ><span class="inputdata">{{ detailInfo.header.orig_fix_no }}</span></mat-list-item
-      >
-      <mat-list-item role="listitem"
-        ><span class="inputlabel">車號:</span
-        ><span class="inputdata">{{ detailInfo.header.car_no }}</span></mat-list-item
-      >
-      <mat-list-item role="listitem"
-        ><span class="inputlabel">客戶:</span
-        ><span class="inputdata">{{ detailInfo.customerInfo.cs_name }}</span></mat-list-item
-      >
-      <mat-list-item role="listitem"
-        ><span class="inputlabel">狀態:</span
-        ><span class="inputdata">{{ detailInfo.header.status }}</span></mat-list-item
-      >
-    </mat-list>
-  </div>
-  <div>
-    <mat-list role="list">
-      <mat-list-item role="listitem"
-        ><span class="inputlabel">日期:</span
-        ><span class="inputdata">{{ detailInfo.header.fix_date | date: 'yyyy-MM-dd' }}</span></mat-list-item
-      >
-      <mat-list-item role="listitem"
-        ><span class="inputlabel">帳本編號:</span
-        ><span class="inputdata">{{ detailInfo.header.paper_seq }}</span></mat-list-item
-      >
-      <mat-list-item role="listitem"
-        ><span class="inputlabel">紙本總計:</span
-        ><span class="inputdata">{{ detailInfo.header.paper_total }}</span></mat-list-item
-      >
-    </mat-list>
+<div class="factory-header">
+  <div class="grid">
+    <div>
+      <mat-list role="list">
+        <mat-list-item role="listitem"
+          ><span class="inputlabel">單號:</span
+          ><span class="inputdata">{{ detailInfo.header.orig_fix_no }}</span></mat-list-item
+        >
+        <mat-list-item role="listitem"
+          ><span class="inputlabel">車號:</span
+          ><span class="inputdata">{{ detailInfo.header.car_no }}</span></mat-list-item
+        >
+        <mat-list-item role="listitem"
+          ><span class="inputlabel">客戶:</span
+          ><span class="inputdata">{{ detailInfo.customerInfo.cs_name }}</span></mat-list-item
+        >
+        <mat-list-item role="listitem"
+          ><span class="inputlabel">狀態:</span
+          ><span class="inputdata">{{ detailInfo.header.status }}</span></mat-list-item
+        >
+      </mat-list>
+    </div>
+    <div>
+      <mat-list role="list">
+        <mat-list-item role="listitem"
+          ><span class="inputlabel">日期:</span
+          ><span class="inputdata">{{ detailInfo.header.fix_date | date: 'yyyy-MM-dd' }}</span></mat-list-item
+        >
+        <mat-list-item role="listitem"
+          ><span class="inputlabel">帳本編號:</span
+          ><span class="inputdata">{{ detailInfo.header.paper_seq }}</span></mat-list-item
+        >
+        <mat-list-item role="listitem"
+          ><span class="inputlabel">紙本總計:</span
+          ><span class="inputdata">{{ detailInfo.header.paper_total }}</span></mat-list-item
+        >
+      </mat-list>
+    </div>
   </div>
 </div>
-</div>
-<div class='factor-lines'>
+<div class="factor-lines">
   <div class="container mat-elevation-z8 gna-console">
-    <mat-table #table [dataSource]="dataSource" multiTemplateDataRows class="mat-elevation-z8" matSort matSortActive="id"
-      matSortDirection="desc" matSortDisableClear>
-    
+    <mat-table
+      #table
+      [dataSource]="dataSource"
+      multiTemplateDataRows
+      class="mat-elevation-z8"
+      matSort
+      matSortActive="id"
+      matSortDirection="desc"
+      matSortDisableClear
+    >
       <ng-container matColumnDef="itemName">
         <mat-header-cell mat-sort-header *matHeaderCellDef class="table-header"> 品名 </mat-header-cell>
-        <mat-cell *matCellDef="let element" class="table-content">{{element.item.it_name}}</mat-cell>
+        <mat-cell *matCellDef="let element" class="table-content">{{ element.item.it_name }}</mat-cell>
       </ng-container>
-  
+
       <ng-container matColumnDef="itemStd">
         <mat-header-cell mat-sort-header *matHeaderCellDef class="table-header"> 規格</mat-header-cell>
-        <mat-cell *matCellDef="let element" class="table-content"> {{element.it_std}}</mat-cell>
+        <mat-cell *matCellDef="let element" class="table-content"> {{ element.it_std }}</mat-cell>
       </ng-container>
-  
+
       <ng-container matColumnDef="qty">
         <mat-header-cell mat-sort-header *matHeaderCellDef class="table-header"> 數量 </mat-header-cell>
-        <mat-cell *matCellDef="let element" class="table-content"> {{it_qty}}</mat-cell>
+        <mat-cell *matCellDef="let element" class="table-content"> {{ element.qty }}</mat-cell>
       </ng-container>
-  
+
       <ng-container matColumnDef="price">
         <mat-header-cell mat-sort-header *matHeaderCellDef class="table-header"> 單價 </mat-header-cell>
-        <mat-cell *matCellDef="let element" class="table-content">
-          {{element.price}}</mat-cell>
+        <mat-cell *matCellDef="let element" class="table-content"> {{ element.price }}</mat-cell>
       </ng-container>
-  
+
       <ng-container matColumnDef="subTotal">
         <mat-header-cell *matHeaderCellDef class="table-header">小計</mat-header-cell>
-        <mat-cell *matCellDef="let element" class="table-content"> {{element.total}} </mat-cell>
+        <mat-cell *matCellDef="let element" class="table-content"> {{ element.total }} </mat-cell>
       </ng-container>
-  
-        </mat-table>
-      </div>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let element; columns: displayedColumns;"></mat-row>
+    </mat-table>
+  </div>
 </div>

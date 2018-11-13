@@ -30,6 +30,6 @@ export class DetailComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes) {
     console.log('detail changes:', changes);
-    // this.dataSource.data = this.detailInfo.lines;
+    this.dataSource.data = this.detailInfo.lines;
   }
 }
