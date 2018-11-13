@@ -1,106 +1,106 @@
-<p>history:: {{customer}} carNo::{{carNo}} date::{{sDate}} eDate::{{eDate}}
-    <div>
-        <table width="100%">
-            <tr>
-                <td width="40%">
-                    <mat-form-field class="filter-search-input">
-                        <input matInput (input)="applyFilter()" placeholder="Filter" [(ngModel)]="filterValue" [disabled]="filterDisabled"
-                            #filterInput>
-                    </mat-form-field>
-                </td>
-                <td align='right' nowrap>
-                    <mat-paginator #paginatorInput [pageSizeOptions]="pageSizeOptions" showFirstLastButtons (page)="pageEvent = $event"></mat-paginator>
-                </td>
-            </tr>
-        </table>
-    </div>
-    
-    <div class="container mat-elevation-z8 gna-console">
-        <mat-table #table [dataSource]="dataSource" multiTemplateDataRows class="mat-elevation-z8" matSort matSortActive="id"
-            matSortDirection="desc" matSortDisableClear>
-    
-            <ng-container matColumnDef="actions">
-                <mat-header-cell *matHeaderCellDef class="table-header">
-                    <!-- <button mat-icon-button color="primary" (click)="toggleAddRow()" [disabled]="!selectedMspId">
+<div>
+    <table width="100%">
+        <tr>
+            <td width="40%">
+                <mat-form-field class="filter-search-input">
+                    <input matInput (input)="applyFilter()" placeholder="Filter" [(ngModel)]="filterValue" [disabled]="filterDisabled" #filterInput>
+                </mat-form-field>
+            </td>
+            <td align='right' nowrap>
+                <mat-paginator #paginatorInput [pageSizeOptions]="pageSizeOptions" showFirstLastButtons (page)="pageEvent = $event"></mat-paginator>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<div class="container mat-elevation-z8 gna-console">
+    <mat-table #table [dataSource]="dataSource" multiTemplateDataRows class="mat-elevation-z8" matSort matSortActive="id" matSortDirection="desc" matSortDisableClear>
+
+        <ng-container matColumnDef="actions">
+            <mat-header-cell *matHeaderCellDef class="table-header">
+                <!-- <button mat-icon-button color="primary" (click)="toggleAddRow()" [disabled]="!selectedMspId">
                         <mat-icon aria-label="add_comment">add_comment</mat-icon>
                     </button> -->
-                </mat-header-cell>
-                <mat-cell *matCellDef="let element" class="table-content">
-                    <!-- <button mat-icon-button color="primary" (click)="toggleEditRow(element)">
+            </mat-header-cell>
+            <mat-cell *matCellDef="let element" class="table-content">
+                <!-- <button mat-icon-button color="primary" (click)="toggleEditRow(element)">
                         <mat-icon aria-label="Edit">edit</mat-icon>
                     </button>
                     <button mat-icon-button color="primary" (click)="toggleDeleteRow(element)">
                         <mat-icon aria-label="Delete">delete</mat-icon>
                     </button> -->
-                    <button mat-icon-button color="primary" (click)="toggleViewRow(element)">
-                        <mat-icon aria-label="notes">notes</mat-icon>
-                    </button>
-                </mat-cell>
-            </ng-container>
-    
-            <ng-container matColumnDef="status">
-                <mat-header-cell mat-sort-header *matHeaderCellDef class="table-header"> 狀態 </mat-header-cell>
-                <mat-cell *matCellDef="let element" class="table-content">{{element.header.status}}</mat-cell>
-            </ng-container>
-    
-            <ng-container matColumnDef="fixNo">
-                <mat-header-cell mat-sort-header *matHeaderCellDef class="table-header"> 原單號 </mat-header-cell>
-                <mat-cell *matCellDef="let element" class="table-content"> {{element.header.orig_fix_no}}</mat-cell>
-            </ng-container>
-    
-            <ng-container matColumnDef="fixDate">
-                <mat-header-cell mat-sort-header *matHeaderCellDef class="table-header"> 日期 </mat-header-cell>
-                <mat-cell *matCellDef="let element" class="table-content"> {{element.header.fix_date | date: 'yyyy-MM-dd'}}</mat-cell>
-            </ng-container>
+                <button mat-icon-button color="primary" (click)="toggleViewRow(element)">
+                    <mat-icon aria-label="notes">notes</mat-icon>
+                </button>
+            </mat-cell>
+        </ng-container>
 
-            <ng-container matColumnDef="customerName">
-                <mat-header-cell mat-sort-header *matHeaderCellDef class="table-header"> 客戶 </mat-header-cell>
-                <mat-cell *matCellDef="let element" class="table-content"> {{element.customerInfo?element.customerInfo.cs_name:''}}</mat-cell>
-            </ng-container>
-    
-            <ng-container matColumnDef="carNo">
-                <mat-header-cell *matHeaderCellDef class="table-header">車號</mat-header-cell>
-                <mat-cell *matCellDef="let element" class="table-content"> {{element.header.car_no}} </mat-cell>
-            </ng-container>
+        <ng-container matColumnDef="status">
+            <mat-header-cell mat-sort-header *matHeaderCellDef class="table-header"> 狀態 </mat-header-cell>
+            <mat-cell *matCellDef="let element" class="table-content">{{element.header.status}}</mat-cell>
+        </ng-container>
 
-            <ng-container matColumnDef="total">
-                <mat-header-cell *matHeaderCellDef class="table-header">總計</mat-header-cell>
-                <mat-cell *matCellDef="let element" class="table-content"> {{element.header.paper_total}} </mat-cell>
-            </ng-container>
+        <ng-container matColumnDef="fixNo">
+            <mat-header-cell mat-sort-header *matHeaderCellDef class="table-header"> 原單號 </mat-header-cell>
+            <mat-cell *matCellDef="let element" class="table-content"> {{element.header.orig_fix_no}}</mat-cell>
+        </ng-container>
 
-            <ng-container matColumnDef="bookNo">
-                <mat-header-cell *matHeaderCellDef class="table-header">帳本</mat-header-cell>
-                <mat-cell *matCellDef="let element" class="table-content"> {{element.header.paper_seq}} </mat-cell>
-            </ng-container>
-    
-            <!-- Expanded Theader Row -->
-            <ng-container matColumnDef="expandedTh">
-                <mat-header-cell *matHeaderCellDef [attr.colspan]="displayedColumns.length">
-                    <!-- Add -->
-                    <div *ngIf="expandedAddId === -1">
+        <ng-container matColumnDef="fixDate">
+            <mat-header-cell mat-sort-header *matHeaderCellDef class="table-header"> 日期 </mat-header-cell>
+            <mat-cell *matCellDef="let element" class="table-content"> {{element.header.fix_date | date: 'yyyy-MM-dd'}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="customerName">
+            <mat-header-cell mat-sort-header *matHeaderCellDef class="table-header"> 客戶 </mat-header-cell>
+            <mat-cell *matCellDef="let element" class="table-content"> {{element.customerInfo?element.customerInfo.cs_name:''}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="carNo">
+            <mat-header-cell *matHeaderCellDef class="table-header">車號</mat-header-cell>
+            <mat-cell *matCellDef="let element" class="table-content"> {{element.header.car_no}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="total">
+            <mat-header-cell *matHeaderCellDef class="table-header">總計</mat-header-cell>
+            <mat-cell *matCellDef="let element" class="table-content"> {{element.header.paper_total}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="bookNo">
+            <mat-header-cell *matHeaderCellDef class="table-header">帳本</mat-header-cell>
+            <mat-cell *matCellDef="let element" class="table-content"> {{element.header.paper_seq}} </mat-cell>
+        </ng-container>
+
+        <!-- Expanded Theader Row -->
+        <ng-container matColumnDef="expandedTh">
+            <mat-header-cell *matHeaderCellDef [attr.colspan]="displayedColumns.length">
+                <!-- Add -->
+                <div *ngIf="expandedAddId === -1">
+                </div>
+            </mat-header-cell>
+        </ng-container>
+
+        <!-- Expanded Row -->
+        <ng-container matColumnDef="expandedDetail">
+            <mat-cell *matCellDef="let element" [attr.colspan]="displayedColumns.length">
+                <div [@rowExpand]="expandedRowId === element.header.header_id ? 'expanded' : 'collapsed'">
+                    <!-- Edit -->
+                    <!-- <div *ngIf="expandedEditId === element.config.id"></div> -->
+                    <!-- Delete -->
+                    <!-- <div *ngIf="expandedDelId === element.config.id"></div> -->
+                    <!-- View -->
+                    <div *ngIf="expandedViewId === element.header.header_id">
+                        <app-factories-detail [detailInfo]="element"></app-factories-detail>
                     </div>
-                </mat-header-cell>
-            </ng-container>
-    
-            <!-- Expanded Row -->
-            <ng-container matColumnDef="expandedDetail">
-                <mat-cell *matCellDef="let element" [attr.colspan]="displayedColumns.length">
-                    <div [@rowExpand]="expandedRowId === element.header.header_id ? 'expanded' : 'collapsed'">
-                        <!-- Edit -->
-                        <!-- <div *ngIf="expandedEditId === element.config.id"></div> -->
-                        <!-- Delete -->
-                        <!-- <div *ngIf="expandedDelId === element.config.id"></div> -->
-                        <!-- View -->
-                        <div *ngIf="expandedViewId === element.header.header_id">
-                            <app-factories-detail [detailInfo]="element"></app-factories-detail>
-                        </div>
+                    <div class="button-row">
+                        <button mat-raised-button color="primary" (click)="closeExpanded()">Close</button>
                     </div>
-                </mat-cell>
-            </ng-container>
-            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-            <mat-header-row *matHeaderRowDef="['expandedTh']" [@rowExpand]="expandedRowId == -1 ? 'expanded' : 'collapsed'"></mat-header-row>
-    
-            <mat-row *matRowDef="let element; columns: displayedColumns;" (click)="toggleViewRow(element)"></mat-row>
-            <mat-row class="expand-detail" [ngClass]="{show: expandedRowId == element.header.header_id}" *matRowDef="let element; columns: ['expandedDetail']"></mat-row>
-        </mat-table>
-    </div>
+                </div>
+            </mat-cell>
+        </ng-container>
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-header-row *matHeaderRowDef="['expandedTh']" [@rowExpand]="expandedRowId == -1 ? 'expanded' : 'collapsed'"></mat-header-row>
+
+        <mat-row *matRowDef="let element; columns: displayedColumns;" (click)="toggleViewRow(element)"></mat-row>
+        <mat-row class="expand-detail" [ngClass]="{show: expandedRowId == element.header.header_id}" *matRowDef="let element; columns: ['expandedDetail']"></mat-row>
+    </mat-table>
+</div>

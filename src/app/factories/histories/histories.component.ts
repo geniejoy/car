@@ -1,16 +1,36 @@
-import { Component, OnInit, Input, OnChanges, AfterViewInit, ViewChild, ElementRef, DoCheck } from '@angular/core';
-import { CarService } from '../../car.service';
-import { FixHeadersInput } from '@models/condication-input.model';
-import { MatPaginator, MatSort, MatTableDataSource, PageEvent } from '@angular/material';
-import { merge, Subject } from 'rxjs';
-import { animate, state, style, transition, trigger } from '@angular/animations';
 import {
-  CustomerTableSchema,
+  AfterViewInit,
+  Component,
+  DoCheck,
+  ElementRef,
+  Input,
+  OnChanges,
+  OnInit,
+  ViewChild
+  } from '@angular/core';
+import {
+  animate,
+  state,
+  style,
+  transition,
+  trigger
+  } from '@angular/animations';
+import { CarService } from '../../car.service';
+import {
   CarTableSchema,
+  CustomerTableSchema,
+  FactoryHistories,
   FixHeadersTableSchema,
-  FixLinesTableSchema,
-  FactoryHistories
-} from '@models/car-server-table-schema.model';
+  FixLinesTableSchema
+  } from '@models/car-server-table-schema.model';
+import { FixHeadersInput } from '@models/condication-input.model';
+import {
+  MatPaginator,
+  MatSort,
+  MatTableDataSource,
+  PageEvent
+  } from '@angular/material';
+import { merge, Subject } from 'rxjs';
 @Component({
   selector: 'app-factories-histories',
   templateUrl: './histories.component.html',
@@ -61,8 +81,10 @@ export class HistoriesComponent implements OnInit, OnChanges, AfterViewInit, DoC
 
   ngOnChanges(changes) {
     console.log('HistoriesComponent changes:', changes);
-    this.closeExpanded();
+    // this.closeExpanded();
+    const oldExpandedViewId = this.expandedViewId;
     this.getFactoryHistoriesData();
+    this.toggleViewRow(oldExpandedViewId);
   }
 
   ngAfterViewInit() {
@@ -82,14 +104,14 @@ export class HistoriesComponent implements OnInit, OnChanges, AfterViewInit, DoC
   getFactoryHistoriesData() {
     this.filterDisabled = true;
     setTimeout(() => {
-      console.log('HistoriesComponent into getFactoryHistoriesData');
-      console.log('customer:', this.customer);
-      console.log('car:', this.carNo);
-      console.log('sDate:', this.sDate);
-      console.log('eDate:', this.eDate);
+      // console.log('HistoriesComponent into getFactoryHistoriesData');
+      // console.log('customer:', this.customer);
+      // console.log('car:', this.carNo);
+      // console.log('sDate:', this.sDate);
+      // console.log('eDate:', this.eDate);
       // if (!this.customer || !this.carNo || !this.sDate || !this.eDate) {
       if (!this.sDate || !this.eDate) {
-        console.log('....return!');
+        // console.log('....return!');
         return;
       }
       const params: FixHeadersInput = {
@@ -107,11 +129,11 @@ export class HistoriesComponent implements OnInit, OnChanges, AfterViewInit, DoC
         if (data) {
           this.filterDisabled = false;
         }
-
         this.applyFilter();
       });
     });
   }
+
   subscribeExpandSubject() {
     this.expandSubject.subscribe(() => {
       this.closeExpanded();

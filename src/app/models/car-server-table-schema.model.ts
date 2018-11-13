@@ -101,7 +101,7 @@ export interface FixLinesTableSchema {
 }
 
 export interface FactoryHistories {
-  header: FixHeadersTableSchema;
+  header?: FixHeadersTableSchema;
   lines?: FixLinesTableSchema[];
   customerInfo?: CustomerTableSchema;
   carInfo?: CarTableSchema;

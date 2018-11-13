@@ -1,5 +1,3 @@
-<p>condition:: {{customer}} carNo::{{carNo}} date::{{sDate}} eDate::{{eDate}} 
-</p>
 <div fxLayout="row wrap" fxLayoutAlign="start space-around">
   <div class="factory-options">
     <app-commons-customer [(customerId)]="customer" ></app-commons-customer>
@@ -8,7 +6,10 @@
     <app-common-car-number [(customer)]="customer" [(carNo)]="carNo"></app-common-car-number>
   </div> 
   <div class="factory-picker-date">
-    <app-date-picker [(value)]="sDate"></app-date-picker>~
-    <app-date-picker [(value)]="eDate"></app-date-picker>
+    <div class='picker-date-grid'>
+      <span><app-date-picker [(value)]="sDate"></app-date-picker></span>
+      <span>~</span>
+    <span><app-date-picker [(value)]="eDate"></app-date-picker></span>
+    </div>
   </div>
 </div>

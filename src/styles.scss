@@ -6,7 +6,7 @@ $fa-font-path: '../node_modules/font-awesome/fonts';
 @import '~font-awesome/scss/font-awesome';
 @import '~highlight.js/styles/monokai-sublime.css';
 /* Portal CSS */
-
+@import 'variable';
 @import 'sass/portal';
 /* Angular Material */
 
@@ -47,4 +47,9 @@ $sidenav-theme: portal-google-theme($app-primary, $app-accent, $app-warn);
 
 .cdk-overlay-container {
   @include cdk-container-theme($sidenav-theme);
+}
+
+.button-row {
+  padding-top: $p-8;
+  padding-bottom: $p-8;
 }

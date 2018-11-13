@@ -6,3 +6,10 @@
   flex: 2;
   white-space: nowrap;
 }
+
+.picker-date-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 20fr;
+  grid-auto-flow: column;
+  grid-gap: 4px;
+}

@@ -1,3 +1,5 @@
+@import 'variable';
+
 fieldset {
   border: 1px solid #03a9f4;
   border-radius: 4px;
@@ -18,6 +20,14 @@ fieldset > legend:first-of-type {
   /* color: blue; */
 }
 
+.detail-fieldset {
+  margin-bottom: 10px;
+  border-color: $gray-300;
+  legend {
+    color: $gray-400;
+  }
+}
+
 .block {
   margin: 0px;
   width: 1000px;
@@ -33,4 +43,13 @@ fieldset > legend:first-of-type {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-gap: 4px;
+}
+
+.mat-header-row {
+  min-height: 36px;
+  background-color: #a0aeb4;
+}
+
+.table-content {
+  height: 32px;
 }
