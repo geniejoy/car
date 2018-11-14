@@ -1,0 +1,53 @@
+@import 'variable';
+@mixin portal-inputs() {
+  .portal-remove-fixed-infix-width .mat-form-field-infix {
+    width: auto;
+  }
+}
+
+@mixin material-select($hoverColor: blue, $fontColor: $primary) {
+  .mat-form-field {
+    min-width: 0;
+    width: auto;
+    max-width: none;
+    .mat-select {
+      padding: 0;
+      border: 0;
+      background: transparent;
+    }
+    .mat-select-value {
+      max-width: none;
+      padding: 0;
+      border-radius: 0;
+      height: auto;
+      line-height: inherit;
+      transition: 0.5s;
+      color: $fontColor;
+      border: 1px solid transparent;
+      &:before {
+        content: none;
+      }
+    }
+    .mat-form-field-wrapper {
+      padding: 0;
+    }
+    .mat-select-arrow-wrapper {
+      display: none;
+    }
+    .mat-form-field-infix {
+      border: 0;
+      padding: 0;
+      width: auto;
+    }
+    .mat-form-field-underline {
+      display: none;
+    }
+    &:hover {
+      color: $hoverColor;
+      .mat-select-value {
+        color: $hoverColor;
+        border-bottom: 1px solid;
+      }
+    }
+  }
+}

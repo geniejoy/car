@@ -1,0 +1,15 @@
+@mixin flex($j: center, $a: center) {
+  display: flex;
+  justify-content: $j;
+  align-items: $a;
+}
+
+@mixin flex-column($j: center, $a: center) {
+  @include flex($j, $a);
+  flex-direction: column;
+}
+
+@mixin flex-column($j: center, $a: center) {
+  @include flex($j, $a);
+  flex-direction: column;
+}

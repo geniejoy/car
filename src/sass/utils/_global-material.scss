@@ -1,0 +1,722 @@
+@import 'variable';
+@import 'mixin';
+// fixed select chrome v69 error
+.mat-form-field {
+  .mat-form-field-wrapper {
+    .mat-form-field-flex {
+      .mat-form-field-infix {
+        .mat-select {
+          .mat-select-trigger {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+}
+
+// adjust mat-card shadows color and opacity
+.mat-card {
+  box-shadow: map-get($box-shadow, mat-card) !important;
+}
+
+.mat-elevation-z2,
+.mat-elevation-z3,
+.mat-elevation-z4,
+.mat-elevation-z5,
+.mat-elevation-z6,
+.mat-elevation-z7,
+.mat-elevation-z8 {
+  box-shadow: map-get($box-shadow, mat-card) !important;
+}
+
+// for cdk and custom options search
+.custom-query-options-search {
+  @include flex(flex-start, flex-end);
+  padding: $p-8 $p-16;
+  box-sizing: border-box;
+  height: map-get($size, custom-query-options-search-h);
+  .mat-form-field {
+    height: 100%;
+    margin-left: $m-8;
+    .mat-form-field-wrapper {
+      height: 100%;
+      .mat-form-field-infix {
+        border-top: 0;
+      }
+    }
+  }
+}
+
+// remove material mat-form-field options unlike style
+.reset-mat-form-field-option {
+  &.mat-form-field {
+    min-width: 0;
+    width: auto;
+    max-width: none;
+    .mat-select {
+      padding: 0;
+      border: 0;
+      background: transparent;
+    }
+    .mat-select-value {
+      max-width: none;
+      padding: 0;
+      border-radius: 0;
+      height: auto;
+      line-height: inherit;
+      transition: 0.5s;
+      &:before {
+        content: none;
+      }
+    }
+    .mat-form-field-infix {
+      width: auto;
+      color: $primary;
+    }
+    .mat-select-arrow-wrapper {
+      display: none;
+    }
+    .mat-form-field-underline {
+      display: none;
+    }
+    &:hover {
+      color: map-get($color, hover);
+      .mat-select-value {
+        color: map-get($color, hover);
+        border-bottom: 1px solid;
+      }
+    }
+  }
+}
+
+// remove material mat-form-field options unlike style
+.reset-mat-form-field-option {
+  &.mat-form-field {
+    min-width: 0;
+    width: auto;
+    max-width: none;
+    .mat-select {
+      padding: 0;
+      border: 0;
+      background: transparent;
+    }
+    .mat-select-value {
+      max-width: none;
+      padding: 0;
+      border-radius: 0;
+      height: auto;
+      line-height: inherit;
+      transition: 0.5s;
+      &:before {
+        content: none;
+      }
+    }
+    .mat-form-field-infix {
+      width: auto;
+      color: $primary;
+    }
+    .mat-select-arrow-wrapper {
+      display: none;
+    }
+    .mat-form-field-underline {
+      display: none;
+    }
+    &:hover {
+      color: map-get($color, hover);
+      .mat-select-value {
+        color: map-get($color, hover);
+        border-bottom: 1px solid;
+      }
+    }
+  }
+}
+
+// global button toggle
+mat-button-toggle-group {
+  box-shadow: none !important;
+  border: 1px solid #aaa;
+  margin-bottom: 5px;
+  background-color: #fff;
+  mat-button-toggle + mat-button-toggle {
+    border-left: 1px solid #aaa;
+  }
+}
+
+// for dashboard
+gna-dashboard {
+  gna-dashboard-title-btn {
+    .mat-card {
+      margin-left: map-get($margin, m-8);
+      padding: 12px;
+      min-height: 55px;
+      min-width: calc(
+        (100vw - #{map-get($layout, sidenav-width)} - #{map-get($padding, p-container) * 2}) / 2 - #{map-get(
+            $padding,
+            p-16
+          )}
+      ); // (100vw - sidebarWidth - padding) / 4 - 2-self-padding
+      box-sizing: border-box;
+    }
+    @include material-select(#03a9f4);
+    .mat-icon {
+      color: $primary;
+      transition: 0.5s;
+      &:hover {
+        color: #03a9f4;
+      }
+    }
+    .dashboard-icon {
+      margin-right: map-get($margin, m-8);
+      &:hover {
+        color: $primary;
+      }
+    }
+    .dashboard-option {
+      .mat-select-value {
+        font-weight: bold;
+        font-size: 1.5rem;
+      }
+      &:hover {
+        color: #03a9f4;
+      }
+    }
+    .dashboard-input {
+      .mat-form-field-label {
+        transform: perspective(100px) translateY(-8px);
+      }
+      .mat-form-field-infix {
+        input {
+          border-bottom: 2px solid $primary;
+        }
+      }
+      &.mat-focused {
+        .mat-form-field-infix {
+          input {
+            border-bottom: 2px solid #03a9f4;
+          }
+        }
+      }
+    }
+  }
+}
+
+// for dashboard card
+gna-dashboard-card {
+  // drag
+  .drag-handler {
+    position: absolute;
+    left: 0;
+    top: 0;
+    @include size(0);
+    box-sizing: border-box;
+    z-index: map-get($z-index, modal);
+  }
+  &.drag-edit {
+    .drag-handler {
+      display: block;
+      background: map-get($grays, '500');
+      opacity: 0.6;
+      @include flex();
+      border: 4px dashed;
+      @include size(100%);
+      padding: $p-8;
+      cursor: grab;
+      &:hover {
+        transition: 0.5s;
+        background: map-get($grays, '600');
+        opacity: 1;
+      }
+    }
+  }
+  .dashboard-card {
+    .mat-card-header {
+      @include flex(flex-start, center);
+      color: $primary;
+    }
+    .mat-card-header-text {
+      flex: 1;
+      .mat-card-subtitle {
+        font-size: $f-sm;
+        font-weight: bold;
+        margin-bottom: 0;
+      }
+    }
+    .widget-action-list {
+      display: flex;
+      .mat-icon {
+        height: map-get($mat-icon, widget-action-icon);
+        width: map-get($mat-icon, widget-action-icon);
+        font-size: map-get($mat-icon, widget-action-icon);
+      }
+      > * + * {
+        margin-left: map-get($margin, m-8);
+      }
+    }
+  }
+}
+
+gna-overlay-page2 .wrap {
+  .title {
+    .mat-form-field {
+      .mat-form-field-wrapper {
+        height: 100%;
+        padding: 0;
+      }
+      .mat-form-field-flex {
+        height: 100%;
+        @include flex(flex-start);
+        border: 1px solid $gray;
+        border-radius: 5px;
+        padding-left: map-get($padding, p-8);
+        box-sizing: border-box;
+      }
+      .mat-form-field-underline {
+        display: none;
+      }
+      .mat-form-field-infix {
+        border: 0;
+        padding: 0;
+        height: 100%;
+        input {
+          height: 100%;
+        }
+      }
+    }
+  }
+}
+
+gna-traffic-gauge-options {
+  .numerator-denominator {
+    .mat-form-field {
+      min-width: 85px;
+      width: auto;
+      max-width: none;
+      .mat-select {
+        padding: 0;
+        border: 0;
+        background: transparent;
+      }
+      .mat-select-value {
+        max-width: none;
+        padding: 0;
+        border-radius: 0;
+        height: auto;
+        line-height: inherit;
+        transition: 0.5s;
+        &:before {
+          content: none;
+        }
+      }
+      .mat-form-field-infix {
+        width: auto;
+        color: $primary;
+      }
+      .mat-select-arrow-wrapper {
+        display: none;
+      }
+      .mat-form-field-underline {
+        display: none;
+      }
+      &:hover {
+        color: map-get($color, hover);
+        .mat-select-value {
+          color: map-get($color, hover);
+          border-bottom: 1px solid;
+        }
+      }
+    }
+    .instance-item {
+      &:not(:first-of-type) {
+        .mat-form-field-infix {
+          padding: 0;
+          border: 0;
+        }
+        .mat-form-field-wrapper {
+          padding: 0;
+        }
+      }
+    }
+  }
+}
+
+gna-attack-map-options {
+  .map-item {
+    @include size(100%, calc(100% - #{map-get($dashboard, attack-map-options-header)}));
+    z-index: 10;
+    overflow-y: auto;
+    .view {
+      overflow: hidden; // @include button($white, map-get($color, attack-map-bg));
+      @include button;
+      display: inline-flex;
+      $width: 144px;
+      $height: 48px;
+      @include size($width, $height);
+      margin: $m-8;
+      width: $overlay-page1-item-width;
+      white-space: nowrap;
+      justify-content: flex-start;
+      > span {
+        margin-left: $m-8;
+      }
+      .img {
+        @include size(100%);
+        @include max-size(60px, 50px);
+        transition: all 0.2s linear;
+        img {
+          @include size(100%);
+        }
+      }
+      @include hover {
+        .img {
+          transform: scale(1.1);
+        }
+      }
+    }
+  }
+}
+
+gna-map-config {
+  // map view
+  .map-view {
+    width: 100%;
+    .map-item {
+      width: 100%;
+      margin-top: 1%;
+      margin-left: 1%; // box-shadow: 0 1px 2px 0 rgba(172, 183, 194, 0.842);
+      border-radius: 5px;
+      z-index: 10;
+      display: inline-grid;
+      grid-template-columns: auto auto auto auto auto;
+      padding: 10px;
+      grid-gap: 15px 10px;
+      overflow-y: scroll;
+      .mat-icon {
+        text-align: center;
+        font-size: 150px;
+        opacity: 0.5;
+        box-shadow: map-get($box-shadow, map-card);
+        /* Chrome,Safari4+ */
+        color: rgba(175, 174, 174, 0.7);
+        &:hover {
+          color: rgba(122, 121, 121, 0.747) !important;
+          cursor: pointer;
+        }
+      }
+      .item {
+        width: 170px;
+        height: 170px;
+        box-shadow: map-get($box-shadow, map-card);
+        /* Chrome,Safari4+ */
+        background: -webkit-linear-gradient(
+          top,
+          rgba(255, 255, 255, 0.01) 0%,
+          rgba(255, 255, 255, 0.5) 34%,
+          rgba(255, 255, 255, 0.7) 99%,
+          rgba(255, 255, 255, 0.9) 100%
+        ); // /* Chrome10+,Safari5.1+ */
+        // background: -o-linear-gradient(top, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0) 34%, rgba(255, 255, 255, 0.3) 99%, rgba(255, 255, 255, 0.3) 100%);
+        // /* Opera 11.10+ */
+        // background: -ms-linear-gradient(top, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0) 34%, rgba(255, 255, 255, 0.3) 99%, rgba(255, 255, 255, 0.3) 100%);
+        border-radius: 0.8em;
+        align-items: center;
+        justify-content: center;
+        img {
+          flex-shrink: 0;
+          vertical-align: middle;
+          padding: 2px;
+          max-width: 80%;
+          max-height: 80%;
+        }
+      }
+      .item:hover {
+        background: rgba(255, 255, 255, 0.3);
+        cursor: pointer;
+      }
+      .item:active {
+        background: rgba(255, 255, 255, 0.158);
+      }
+      .form-box {
+        display: flex;
+        justify-content: flex-end;
+      }
+      .view {
+        width: 170px;
+        height: 170px;
+        box-shadow: map-get($box-shadow, map-card);
+        /* Chrome,Safari4+ */
+        background: -webkit-linear-gradient(
+          top,
+          rgba(255, 255, 255, 0.01) 0%,
+          rgba(255, 255, 255, 0.5) 34%,
+          rgba(255, 255, 255, 0.7) 99%,
+          rgba(255, 255, 255, 0.9) 100%
+        );
+        float: left;
+        overflow: hidden;
+        position: relative;
+        text-align: center;
+        box-shadow: 1px 1px 2px #e6e6e6;
+        cursor: pointer;
+        border-radius: 0.8em;
+      }
+      .view h3 {
+        font-family: Raleway, serif;
+        transition: all 0.2s ease-in-out;
+        font-size: 17px;
+      }
+      .view .mask {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        overflow: hidden;
+        top: 0;
+        left: 0;
+        opacity: 0;
+        background: -webkit-linear-gradient(
+          top,
+          rgba(243, 222, 177, 0.01) 0%,
+          rgba(243, 222, 177, 0.1) 84%,
+          rgba(243, 222, 177, 0.27) 99%
+        ); //   background-color: rgba(178, 177, 241, 0.185);
+        transition: all 0.4s ease-in-out;
+      }
+      .view .info {
+        margin-top: 75px;
+        display: flex;
+        justify-content: flex-center;
+        align-items: center;
+        color: #fff;
+        font-family: Raleway, serif;
+        text-transform: uppercase;
+        transition-delay: 0.2s;
+      }
+      .view .info .mat-icon {
+        font-size: 40px;
+        color: rgb(46, 40, 33);
+        opacity: 0.8;
+        transform: translateY(0px);
+        transition-delay: 0.1s;
+      }
+      .view img {
+        /*1*/
+        transition: all 0.2s linear;
+      }
+      /* */
+      .view:hover img {
+        transform: scale(1.1);
+        opacity: 0.5;
+      }
+      .view:hover h3 {
+        opacity: 0.2;
+      }
+      .view:hover .mask {
+        opacity: 1;
+      }
+      .view:hover h2,
+      .view:hover p,
+      .view:hover .info {
+        opacity: 1;
+        transform: translateY(0px);
+      }
+    }
+    .icon-container {
+      width: 170px;
+      height: 170px;
+      border-radius: 0.8em;
+      box-shadow: map-get($box-shadow, map-card);
+      align-content: center;
+      justify-content: center;
+      background: -webkit-linear-gradient(
+        top,
+        rgba(255, 255, 255, 0.01) 0%,
+        rgba(255, 255, 255, 0.2) 34%,
+        rgba(255, 255, 255, 0.37) 99%
+      );
+      &:hover {
+        background: rgba(255, 255, 255, 0.158);
+      }
+    }
+  }
+  .mat-tab-body-wrapper {
+    transition-delay: 1;
+    height: 100%;
+    width: 90%;
+  }
+  .total {
+    width: 100%;
+    font-weight: 600;
+    padding-left: 12px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .search-layout,
+  .save-layout {
+    width: 100%;
+    font-weight: 600;
+    padding-left: 12px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    .mat-icon {
+      margin: 0 !important;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      &:hover {
+        color: #039be5 !important;
+      }
+    }
+    .mat-form-field-infix {
+      display: flex;
+      align-items: center;
+    }
+    .mat-form-field-label-wrapper {
+      margin-left: 28px;
+    }
+    input {
+      margin-left: 4px;
+      color: #039be5;
+    }
+  } // config list
+  .config-list {
+    margin-top: 1%;
+    margin-left: 1%;
+    height: 550px;
+    padding: 1%;
+    .subnetwork-container {
+      margin-top: 1%;
+      height: 90%;
+    }
+    .subnetwork-layout {
+      height: 90%;
+    }
+    .subnetwork-list {
+      height: 100%;
+      overflow-y: scroll;
+      overflow-x: hide;
+      .content {
+        min-height: 30px;
+      }
+    }
+    .coords {
+      color: rgba(0, 0, 0, 0.54);
+      font-size: 10px;
+      width: 100%;
+    }
+  }
+}
+
+gna-query-options {
+  .mat-form-field + .mat-form-field {
+    margin-left: $m-12;
+    .mat-select {
+      position: relative;
+      &:before {
+        content: '/';
+        position: absolute;
+        margin-left: #{$m-8 * -1};
+        cursor: default;
+      }
+    }
+  }
+}
+
+gna-query-options {
+  .mat-form-field + .mat-form-field {
+    margin-left: $m-12;
+    .mat-select {
+      position: relative;
+      &:before {
+        content: '/';
+        position: absolute;
+        margin-left: #{$m-8 * -1};
+        cursor: default;
+      }
+    }
+  }
+}
+
+gna-finder-button {
+  .mat-checkbox {
+    margin-left: $m-4;
+    width: 100%;
+    .mat-checkbox-layout {
+      width: 100%;
+      display: flex;
+      .mat-checkbox-label {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        span {
+          flex: 1;
+        }
+      }
+    }
+  }
+}
+
+gna-time-range {
+  .mat-button-toggle-group {
+    height: map-get($size, time-range-height);
+    mat-button-toggle {
+      height: 100%;
+      min-width: map-get($size, time-range-btn-width);
+      button {
+        height: 100%;
+        .mat-button-toggle-label-content {
+          height: 100%;
+          line-height: map-get($size, time-range-height);
+          padding: 0 $p-8;
+        }
+      }
+    }
+  }
+}
+
+.gna-toogle-group {
+  height: map-get($size, time-range-height);
+  font-size: $f-xs;
+  font-weight: bold;
+  mat-button-toggle {
+    height: 100%;
+    min-width: map-get($size, time-range-btn-width);
+    button {
+      height: 100%;
+      .mat-button-toggle-label-content {
+        height: 100%;
+        line-height: map-get($size, time-range-height);
+        padding: 0 $p-8;
+      }
+    }
+  }
+}
+
+gna-event-detail {
+  .mat-header-row {
+    height: 40px !important;
+  }
+  .mat-row {
+    height: 30px !important;
+  }
+}
+
+gna-event-list {
+  .table-top-bar {
+    .mat-form-field {
+      .mat-form-field-infix {
+        display: flex;
+        .mat-icon {
+          color: $primary;
+        }
+        .mat-form-field-label-wrapper {
+          left: 24px;
+          margin-top: 4px;
+        }
+      }
+    }
+  }
+}

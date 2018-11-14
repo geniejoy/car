@@ -1,0 +1,19 @@
+@mixin size($w, $h: $w) {
+  width: $w;
+  height: $h;
+}
+
+@mixin size-bdrs($w, $h, $bdrs) {
+  @include size($w, $h);
+  border-radius: $bdrs;
+}
+
+@mixin min-size($w: 100%, $h: $w) {
+  min-width: $w;
+  min-height: $h;
+}
+
+@mixin max-size($w: 100%, $h: $w) {
+  max-width: $w;
+  max-height: $h;
+}

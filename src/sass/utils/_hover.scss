@@ -1,0 +1,93 @@
+@import 'variable';
+@import 'mixin';
+.hover-tip {
+  position: relative;
+  transition: 0.5s;
+  z-index: map-get($z-index, hover-tip);
+  @include hover {
+    &:before {
+      position: fixed;
+      content: '';
+      @include min-size(10px);
+      background: map-get($color, tip-bg);
+      transform: translate(50%, -145%) rotate(45deg);
+    }
+    &:after {
+      position: fixed;
+      content: attr(tip);
+      color: map-get($color, tip);
+      background: map-get($color, tip-bg);
+      border-radius: 30px;
+      padding: $p-4 $p-16;
+      font-size: $f-sm;
+      transform: translate(-50%, -130%);
+      white-space: nowrap;
+    }
+  }
+}
+
+.visible-tip {
+  position: relative;
+  transition: 0.5s;
+  z-index: map-get($z-index, hover-tip);
+  &:before {
+    position: fixed;
+    content: '';
+    @include min-size(10px);
+    background: map-get($color, tip-bg);
+    transform: translate(50%, -145%) rotate(45deg);
+  }
+  &:after {
+    position: fixed;
+    content: attr(tip);
+    color: map-get($color, tip);
+    background: map-get($color, tip-bg);
+    border-radius: 30px;
+    padding: $p-4 $p-16;
+    font-size: $f-sm;
+    transform: translate(-50%, -130%);
+    white-space: nowrap;
+  }
+}
+
+.hover-word {
+  cursor: pointer;
+  transition: map-get($map: $animation, $key: hover);
+  @include hover {
+    color: map-get($map: $color, $key: hover);
+  }
+}
+
+.hover-word-line {
+  cursor: pointer;
+  transition: map-get($map: $animation, $key: hover);
+  border-bottom: 1px solid transparent;
+  @include hover {
+    color: map-get($map: $color, $key: hover);
+    border-bottom: 1px solid map-get($map: $color, $key: hover);
+  }
+}
+
+.hover-word-line-animation {
+  position: relative;
+  cursor: pointer;
+  transition: map-get($map: $animation, $key: hover);
+  &:before {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    content: '';
+    width: 0%;
+    height: 1px;
+    background-color: map-get($map: $color, $key: hover);
+    transition: map-get($map: $animation, $key: hover);
+  }
+  @include hover {
+    color: map-get($map: $color, $key: hover);
+    &:before {
+      content: '';
+      left: 0;
+      width: 100%;
+    }
+  }
+}

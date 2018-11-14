@@ -24,13 +24,14 @@ import { merge, Subject } from 'rxjs';
 export class DetailComponent implements OnInit, OnChanges, AfterViewInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) tableSort: MatSort;
-  @Input() detailInfo: FactoryHistories = { lines: []};
+  @Input() detailInfo: FactoryHistories = { lines: [] };
   dataSource: MatTableDataSource<FixLinesTableSchema> | null;
   dataSubject = new BehaviorSubject(null);
   displayedColumns: string[];
+  pageEvent: PageEvent;
   pageSizeOptions: number[];
 
-  constructor () {
+  constructor() {
     this.displayedColumns = ['itemName', 'itemStd', 'qty', 'price', 'subTotal'];
     this.pageSizeOptions = [5, 10, 20];
     this.dataSource = new MatTableDataSource(this.detailInfo.lines);

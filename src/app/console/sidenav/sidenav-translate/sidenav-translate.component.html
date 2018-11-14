@@ -1,9 +1,0 @@
-<div i18n='left menu: summary@@summary' #dashboardRef>{{i18nDashboard}}</div>
-<div *ngFor="let menuItem of i18nMenuItems" #translatePanel>
-  <h1 i18n='left menu: report@@leftMenuReport'>
-    {menuItem.name, select, Customers {Customers} Customer {Customer} Lab {Lab}System {System}}
-  </h1>
-  <h2 *ngFor="let subMenuItem of menuItem.routes" i18n='left menu: report sub@@leftMenuReportSub'>
-    {subMenuItem.name, select, Customer {Customer} Create {Create} Manage {Manage} User {User} Configure {Configure} Lab {Lab}}
-  </h2>
-</div>

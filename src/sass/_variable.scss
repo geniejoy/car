@@ -40,7 +40,7 @@ $mat-grey: (
   )
 );
 // ------------------
-// Color
+//       Color
 // ------------------
 $white: #fff !default;
 $gray: gray !default;
@@ -105,7 +105,7 @@ $color: map-merge(
   $color
 );
 // ------------------
-// Padding
+//      Padding
 // ------------------
 $padding: (
   p-container: 1rem
@@ -128,7 +128,7 @@ $p-16: map-get($padding, p-16);
 $p-24: map-get($padding, p-24);
 $p-32: map-get($padding, p-32);
 // ------------------
-// Margin
+//      Margin
 // ------------------
 $margin: () !default;
 $margin: map-merge(
@@ -149,10 +149,9 @@ $m-16: map-get($margin, m-16);
 $m-24: map-get($margin, m-24);
 $m-32: map-get($margin, m-32);
 // ------------------
-// Layout
+//      Layout
 // ------------------
 $layout: () !default;
-
 $layout: map-merge(
   (
     top-bar-height: 52px,
@@ -163,7 +162,7 @@ $layout: map-merge(
 $toolbar-height: 52px;
 $sidenav-width: 59px;
 // ------------------
-// Dashboard
+//      Dashboard
 // ------------------
 $dashboard: () !default;
 $dashboard: map-merge(
@@ -181,11 +180,11 @@ $dashboard: map-merge(
   $content: 0px;
   $fixedAmchart: 0px;
   $fixedAmchartNoData: 1;
-  @if $size == 'sm' {
+  @if $size== 'sm' {
     $minus: 6;
-  } @else if $size == 'lg' {
+  } @else if $size== 'lg' {
     $minus: 3 / 2;
-  } @else if $size == 'xl' {
+  } @else if $size== 'xl' {
     $minus: 1;
   }
   @if $isContent {
@@ -207,16 +206,16 @@ $dashboard: map-merge(
           ) / #{$minus} - #{$content} - #{map-get($margin, m-8) * 2} + #{$fixedAmchart}
       ) / #{$fixedAmchartNoData}
   );
-  @return $calc;
-  // (100vh - (topBar + dashboardHeader + marginBottom) - containerPadding) / size - (isContent? twoSelfPadding + widgetHeader : 0)- twoSideMargin + (isFixedAmchart? 100px : 0)
+  @return $calc; // (100vh - (topBar + dashboardHeader + marginBottom) - containerPadding) / size - (isContent? twoSelfPadding + widgetHeader : 0)- twoSideMargin + (isFixedAmchart? 100px : 0)
 }
+
 @function calcWidgetContentHeight($size) {
   $minus: 3;
-  @if $size == 'sm' {
+  @if $size== 'sm' {
     $minus: 6;
-  } @else if $size == 'lg' {
+  } @else if $size== 'lg' {
     $minus: 3 / 2;
-  } @else if $size == 'xl' {
+  } @else if $size== 'xl' {
     $minus: 1;
   }
   $calc: calc(
@@ -227,23 +226,23 @@ $dashboard: map-merge(
           ) * 2}
       ) / #{$minus} - #{map-get($margin, m-8) * 2}
   );
-  @return $calc;
-  // (100vh - (topBar + dashboardHeader + marginBottom) - containerPadding) / size - (isContent? twoSelfPadding : 0) - twoSideMargin
+  @return $calc; // (100vh - (topBar + dashboardHeader + marginBottom) - containerPadding) / size - (isContent? twoSelfPadding : 0) - twoSideMargin
 }
+
 @function calcWidgetWidth($size) {
   $minus: 4;
-  @if $size == 'sm' {
+  @if $size== 'sm' {
     $minus: 8;
-  } @else if $size == 'lg' {
+  } @else if $size== 'lg' {
     $minus: 2;
-  } @else if $size == 'xl' {
+  } @else if $size== 'xl' {
     $minus: 1;
   }
   $diff: 1px;
   $calc: calc(100% / #{$minus} - #{map-get($margin, m-8) * 2} - #{$diff});
-  @return $calc;
-  // 100% / size - twoSideMargin - diff
+  @return $calc; // 100% / size - twoSideMargin - diff
 }
+
 $widget-height: (
   sm: calcWidgetHeight('sm'),
   md: calcWidgetHeight('md'),
@@ -267,7 +266,7 @@ $widget-width: (
 ) !default;
 $overlay-page1-item-width: calc(100% / 3 - #{$m-8 * 2} - 1px);
 // ----------------------
-// Media Screen
+//      Media Screen
 // ----------------------
 $screen-min-height: (
   sm: 576px,
@@ -276,7 +275,7 @@ $screen-min-height: (
 ) !default;
 $screen-min-width: () !default;
 // ----------------
-// Font
+//       Font
 // ----------------
 $font-size-base: 1rem !default;
 $font-size: () !default;
@@ -331,7 +330,7 @@ $font-weight: map-merge(
   $font-weight
 );
 // ----------------------
-// Material Style
+//      Material Style
 // ----------------------
 $mat-icon: (
   traffic-matrix-toggle: 48px,
@@ -340,26 +339,54 @@ $mat-icon: (
   widget-action-icon: 1.1rem
 ) !default;
 // ----------------------
-// Z - INDEX
+//      Z - INDEX
 // ----------------------
 $z-index: () !default;
 $z-index: map-merge(
   (
+    header: 50,
     hover-tip: 200,
     modal: 100
   ),
   $z-index
 );
 // ----------------------
-
-// Size
+//        Size
 // ----------------------
 $size: () !default;
 $size: map-merge(
   (
     custom-query-options-search-h: 40px,
     time-range-btn-width: 70px,
-    time-range-height: 30px
+    time-range-height: 30px,
+    gna-event-detail-mat-row: 30px
   ),
   $size
+);
+// ----------------------
+//        Animation
+// ----------------------
+$animation: (
+  hover: 0.5s
+) !default;
+$animation: map-merge((), $animation);
+// ----------------------
+//        Shadow
+// ----------------------
+$box-shadow: ();
+$box-shadow: map-merge(
+  (
+    mat-card: (
+      0 1px 1px -1px rgba(0, 0, 0, 0.05),
+      0 1px 1px 0 rgba(0, 0, 0, 0.05),
+      0 1px 1px 0 rgba(0, 0, 0, 0.05)
+    ),
+    toolbar: (
+      0px 1px 1px rgba(0, 0, 0, 0.1)
+    ),
+    sidebar: (
+      0 1px 4px 0 rgba(0, 0, 0, 0.1)
+    )
+  ),
+  $box-shadow
 );

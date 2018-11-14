@@ -1,20 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
 
 /* 3rd Party CSS */
-
-$fa-font-path: '../node_modules/font-awesome/fonts';
+$fa-font-path: '~font-awesome/fonts';
 @import '~font-awesome/scss/font-awesome';
 @import '~highlight.js/styles/monokai-sublime.css';
+
 /* Portal CSS */
-@import 'variable';
-@import 'sass/portal';
+@import 'assets/sass/theme';
+
 /* Angular Material */
-
 @import '~@angular/material/theming';
-/* Typography */
 
+/* Typography */ // $font-family: 'Barlow, sans-serif',
 $app-typography: mat-typography-config(
-  $font-family: 'Open-Sans, sans-serif',
+  $font-family: 'Open Sans, sans-serif',
   $display-4: mat-typography-level(112px, 112px, 300),
   $display-3: mat-typography-level(56px, 56px, 400),
   $display-2: mat-typography-level(45px, 48px, 400),
@@ -27,17 +26,20 @@ $app-typography: mat-typography-config(
   $body-1: mat-typography-level(14px, 24px, 400),
   $caption: mat-typography-level(12px, 20px, 400),
   $button: mat-typography-level(14px, 14px, 500),
-  /* Line-height must be unit-less fraction of the font-size. */ $input: mat-typography-level(16px, 1.125, 400)
+  // Line-height must be unit-less fraction of the font-size. $input: mat-typography-level(16px, 1.125, 400)
 );
+
 // Set up typography with above rules
 @include mat-core($app-typography);
 $app-primary: mat-palette($mat-light-blue);
 $app-accent: mat-palette($mat-pink, A200, A100, A400);
 $app-warn: mat-palette($mat-red);
 $app-theme: portal-light-theme($app-primary, $app-accent, $app-warn);
+
 // Create app styles
 @include angular-material-theme($app-theme);
 @include portal-theme($app-theme, $app-typography);
+
 // Create the theme object (a Sass map containing all of the palettes).
 $sidenav-theme: portal-google-theme($app-primary, $app-accent, $app-warn);
 .portal-sidnav {
@@ -47,9 +49,4 @@ $sidenav-theme: portal-google-theme($app-primary, $app-accent, $app-warn);
 
 .cdk-overlay-container {
   @include cdk-container-theme($sidenav-theme);
-}
-
-.button-row {
-  padding-top: $p-8;
-  padding-bottom: $p-8;
 }

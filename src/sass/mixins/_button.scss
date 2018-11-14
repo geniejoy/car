@@ -1,0 +1,22 @@
+@import 'variable';
+@import 'flex';
+@import 'border';
+@import 'hover';
+@mixin button($bgColor: #fff, $fontColor: gray) {
+  @include flex;
+  @include border;
+  background: $bgColor;
+  color: $fontColor;
+  cursor: pointer;
+  transition: 0.4s;
+  padding: 0 $p-12;
+  box-sizing: border-box;
+  @include hover-active {
+    background: $fontColor;
+    color: $bgColor;
+  }
+  &.active {
+    background: $fontColor;
+    color: $bgColor;
+  }
+}

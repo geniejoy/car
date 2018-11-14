@@ -13,7 +13,7 @@
     primary: $primary,
     accent: $accent,
     warn: $warn,
-    is-dark: true,
+    is-dark: false,
     foreground: (
       base: black,
       divider: $black-12-opacity,
@@ -119,7 +119,7 @@
     primary: $primary,
     accent: $accent,
     warn: $warn,
-    is-dark: false,
+    is-dark: true,
     foreground: (
       base: rgba(0, 0, 0, 0.54),
       divider: $white-12-opacity,
@@ -148,11 +148,11 @@
       disabled-button: $white-12-opacity,
       raised-button: map-get($mat-grey, 800),
       focused-button: $white-6-opacity,
-      selected-button: map_get($mat-grey, 900),
-      selected-disabled-button: map_get($mat-grey, 800),
-      disabled-button-toggle: black,
-      unselected-chip: map_get($mat-grey, 700),
-      disabled-list-option: black
+      selected-button: map_get($mat-grey, 300),
+      selected-disabled-button: map_get($mat-grey, 400),
+      disabled-button-toggle: map_get($mat-grey, 200),
+      unselected-chip: map_get($mat-grey, 300),
+      disabled-list-option: map_get($mat-grey, 200)
     )
   );
 }

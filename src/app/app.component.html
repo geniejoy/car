@@ -1,1 +1,27 @@
+<mat-toolbar class="header portal-toolbar">
+    <mat-toolbar-row>
+        <img type="image/x-icon" src="images/GN.png">
+        <div fxFlex="grow"></div>
+        <div>
+            <button mat-icon-button [matMenuTriggerFor]="menu">
+                <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+                <button mat-menu-item href="customers" (click)="openMenu('customers')">
+                    <mat-icon>group</mat-icon>
+                    <span>客戶</span>
+                </button>
+                <button mat-menu-item href="items" (click)="openMenu('items')">
+                    <mat-icon>gavel</mat-icon>
+                    <span>零件</span>
+                </button>
+                <button mat-menu-item href="factories" (click)="openMenu('factories')">
+                    <mat-icon>build</mat-icon>
+                    <span>維修記錄</span>
+                </button>
+            </mat-menu>
+        </div>
+        <app-logout-icon (click)="logout()"></app-logout-icon>
+    </mat-toolbar-row>
+</mat-toolbar>
 <router-outlet></router-outlet>

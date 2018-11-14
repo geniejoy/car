@@ -1,0 +1,16 @@
+@mixin ablt($l: inherit, $t: inherit) {
+  position: absolute;
+  left: $l;
+  top: $t;
+}
+
+@mixin abrb($r: inherit, $b: inherit) {
+  position: absolute;
+  right: $r;
+  bottom: $b;
+}
+
+@mixin aball($l: inherit, $t: inherit, $r: inherit, $b: inherit) {
+  @include ablt($l, $t);
+  @include abrb($r, $b);
+}

@@ -1,0 +1,16 @@
+.hidden-none {
+  display: none !important;
+}
+
+.hidden-opacity {
+  opacity: 0;
+}
+
+.hidden-visible {
+  visibility: hidden;
+}
+
+.hidden-opacity-visible {
+  opacity: 0;
+  visibility: hidden;
+}
