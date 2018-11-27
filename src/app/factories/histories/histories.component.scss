@@ -21,11 +21,10 @@
   height: 32px;
 }
 
-/* actions */
-
+/* action */
 .mat-cell:nth-child(1),
 .mat-header-cell:nth-child(1) {
-  flex: 0 0 9%;
+  flex: 0 0 5%;
   flex-wrap: nowrap;
   padding-left: 8px;
   mat-icon {
@@ -36,40 +35,48 @@
   }
 }
 
-/* customer id */
-
+/* 狀態 */
 .mat-cell:nth-child(2),
 .mat-header-cell:nth-child(2) {
-  flex: 0 0 8%;
+  flex: 0 0 5%;
 }
 
-/* customer name */
-
+/* 原單號 */
 .mat-cell:nth-child(3),
 .mat-header-cell:nth-child(3) {
-  flex: 0 0 20%;
+  flex: 0 0 5%;
 }
 
-/* admin user */
-
+/* 日期 */
 .mat-cell:nth-child(4),
 .mat-header-cell:nth-child(4) {
+  flex: 0 0 10%;
+}
+
+/* 客戶 */
+.mat-cell:nth-child(5),
+.mat-header-cell:nth-child(5) {
+  flex: 0 0 25%;
+}
+
+// 車號
+.mat-cell:nth-child(6),
+.mat-header-cell:nth-child(6) {
   flex: 0 0 15%;
 }
 
-// scope
-.mat-cell:nth-child(5) {
-  textarea {
-    margin: 1px;
-    border: none;
-    box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.1);
-    font-size: x-small;
-    width: 320px;
-    line-height: 11pt;
-    min-height: 40px;
-    max-height: 40px;
-  }
+// 總計
+.mat-cell:nth-child(7),
+.mat-header-cell:nth-child(7) {
+  flex: 0 0 10%;
 }
+
+// 帳本
+.mat-cell:nth-child(8),
+.mat-header-cell:nth-child(8) {
+  flex: 0 0 10%;
+}
+
 .mat-header-row {
   min-height: 36px;
   background-color: #edf0f2;

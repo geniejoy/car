@@ -64,14 +64,14 @@ export class HistoriesComponent implements OnInit, OnChanges, AfterViewInit, DoC
   expandedDelId: number;
   expandedRowId: number;
 
-  constructor(private carService: CarService) {
+  constructor (public carService: CarService) {
+    this.dataSource = new MatTableDataSource(this.carService.factoryHistory);
     this.displayedColumns = ['actions', 'status', 'fixNo', 'fixDate', 'customerName', 'carNo', 'total', 'bookNo'];
     this.pageSizeOptions = [5, 10, 20];
     this.expandSubject = new Subject();
   }
 
   ngOnInit() {
-    this.dataSource = new MatTableDataSource(this.carService.factoryHistory);
     this.sortingDataAccessor();
     this.dataSource.sort = this.tableSort;
     this.dataSource.paginator = this.paginator;
@@ -163,14 +163,14 @@ export class HistoriesComponent implements OnInit, OnChanges, AfterViewInit, DoC
 
   toggleViewRow(row) {
     this.resetexpandedIndex();
-    this.expandedRowId = row.header.header_id;
-    this.expandedViewId = row.header.header_id;
+    this.expandedRowId  = !row ?   null : row.header.header_id;
+    this.expandedViewId  = !row ?   null : row.header.header_id;
   }
 
   toggleDeleteRow(row) {
     this.resetexpandedIndex();
-    this.expandedRowId = row.header.header_id;
-    this.expandedDelId = row.header.header_id;
+    this.expandedRowId  = !row ?   null : row.header.header_id;
+    this.expandedDelId  = !row ?   null : row.header.header_id;
   }
 
   toggleAddRow() {
@@ -181,8 +181,8 @@ export class HistoriesComponent implements OnInit, OnChanges, AfterViewInit, DoC
 
   toggleEditRow(row) {
     this.resetexpandedIndex();
-    this.expandedRowId = row.header.header_id;
-    this.expandedEditId = row.header.header_id;
+    this.expandedRowId  = !row ?   null : row.header.header_id;
+    this.expandedEditId  = !row ?   null : row.header.header_id;
   }
 
   sortingDataAccessor() {
@@ -209,5 +209,9 @@ export class HistoriesComponent implements OnInit, OnChanges, AfterViewInit, DoC
 
   getRow(row) {
     alert(row);
+  }
+
+  getStatusImage(status) {
+    return this.carService.statusMapping(status);
   }
 }

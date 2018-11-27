@@ -8,12 +8,9 @@ import { Component, Input, OnChanges, OnInit, Output, EventEmitter } from '@angu
 export class FactoriesComponent implements OnInit, OnChanges {
   @Input() customer;
   @Input() carNo;
+  @Input() sDate: string;
   @Input()
-  sDate = new Date(Date.now() - 7 * 24 * 3600 * 1000)
-    .toLocaleDateString('zh', { year: 'numeric', month: '2-digit', day: '2-digit' })
-    .replace(/\//g, '-');
-  @Input()
-  eDate = new Date(Date.now())
+  eDate: string = new Date(Date.now())
     .toLocaleDateString('zh', { year: 'numeric', month: '2-digit', day: '2-digit' })
     .replace(/\//g, '-');
   @Output() customerChange = new EventEmitter();
@@ -21,7 +18,21 @@ export class FactoriesComponent implements OnInit, OnChanges {
   @Output() sDateChange = new EventEmitter();
   @Output() eDateChange = new EventEmitter();
 
-  constructor() {}
+  constructor() {
+    this.getStartDate();
+  }
+
+  getStartDate() {
+    const tmp = new Date(this.eDate);
+    let s;
+    if (Number(tmp.getDate()) > 10) {
+      s = new Date(tmp.getFullYear(), tmp.getMonth(), 1);
+    } else {
+      s = new Date(tmp.getFullYear(), tmp.getMonth() - 1, 1);
+    }
+    this.sDate = s.toLocaleDateString('zh', { year: 'numeric', month: '2-digit', day: '2-digit' })
+      .replace(/\//g, '-');
+  }
 
   ngOnInit() {}
 

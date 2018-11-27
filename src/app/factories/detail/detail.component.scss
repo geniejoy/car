@@ -47,9 +47,22 @@ fieldset > legend:first-of-type {
 
 .mat-header-row {
   min-height: 36px;
-  background-color: #a0aeb4;
+  background-color: #78c3e6;
 }
 
 .table-content {
   height: 32px;
+  .mat-cell {
+    padding:1px;
+  }
+}
+
+.mat-cell:nth-child(1),
+.mat-header-cell:nth-child(1) {
+  min-width: 20%;
+}
+
+.mat-cell:nth-child(2),
+.mat-header-cell:nth-child(2) {
+  min-width: 10%;
 }

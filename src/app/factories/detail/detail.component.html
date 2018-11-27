@@ -24,22 +24,22 @@
   <div class="factor-lines container mat-elevation-z8 gna-console">
     <mat-table #table [dataSource]="dataSource" multiTemplateDataRows class="mat-elevation-z8" matSort matSortActive="id" matSortDirection="desc" matSortDisableClear>
       <ng-container matColumnDef="itemName">
-        <mat-header-cell mat-sort-header *matHeaderCellDef class="table-header"> 品名 </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef class="table-header"> 品名 </mat-header-cell>
         <mat-cell *matCellDef="let element" class="table-content">{{ element.item_name }}</mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="itemStd">
-        <mat-header-cell mat-sort-header *matHeaderCellDef class="table-header"> 規格</mat-header-cell>
+        <mat-header-cell *matHeaderCellDef class="table-header"> 規格</mat-header-cell>
         <mat-cell *matCellDef="let element" class="table-content"> {{ element.item_std }}</mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="qty">
-        <mat-header-cell mat-sort-header *matHeaderCellDef class="table-header"> 數量 </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef class="table-header"> 數量 </mat-header-cell>
         <mat-cell *matCellDef="let element" class="table-content"> {{ element.qty }}</mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="price">
-        <mat-header-cell mat-sort-header *matHeaderCellDef class="table-header"> 單價 </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef class="table-header"> 單價 </mat-header-cell>
         <mat-cell *matCellDef="let element" class="table-content"> {{ element.price }}</mat-cell>
       </ng-container>
 

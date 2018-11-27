@@ -50,3 +50,7 @@ $sidenav-theme: portal-google-theme($app-primary, $app-accent, $app-warn);
 .cdk-overlay-container {
   @include cdk-container-theme($sidenav-theme);
 }
+
+body{
+  margin: 0px 4px 0px 4px
+}

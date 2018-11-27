@@ -1,5 +1,5 @@
 <div>
-    <table width="100%">
+    <table width="99%">
         <tr>
             <td width="40%">
                 <mat-form-field class="filter-search-input">
@@ -37,7 +37,7 @@
 
         <ng-container matColumnDef="status">
             <mat-header-cell mat-sort-header *matHeaderCellDef class="table-header"> 狀態 </mat-header-cell>
-            <mat-cell *matCellDef="let element" class="table-content">{{element.header.status}}</mat-cell>
+            <mat-cell *matCellDef="let element" class="table-content">{{carService.statusMapping(element.header.status)}}</mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="fixNo">
@@ -56,17 +56,17 @@
         </ng-container>
 
         <ng-container matColumnDef="carNo">
-            <mat-header-cell *matHeaderCellDef class="table-header">車號</mat-header-cell>
+            <mat-header-cell mat-sort-header *matHeaderCellDef class="table-header">車號</mat-header-cell>
             <mat-cell *matCellDef="let element" class="table-content"> {{element.header.car_no}} </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="total">
-            <mat-header-cell *matHeaderCellDef class="table-header">總計</mat-header-cell>
+            <mat-header-cell mat-sort-header *matHeaderCellDef class="table-header">總計</mat-header-cell>
             <mat-cell *matCellDef="let element" class="table-content"> {{element.header.paper_total}} </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="bookNo">
-            <mat-header-cell *matHeaderCellDef class="table-header">帳本</mat-header-cell>
+            <mat-header-cell mat-sort-header *matHeaderCellDef class="table-header">帳本</mat-header-cell>
             <mat-cell *matCellDef="let element" class="table-content"> {{element.header.paper_seq}} </mat-cell>
         </ng-container>
 

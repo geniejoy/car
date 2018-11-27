@@ -21,6 +21,22 @@ export class CarService {
   itemChange: BehaviorSubject<any> = new BehaviorSubject<any[]>([]);
   factoryHistoryChange: BehaviorSubject<any> = new BehaviorSubject<FactoryHistories[]>([]);
   fixLinesChange: BehaviorSubject<any> = new BehaviorSubject<FixLinesTableSchema[]>([]);
+  statusMapping = status => {
+    let str = '';
+    switch (status) {
+      case '00002':
+        // str = 'done';
+        str = 'V';
+        break;
+      case '99999':
+        // str = 'close';
+        str = 'X';
+        break;
+      default:
+        // str = 'border_color';
+    }
+    return str;
+  }
 
   constructor(private http: HttpClient) {
     // this.getCars();
@@ -35,8 +51,8 @@ export class CarService {
       .set('customerNo', parmas.customerNo ? parmas.customerNo : '')
       .set('customerName', parmas.customerName ? parmas.customerName : '');
     this.http
-      // .get(`/car/getJson.php?table=customer&customerName=${customerName}`)
-      .post('/car/getJson.php', body)
+      // .get(`/Car/getJson.php?table=customer&customerName=${customerName}`)
+      .post('/Car/getJson.php', body)
       .subscribe((dataList: Array<CustomerTableSchema>) => {
         const customerInfos = [];
 
@@ -58,7 +74,7 @@ export class CarService {
       .set('table', 'car')
       .set('customerNo', params.customerNo)
       .set('carNo', params.carNo);
-    this.http.post('/car/getJson.php', body).subscribe((dataList: Array<CarTableSchema>) => {
+    this.http.post('/Car/getJson.php', body).subscribe((dataList: Array<CarTableSchema>) => {
       // console.log('service car:', dataList);
       const carInfos = [];
 
@@ -74,7 +90,7 @@ export class CarService {
   }
 
   async getItems() {
-    await this.http.get('/car/getJson.php?table=item').subscribe(data => {
+    await this.http.get('/Car/getJson.php?table=item').subscribe(data => {
       this.itemChange.next(data);
     });
   }
@@ -87,29 +103,24 @@ export class CarService {
       .set('carNo', params.carNo)
       .set('sDate', params.sDate)
       .set('eDate', params.eDate);
-    this.http.post('/car/getJson.php', body).subscribe(dataList => {
+    this.http.post('/Car/getJson.php', body).subscribe(dataList => {
       if (!dataList || dataList['headers'].length === 0) {
-        return ;
+        return;
       }
       const infos = [];
-      const headers = dataList['headers']
-        .sort((a, b) => {
-          if (a.fix_date < b.fix_date) {
-              return 1;
-          } else {
-            return -1;
-          }
-        });
+      const headers = dataList['headers'].sort((a, b) => {
+        if (a.fix_date < b.fix_date) {
+          return 1;
+        } else {
+          return -1;
+        }
+      });
       headers.forEach((data, index) => {
-       const customerInfo = dataList['customerInfo'].find(customer =>
-            customer.cs_auto_no === data.cs_auto_no
-        );
+        const customerInfo = dataList['customerInfo'].find(customer => customer.cs_auto_no === data.cs_auto_no);
 
-        const carInfo = dataList['carInfo'].find(car =>
-          car.cr_auto_no === data.cr_auto_no
-        );
+        const carInfo = dataList['carInfo'].find(car => car.cr_auto_no === data.cr_auto_no);
 
-        infos.push({ header: data, customerInfo: customerInfo, carInfo: carInfo});
+        infos.push({ header: data, customerInfo: customerInfo, carInfo: carInfo });
 
         if (index % 10 === 0) {
           this.factoryHistoryChange.next(infos);
@@ -129,7 +140,7 @@ export class CarService {
       .set('carNo', params.carNo)
       .set('sDate', params.sDate)
       .set('eDate', params.eDate);
-    this.http.post('/car/getJson.php', body).subscribe((dataList: Array<FixLinesTableSchema>) => {
+    this.http.post('/Car/getJson.php', body).subscribe((dataList: Array<FixLinesTableSchema>) => {
       this.fixLinesChange.next(dataList);
     });
 
@@ -152,12 +163,21 @@ export class CarService {
             info.lines = [];
           }
           total[data.header_id] = total[data.header_id] ? total[data.header_id] : 0;
-          console.log ('header:', data.header_id, ',total:', total[data.header_id]);
+          console.log('header:', data.header_id, ',total:', total[data.header_id]);
           total[data.header_id] += Number(data.subtotal);
           info.lines.push(data);
           info.header.paper_total = total[data.header_id];
-          info.header = { ...info.header, paper_total: total[data.header_id]};
-          console.log('headerId:', info.header.header_id, ', line header:', data.header_id, ',data.subtotal:', data.subtotal + ', total[data.header_id]:', total[data.header_id] + ', paper_total:', info.header.paper_total);
+          info.header = { ...info.header, paper_total: total[data.header_id] };
+          console.log(
+            'headerId:',
+            info.header.header_id,
+            ', line header:',
+            data.header_id,
+            ',data.subtotal:',
+            data.subtotal + ', total[data.header_id]:',
+            total[data.header_id] + ', paper_total:',
+            info.header.paper_total
+          );
         }
       });
       this.factoryHistoryChange.next(this.factoryHistory);
