@@ -6,21 +6,20 @@
         <mat-list role="list">
           <mat-list-item role="listitem"><span class="inputlabel">單號:</span><span class="inputdata">{{ detailInfo.header.orig_fix_no }}</span></mat-list-item>
           <mat-list-item role="listitem"><span class="inputlabel">車號:</span><span class="inputdata">{{ detailInfo.header.car_no }}</span></mat-list-item>
-          <mat-list-item role="listitem">
-            <span class="inputlabel">客戶:</span><span class="inputdata">{{ detailInfo.customerInfo.cs_name }}</span></mat-list-item>
-          <mat-list-item role="listitem"><span class="inputlabel">狀態:</span><span class="inputdata">{{ detailInfo.header.status }}</span></mat-list-item>
+          <mat-list-item role="listitem"><span class="inputlabel">客戶:</span><span class="inputdata">{{ detailInfo.customerInfo.cs_name }}</span></mat-list-item>
+          <mat-list-item role="listitem"><span class="inputlabel">狀態:</span><span class="inputdata">{{carService.statusMapping(detailInfo.header.status)}}</span></mat-list-item>
         </mat-list>
       </div>
       <div>
         <mat-list role="list">
           <mat-list-item role="listitem"><span class="inputlabel">日期:</span><span class="inputdata">{{ detailInfo.header.fix_date | date: 'yyyy-MM-dd' }}</span></mat-list-item>
           <mat-list-item role="listitem"><span class="inputlabel">帳本編號:</span><span class="inputdata">{{ detailInfo.header.paper_seq }}</span></mat-list-item>
-          <mat-list-item role="listitem"><span class="inputlabel">紙本總計:</span><span class="inputdata">{{ detailInfo.header.paper_total }}</span></mat-list-item>
+          <mat-list-item role="listitem"><span class="inputlabel">紙本總計:</span><span class="inputdata">{{ detailInfo.header.paper_total | currency:'TWD':'symbol-narrow':'1.0-2' }}</span></mat-list-item>
         </mat-list>
       </div>
     </div>
   </div>
-  <mat-paginator #paginatorInput [pageSizeOptions]="pageSizeOptions" showFirstLastButtons (page)="pageEvent = $event"></mat-paginator>
+  <mat-paginator #paginatorInput [pageSizeOptions]="pageSizeOptions" [hidePageSize]="true" showFirstLastButtons (page)="pageEvent = $event"></mat-paginator>
   <div class="factor-lines container mat-elevation-z8 gna-console">
     <mat-table #table [dataSource]="dataSource" multiTemplateDataRows class="mat-elevation-z8" matSort matSortActive="id" matSortDirection="desc" matSortDisableClear>
       <ng-container matColumnDef="itemName">
@@ -35,17 +34,17 @@
 
       <ng-container matColumnDef="qty">
         <mat-header-cell *matHeaderCellDef class="table-header"> 數量 </mat-header-cell>
-        <mat-cell *matCellDef="let element" class="table-content"> {{ element.qty }}</mat-cell>
+        <mat-cell *matCellDef="let element" class="table-content"> {{ element.qty | number:'1.0-2' }}</mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="price">
         <mat-header-cell *matHeaderCellDef class="table-header"> 單價 </mat-header-cell>
-        <mat-cell *matCellDef="let element" class="table-content"> {{ element.price }}</mat-cell>
+        <mat-cell *matCellDef="let element" class="table-content"> {{ element.price | number:'1.0-2' }}</mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="subTotal">
         <mat-header-cell *matHeaderCellDef class="table-header">小計</mat-header-cell>
-        <mat-cell *matCellDef="let element" class="table-content"> {{ element.subtotal }} </mat-cell>
+        <mat-cell *matCellDef="let element" class="table-content"> {{ element.subtotal | number:'1.0-2' }} </mat-cell>
       </ng-container>
 
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

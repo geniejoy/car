@@ -1,6 +1,6 @@
 const PROXY_CONFIG = [
   {
-    context: ['/car/getJson.php'],
+    context: ['/Car/getJson.php'],
     target: {
       host: '122.117.66.231',
       protocol: 'http',

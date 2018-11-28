@@ -15,6 +15,7 @@ import {
   PageEvent
   } from '@angular/material';
 import { merge, Subject } from 'rxjs';
+import { CarService } from '../../car.service';
 
 @Component({
   selector: 'app-factories-detail',
@@ -31,7 +32,7 @@ export class DetailComponent implements OnInit, OnChanges, AfterViewInit {
   pageEvent: PageEvent;
   pageSizeOptions: number[];
 
-  constructor() {
+  constructor(public carService: CarService) {
     this.displayedColumns = ['itemName', 'itemStd', 'qty', 'price', 'subTotal'];
     this.pageSizeOptions = [5, 10, 20];
     this.dataSource = new MatTableDataSource(this.detailInfo.lines);

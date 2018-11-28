@@ -66,7 +66,7 @@ export class HistoriesComponent implements OnInit, OnChanges, AfterViewInit, DoC
 
   constructor (public carService: CarService) {
     this.dataSource = new MatTableDataSource(this.carService.factoryHistory);
-    this.displayedColumns = ['actions', 'status', 'fixNo', 'fixDate', 'customerName', 'carNo', 'total', 'bookNo'];
+    this.displayedColumns = ['status', 'fixDate', 'customerName', 'carNo', 'total', 'bookNo'];
     this.pageSizeOptions = [5, 10, 20];
     this.expandSubject = new Subject();
   }

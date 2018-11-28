@@ -22,9 +22,9 @@ fieldset > legend:first-of-type {
 
 .detail-fieldset {
   margin-bottom: 10px;
-  border-color: $gray-300;
+  border-color:#6b6df5;
   legend {
-    color: $gray-400;
+    color: #6b6df5
   }
 }
 
@@ -55,6 +55,14 @@ fieldset > legend:first-of-type {
   .mat-cell {
     padding:1px;
   }
+}
+
+.mat-row:nth-child(odd) {
+  background-color: #e6f7ed;
+}
+
+.mat-row:nth-child(even) {
+  background-color: #fcfaee;
 }
 
 .mat-cell:nth-child(1),

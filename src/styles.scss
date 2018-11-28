@@ -51,6 +51,54 @@ $sidenav-theme: portal-google-theme($app-primary, $app-accent, $app-warn);
   @include cdk-container-theme($sidenav-theme);
 }
 
+
+$input-form-label-size: 10pt;
+$input-form-data-size: 11pt;
+$mat-card-title-font-size: 13pt;
+
+$list-form-label-size: 8pt;
+$list-form-data-size: 8pt;
+$list-form-label-family: Verdana;
+$list-form-data-family: Verdana, Arial, Helvetica, Sans-Serif;
+
 body{
-  margin: 0px 4px 0px 4px
+  margin: 0px 4px 0px 4px;
+  font-family: $list-form-data-family;
+}
+
+.button-row {
+  padding-bottom: 8px;
+}
+
+.inputlabel {
+  font-weight: normal;
+  font-family: Verdana;
+  font-size: $list-form-label-size;
+  text-decoration: none;
+  text-align: right;
+  height: 24px;
+  vertical-align: middle;
+
+  display: inline-block;
+  flex-wrap: nowrap;
+  max-height: 30px;
+}
+
+textarea,
+.inputdata {
+  font-family: $list-form-data-family;
+  font-size: $list-form-data-size;
+  font-weight: bold;
+  text-align: left;
+  padding-left: 4px;
+  padding-right: 2px;
+  vertical-align: middle;
+  line-height: 12pt;
+
+  display: inline-block;
+  flex-wrap: nowrap;
+  max-height: 30px;
+  min-width: 100px;
+  max-width: 300px;
+  overflow-x: auto;
 }

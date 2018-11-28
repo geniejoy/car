@@ -34,6 +34,7 @@ export class CarService {
         break;
       default:
         // str = 'border_color';
+        str = '-';
     }
     return str;
   }

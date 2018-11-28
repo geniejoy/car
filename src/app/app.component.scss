@@ -1,5 +1,5 @@
 img {
-  width: 200px;
+  height: 68px;
 }
 
 .portal-toolbar {
@@ -14,6 +14,9 @@ img {
     background: transparent;
     color: inherit;
     box-shadow: none;
+  }
+  .mat-toolbar-row {
+  padding:0;
   }
 }
 

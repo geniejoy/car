@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID  } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { SharedModule } from '@shared/shared.module';
@@ -12,7 +12,6 @@ import { CustomersModule } from '@customers/customers.module';
 import { FactoriesModule } from '@factories/factories.module';
 import { ItemsModule } from '@items/items.module';
 import { LogoutIconComponent } from './logout-icon/logout-icon.component';
-
 @NgModule({
   declarations: [AppComponent, LogoutIconComponent],
   imports: [
@@ -28,7 +27,6 @@ import { LogoutIconComponent } from './logout-icon/logout-icon.component';
     SharedModule,
     CommonsModule
   ],
-  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
